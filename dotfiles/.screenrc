@@ -1,3 +1,0 @@
-hardstatus on
-hardstatus alwayslastline
-hardstatus string "%{.wk}%-w%{.wr}%n %t%{-}%+w %=%{..k} %H %{..k} %m/%d %C%a "
