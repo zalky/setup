@@ -2,8 +2,8 @@
 
 ;; Author:  Zalan Kemenczy
 ;; Created: Mon Feb 12, 2007
-;; Revised: Tues Feb 3, 2009
-;; Emacs v: 23.0.60.1 CVS
+;; Revised: Mon Feb 23, 2015
+;; Emacs v: 24.4.90
 
 
 ;;;; Notes and Reminders
@@ -71,28 +71,17 @@
 ;; command makes a function available, but does not evaluate the
 ;; containing file until the function is actually called.
 (add-to-list 'load-path "~/local/share/elisp/")
-(add-to-list 'load-path "~/local/share/elisp/ecb-2.32")
+;;(add-to-list 'load-path "~/local/share/elisp/ecb-2.32")
 
 ;;;; Requires
 
-;; If "feature" is not already loaded, then it is loaded from either
-;; the given filename, or from the filename taken to be feature.el(c).
-(require 'info)
-
-;; Speedbar within frame
-(require 'speedbar)
-(require 'advice)
-(require 'cl)
-;;(require 'sr-speedbar)
-
-;; Load word-count-mode
-(require 'word-count)
-
-;; "Shrink-wrap" frame to buffer size.
-(require 'fit-frame)
- 
 ;; Load CEDET
-(load-file "~/local/share/elisp/cedet-1.0pre4/common/cedet.el")
+(load "~/.emacs.d/cedet-config.el")
+
+(require 'semantic/sb)
+
+;; Load CEDET
+;;(load-file "~/local/share/elisp/cedet-1.0pre4/common/cedet.el")
 
 ;; Enabling various SEMANTIC minor modes.  See semantic/INSTALL for more ideas.
 ;; Select one of the following:
@@ -102,7 +91,7 @@
 
 ;; * This enables some tools useful for coding, such as summary mode
 ;;   imenu support, and the semantic navigator
-(semantic-load-enable-code-helpers)
+;;(semantic-load-enable-code-helpers)
 
 ;; * This enables even more coding tools such as the nascent intellisense mode
 ;;   decoration mode, and stickyfunc mode (plus regular code helpers)
@@ -120,9 +109,114 @@
 (setq semanticdb-default-save-directory "~/.semantic/")
 
 ;; Require Emacs Code Browser
+(add-to-list 'load-path (expand-file-name "~/local/share/elisp/ecb/"))
 (require 'ecb)
 
+;; Disable tip of the day
+(setq ecb-tip-of-the-day nil)
 
+;; Remove ugly icons from emacs code browser
+(setq ecb-tree-buffer-style 'ascii-no-guides)
+
+;; Set primary mouse click to be left click and Ctrl right click
+(setq ecb-primary-secondary-mouse-buttons 'mouse-1--C-mouse-1)
+
+;; If "feature" is not already loaded, then it is loaded from either
+;; the given filename, or from the filename taken to be feature.el(c).
+(require 'info)
+(require 'advice)
+(require 'cl)
+
+;; Function to swap a buffer with the one in a window bellow it. This function
+;; is later bound globally to the key `C-x 9'
+(defun transpose-buffers (arg)
+  "Transpose the buffers shown in two windows."
+  (interactive "p")
+  (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
+    (while (/= arg 0)
+      (let ((this-win (window-buffer))
+            (next-win (window-buffer (funcall selector))))
+        (set-window-buffer (selected-window) next-win)
+        (set-window-buffer (funcall selector) this-win)
+        (select-window (funcall selector)))
+      (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
+
+;; transpose-frame.el
+(require 'transpose-frame)
+
+;; ;; This program provides some interactive functions which allows users
+;; to transpose windows arrangement in currently selected frame:
+;;
+;; `transpose-frame'  ...  Swap x-direction and y-direction
+;;
+;;        +------------+------------+      +----------------+--------+
+;;        |            |     B      |      |        A       |        |
+;;        |     A      +------------+      |                |        |
+;;        |            |     C      |  =>  +--------+-------+   D    |
+;;        +------------+------------+      |   B    |   C   |        |
+;;        |            D            |      |        |       |        |
+;;        +-------------------------+      +--------+-------+--------+
+;;
+;; `flip-frame'  ...  Flip vertically
+;;
+;;        +------------+------------+      +------------+------------+
+;;        |            |     B      |      |            D            |
+;;        |     A      +------------+      +------------+------------+
+;;        |            |     C      |  =>  |            |     C      |
+;;        +------------+------------+      |     A      +------------+
+;;        |            D            |      |            |     B      |
+;;        +-------------------------+      +------------+------------+
+;;
+;; `flop-frame'  ...  Flop horizontally
+;;
+;;        +------------+------------+      +------------+------------+
+;;        |            |     B      |      |     B      |            |
+;;        |     A      +------------+      +------------+     A      |
+;;        |            |     C      |  =>  |     C      |            |
+;;        +------------+------------+      +------------+------------+
+;;        |            D            |      |            D            |
+;;        +-------------------------+      +-------------------------+
+;;
+;; `rotate-frame'  ...  Rotate 180 degrees
+;;
+;;        +------------+------------+      +-------------------------+
+;;        |            |     B      |      |            D            |
+;;        |     A      +------------+      +------------+------------+
+;;        |            |     C      |  =>  |     C      |            |
+;;        +------------+------------+      +------------+     A      |
+;;        |            D            |      |     B      |            |
+;;        +-------------------------+      +------------+------------+
+;;
+;; `rotate-frame-clockwise'  ...  Rotate 90 degrees clockwise
+;;
+;;        +------------+------------+      +-------+-----------------+
+;;        |            |     B      |      |       |        A        |
+;;        |     A      +------------+      |       |                 |
+;;        |            |     C      |  =>  |   D   +--------+--------+
+;;        +------------+------------+      |       |   B    |   C    |
+;;        |            D            |      |       |        |        |
+;;        +-------------------------+      +-------+--------+--------+
+;;
+;; `rotate-frame-anticlockwise'  ...  Rotate 90 degrees anti-clockwise
+;;
+;;        +------------+------------+      +--------+--------+-------+
+;;        |            |     B      |      |   B    |   C    |       |
+;;        |     A      +------------+      |        |        |       |
+;;        |            |     C      |  =>  +--------+--------+   D   |
+;;        +------------+------------+      |        A        |       |
+;;        |            D            |      |                 |       |
+;;        +-------------------------+      +-----------------+-------+
+
+;; Load word-count-mode
+(require 'word-count)
+
+;; "Shrink-wrap" frame to buffer size.
+(require 'fit-frame)
+ 
+;; Fix node.js prompt in eshell
+(setenv "NODE_NO_READLINE" "1")
+
+                                     
 ;;;; Global Key Bindings
 
 ;; Global keymaps can be done using `global-set-key', which takes
@@ -134,6 +228,7 @@
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
+(global-set-key (kbd "C-x 9") 'transpose-buffers)
 
 ;;;; Workarounds
 
@@ -262,12 +357,12 @@
 
 ;; Define custom face attributes
 (setq my-font "Menlo") ; Alternative: "Courier 10 Pitch-8"
-(setq my-fgcolor "#fff9bc")
+(setq my-fgcolor "#cccccc") ;previous was "#d0d0d0"
 (setq my-bgcolor "#303030")
 
 ;; Set default frame attributes and initial position
 (setq my-frame-alist `((width . 90)
-		       (height . 63)))
+		       (height . 90)))
 
 ;; You can specify geometry-related options for the initial frame,
 ;; however they won't take effect until Emacs reads `.emacs', which
@@ -310,6 +405,7 @@
 
 (set-face-attribute 'header-line t
                     :inherit 'mode-line
+                    ;;:background "#303030"
                     :background "#383838"
                     :box nil)
 
@@ -347,7 +443,8 @@
 (set-face-attribute 'mode-line-highlight nil)
 
 (set-face-attribute 'minibuffer-prompt t
-                    :foreground "aquamarine")
+                    :weight 'bold
+                    :foreground "grey85")
 
 ;;;; Major Modes
 
@@ -431,3 +528,16 @@
 ;; start your next emacs session. Emacs will use the .emacs.desktop in
 ;; the current directory at startup.
 (desktop-save-mode t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ecb-options-version "2.40"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(font-lock-comment-face ((t (:foreground "gray45" :slant italic))))
+ '(font-lock-keyword-face ((t (:foreground "gray85" :weight bold)))))
