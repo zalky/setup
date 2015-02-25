@@ -1,0 +1,9 @@
+Development Environment Setup Repository
+
+Author: Zalan Kemenczy
+Created: Feb 24, 2015
+Revised: Feb 25, 2015
+Emacs v: 24.4.90
+
+Install dotfiles and elisp tools.
+Create symbolic links to setup directory.
