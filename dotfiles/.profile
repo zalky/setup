@@ -9,3 +9,5 @@ export PS1="\u@\h:\w$ "
 # esac
 
 PATH="/Users/zalan/src/scripts:/usr/local/sbin:$PATH"
+# added by Anaconda 2.1.0 installer
+export PATH="/Users/zalan/anaconda/bin:$PATH"
