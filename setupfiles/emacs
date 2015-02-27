@@ -334,13 +334,14 @@
 ;;;; Display
 
 ;; Define custom face attributes
-(setq my-font "Menlo") ;; On Windows: "Consolas"
-(setq my-fgcolor "#cccccc")
+(setq my-font "Consolas") ; Alternative: "Courier 10 Pitch-8"
+(setq my-fgcolor "#cccccc") ;previous was "#d0d0d0"
+
 (setq my-bgcolor "#303030")
 
 ;; Set default frame attributes and initial position
 (setq my-frame-alist `((width . 90)
-		       (height . 90)))
+		       (height . 53)))
 
 ;; You can specify geometry-related options for the initial frame,
 ;; however they won't take effect until Emacs reads `.emacs', which
@@ -349,14 +350,14 @@
 (setq default-frame-alist (append my-frame-alist default-frame-alist))
 (setq initial-frame-alist (append my-frame-alist initial-frame-alist))
 
-(set-frame-position (selected-frame) 400 40)
+(set-frame-position (selected-frame) 100 20)
 
 ;; Set face attributes for existing faces (t: default for all frames)
 (set-face-attribute 'default t
                     :background my-bgcolor
                     :foreground my-fgcolor
                     :family my-font
-                    :height 130)
+                    :height 100)
 
 (set-face-attribute 'variable-pitch t
                     :family my-font)
