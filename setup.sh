@@ -1,10 +1,10 @@
 #! /bin/bash
 
 # Author: Zalan Kemenczy
-# Emacs v: 24.4.90
+# Emacs v: 24.4.90.1
 
-# Run setup script to populate dotfiles and configure dev environment,
-# including emacs.
+# This setup script populates user specific dotfiles and configures
+# the user development tools, including emacs.
 
 
 TARGETLIST="\
@@ -19,7 +19,7 @@ ELISP_PACKAGES="\
 cedet-bzr \
 ecb"
 
-# Simlink to basic configuration files
+Simlink to basic configuration files
 for TARGET in $TARGETLIST ; do
     if [[ -e $HOME/$TARGET || -h $HOME/$TARGET ]] ; then
         echo "Warning, $HOME/$TARGET already exists, \
@@ -31,34 +31,53 @@ backing up as $TARGET.$(date +%Y%m%d-%H.%M.%S).setup.bak"
     ln -sf $(pwd)/setupfiles/$NODOT $HOME/$TARGET
 done
 
-# Initialize git submodiles. These include:
+# Initialize setup submodiles. These include:
 #   -- ECB
 
 git init submodule
 git submodule update
 
-# OS specific setup
-if [[ $(uname) == "Darwin" ]]; then
-    EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs-x86_64-10_9"
-    # Install and/or update homebrew and packages
-    if ! which brew; then
-        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# Set version of Emacs to byte-compile lisp packages, and perform OS
+# specific configuration code
+
+OS=$(uname -s)
+
+test-for-emacs () {
+    if [[ ! -x $EMACS ]] ; then
+        echo "Warning: supported version of Emacs ($EMACS) not installed."        
+        EMACS="NOT_INSTALLED/UNSUPPORTED"
     fi
-    brew update
-    brew upgrade
-elif [[ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]]; then
-    # Test under proper cygwin env, using proper location of emacs-w32.exe
-    EMACS="/usr/bin/emacs-w32.exe"
-elif [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then
-    EMACS=$(which emacs)
-else
-    EMACS="Not installed!"
-fi
+    echo $EMACS
+}    
+
+case "$OS" in
+    Darwin*)
+        EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs-x86_64-10_9"
+        # Install and/or update homebrew and packages
+        test-for-emacs
+        if ! which brew; then
+            ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        fi
+        brew update
+        brew upgrade
+        ;;
+    Linux*)
+        EMACS=$(which emacs)
+        test-for-emacs
+        ;;
+    MINGW32_NT*|CYGWIN-NT*)
+        # Test under proper cygwin env, using proper location of emacs-w32.exe
+        EMACS="/usr/bin/emacs-w32.exe"
+        test-for-emacs
+        ;;
+    *)
+        test-for-emacs
+        echo "Warning: unspported OS."
+        ;;
+esac
 
 # Byte compile elisp packages
-if [[ $EMACS == "Not installed" ]] ; then
-    echo "Warning, proper version of Emacs not installed ($(which emacs))."
-else
+if [[ ! $EMACS == "NOT_INSTALLED/UNSUPPORTED" ]] ; then
     for PACKAGE in $ELISP_PACKAGES ; do
         pushd setupfiles/elisp/$PACKAGE
         make EMACS=$EMACS
