@@ -16,8 +16,8 @@ Setup Script
 3. Performs OS dependent configurations.
 
    Mac OS X:
-       -- Installs and/or updates and upgrades Homebrew
-       -- Install node.js, npm
+       * Installs and/or updates and upgrades Homebrew
+       * Install node.js, npm
 
 4. Checks for a supported version of Emacs to before performing byte
    compile. Although byte compiliation of elisp code should
@@ -37,10 +37,10 @@ Setup Script
 Notes
 -----
 
-All installed files are symlinked to `~/.setup/setupfiles`
-directory. Therefore you can pull or reset git directory at any
-time to update or revert your development environment to a previous
-state.
+Because all installed files and directories are symlinked to
+`~/.setup/setupfiles` directory, you can pull or reset git directory
+at any time to update or revert your development environment to a
+previous state.
 
 -----
 TO-DO
