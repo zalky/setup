@@ -1,9 +1,11 @@
+;;;; .emacs --- init file
 
+;; Copyright (C) Zalan Kemenczy
 
-;; Author:  Zalan Kemenczy
-;; Created: Mon Feb 12, 2007
-;; Revised: Mon Feb 23, 2015
-;; Emacs v: 24.4.90
+;; Author:  Zalan Kemenczy <zalan.k@gmail.com>
+;; Created: Feb 12, 2007
+;; Revised: Mar 1, 2015
+;; Emacs v: 24.4.90.1
 
 
 ;;;; Notes and Reminders
@@ -62,89 +64,26 @@
 ;; in the current buffer.
 
 
-;;;; Load Path
+;;;; Loads and Requires
 
 ;; The `load' command evaluates a complete file, thereby installing
 ;; all of the functions and variables in that file into Emacs. Rather
-;; than load each file explicity, you can specify a directory which
-;; Emacs searches when loading a file or function. The `autoload'
+;; than load each file explicity, you add a directory to the load-path
+;; which Emacs searches when loading a file or function. The `autoload'
 ;; command makes a function available, but does not evaluate the
 ;; containing file until the function is actually called.
+
+;; Load individual elisp files first:
+;; -- fit-frame.el
+;; -- transpose-frame.el
+;; -- word-count.el
+
 (add-to-list 'load-path "~/local/share/elisp/")
-;;(add-to-list 'load-path "~/local/share/elisp/ecb-2.32")
-
-;;;; Requires
-
-;; Load CEDET
-(load "~/.emacs.conf/cedet-config.el")
-
-(require 'semantic/sb)
-
-;; Load CEDET
-;;(load-file "~/local/share/elisp/cedet-1.0pre4/common/cedet.el")
-
-;; Enabling various SEMANTIC minor modes.  See semantic/INSTALL for more ideas.
-;; Select one of the following:
-
-;; * This enables the database and idle reparse engines
-;;(semantic-load-enable-minimum-features)
-
-;; * This enables some tools useful for coding, such as summary mode
-;;   imenu support, and the semantic navigator
-;;(semantic-load-enable-code-helpers)
-
-;; * This enables even more coding tools such as the nascent intellisense mode
-;;   decoration mode, and stickyfunc mode (plus regular code helpers)
-;; (semantic-load-enable-guady-code-helpers)
-
-;; * This turns on which-func support (Plus all other code helpers)
-;; (semantic-load-enable-excessive-code-helpers)
-
-;; This turns on modes that aid in grammar writing and semantic tool
-;; development.  It does not enable any other features such as code
-;; helpers above.
-;; (semantic-load-enable-semantic-debugging-helpers)
-
-;; Prevent semantic from littering directories with cache files
-(setq semanticdb-default-save-directory "~/.semantic/")
-
-;; Require Emacs Code Browser
-(add-to-list 'load-path (expand-file-name "~/local/share/elisp/ecb/"))
-(require 'ecb)
-
-;; Disable tip of the day
-(setq ecb-tip-of-the-day nil)
-
-;; Remove ugly icons from emacs code browser
-(setq ecb-tree-buffer-style 'ascii-no-guides)
-
-;; Set primary mouse click to be left click and Ctrl right click
-(setq ecb-primary-secondary-mouse-buttons 'mouse-1--C-mouse-1)
-
-;; If "feature" is not already loaded, then it is loaded from either
-;; the given filename, or from the filename taken to be feature.el(c).
-(require 'info)
-(require 'advice)
-(require 'cl)
-
-;; Function to swap a buffer with the one in a window bellow it. This function
-;; is later bound globally to the key `C-x 9'
-(defun transpose-buffers (arg)
-  "Transpose the buffers shown in two windows."
-  (interactive "p")
-  (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
-    (while (/= arg 0)
-      (let ((this-win (window-buffer))
-            (next-win (window-buffer (funcall selector))))
-        (set-window-buffer (selected-window) next-win)
-        (set-window-buffer (funcall selector) this-win)
-        (select-window (funcall selector)))
-      (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
 
 ;; transpose-frame.el
 (require 'transpose-frame)
 
-;; ;; This program provides some interactive functions which allows users
+;; This program provides some interactive functions which allows users
 ;; to transpose windows arrangement in currently selected frame:
 ;;
 ;; `transpose-frame'  ...  Swap x-direction and y-direction
@@ -212,10 +151,41 @@
 
 ;; "Shrink-wrap" frame to buffer size.
 (require 'fit-frame)
- 
-;; Fix node.js prompt in eshell
-(setenv "NODE_NO_READLINE" "1")
 
+;; Load CEDET init/config file
+(load "~/.emacs.conf/cedet-config.el")
+
+(require 'semantic/sb)
+
+;; Prevent semantic from littering directories with cache files
+(setq semanticdb-default-save-directory "~/.emacs.d/semanticdb/")
+
+;; Load Emacs Code Browser init/config file
+(load "~/.emacs.conf/ecb-config.el")
+
+;; If "feature" is not already loaded, then it is loaded from either
+;; the given filename, or from the filename taken to be feature.el(c).
+(require 'info)
+(require 'advice)
+(require 'cl)
+
+
+;;;; Load utility functions
+
+;; Function to swap a buffer with the one in a window bellow it. This function
+;; is later bound globally to the key `C-x 9'
+(defun transpose-buffers (arg)
+  "Transpose the buffers shown in two windows."
+  (interactive "p")
+  (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
+    (while (/= arg 0)
+      (let ((this-win (window-buffer))
+            (next-win (window-buffer (funcall selector))))
+        (set-window-buffer (selected-window) next-win)
+        (set-window-buffer (funcall selector) this-win)
+        (select-window (funcall selector)))
+      (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
+ 
                                      
 ;;;; Global Key Bindings
 
@@ -232,8 +202,11 @@
 
 ;;;; Workarounds
 
+;; Fix node.js prompt in eshell
+(setenv "NODE_NO_READLINE" "1")
+
 ;; Fix junk characters in shell mode (due to loading .bashrc)
-;;(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 ;; XFT fix for development snapshot
 (push '(font-backend xft x) default-frame-alist)
@@ -310,9 +283,6 @@
 ;; commands leave
 (setq next-screen-context-lines 8)
 
-;; Toggle use of the tool bar
-;; (tool-bar-mode nil) ;; done in customize.
-
 ;; Make a backup of a file the first time it is saved.  This can be
 ;; done by renaming the file or by copying.
 (setq make-backup-files t)
@@ -353,11 +323,12 @@
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'meta)
 
+
 ;;;; Display
 
 ;; Define custom face attributes
-(setq my-font "Menlo") ; Alternative: "Courier 10 Pitch-8"
-(setq my-fgcolor "#cccccc") ;previous was "#d0d0d0"
+(setq my-font "Menlo") ;; On Windows: "Consolas"
+(setq my-fgcolor "#cccccc")
 (setq my-bgcolor "#303030")
 
 ;; Set default frame attributes and initial position
@@ -393,7 +364,7 @@
                     :foreground "#454545")
 
 (set-face-attribute 'cursor t
-                    :background "#ecdc6b"  ;;"#e3f8fe"
+                    :background "#ecdc6b"
                     :foreground "Black")
 
 (set-face-attribute 'fringe t
@@ -405,13 +376,8 @@
 
 (set-face-attribute 'header-line t
                     :inherit 'mode-line
-                    ;;:background "#303030"
                     :background "#383838"
                     :box nil)
-
-;; (set-face-attribute 'tooltip t
-;;                     :background my-bgcolor
-;;                     :foreground my-fgcolor)
 
 (set-face-attribute 'info-header-xref t
                     :inherit 'info-xref :foreground "LightSteelBlue")
@@ -460,9 +426,6 @@
 (setq c-default-style '((c-mode . "bsd")
                         (c++-mode . "bsd")))
 
-;; Fix Ansi color code recognition
-(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-
 (defun my-c-mode-hook ()
   (setq c-basic-offset 4))
 (add-hook 'c-mode-hook 'my-c-mode-hook)
@@ -479,14 +442,14 @@
   "Simple Mode to input text."
   (interactive)
   (progn (set-face-attribute 'default (selected-frame)
-                             :background "#ffffff"  ; "#faf0e6"
+                             :background "#ffffff"
                              :foreground "#000000")
          (set-face-attribute 'cursor (selected-frame)
                              :background "Grey")
          (set-face-attribute 'fringe (selected-frame)
-                             :background "#ffffff")  ; "#faf0e6"
+                             :background "#ffffff")
          (set-face-attribute 'region (selected-frame)
-                             :background "#9b9bb7") ; ffd799")
+                             :background "#9b9bb7")
          ;; (set-window-fringes (selected-window) 20 20)
          (set-frame-size (selected-frame) 105 (frame-height))
          (setq line-spacing 2)
@@ -499,14 +462,14 @@
   "Simple Mode to input text."
   (interactive)
   (progn (set-face-attribute 'default (selected-frame)
-                             :background "#ffffff"  ; "#faf0e6"
+                             :background "#ffffff"
                              :foreground "#000000")
          (set-face-attribute 'cursor (selected-frame)
                              :background "Grey")
          (set-face-attribute 'fringe (selected-frame)
-                             :background "#ffffff")  ; "#faf0e6"
+                             :background "#ffffff")
          (set-face-attribute 'region (selected-frame)
-                             :background "#9b9bb7")  ; ffd799")
+                             :background "#9b9bb7")
          (set-window-fringes (selected-window) 20 20)
          (set-frame-size (selected-frame) 105 (frame-height))
          (setq line-spacing 20)

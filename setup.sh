@@ -1,10 +1,10 @@
 #! /bin/bash
 
-# Author: Zalan Kemenczy
-# Emacs v: 24.4.90.1
+# Copyright (C) Zalan Kemenczy
+# Author: Zalan Kemenczy <zalan.k@gmail.com>
 
 # This setup script populates user specific dotfiles and configures
-# the user development tools, including emacs.
+# the development environment, including emacs.
 
 
 TARGETLIST="\

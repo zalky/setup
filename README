@@ -1,7 +1,4 @@
-Development Environment Setup Repository
+README for Setup Repository
 
-Author: Zalan Kemenczy
-Emacs v: 24.4.90
-
-Run setup script to populate dotfiles and configure the dev
+Run setup.sh to populate user specific dotfiles and configure the development
 environment, including emacs.
