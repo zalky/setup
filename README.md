@@ -7,8 +7,9 @@ development environment, including emacs.
 Setup Script
 ------------
 
-1. For each `<filename>` listed in `TARGETLIST`, `setup.sh` makes a
-   symbolic link: `~/<filename> -> ~/.setup/setupfiles/<filename>`
+1. Makes a symbolic link: `~/<filename> ->
+   ~/.setup/setupfiles/<filename>` for each `<filename>` listed in
+   `TARGETLIST`.
 
 2. Initializes and updates git submodules.
 
@@ -18,10 +19,10 @@ Setup Script
        -- Installs and/or updates and upgrades Homebrew
        -- Install node.js, npm
 
-4. Script first checks for a supported version of Emacs to before
-   performing byte compile. Although byte compiliation of elisp code
-   should technically be independent of Emacs version, this has not
-   been the case in testing.
+4. Checks for a supported version of Emacs to before performing byte
+   compile. Although byte compiliation of elisp code should
+   technically be independent of Emacs version, this has not been the
+   case in testing.
 
    Mac OS X: `/Applications/Emacs.app/Contents/MacOS/Emacs-x86_64-10_9`
 
@@ -47,7 +48,7 @@ TO-DO
 
 1. Make `setup.sh` more flexible in how it handles initial install
    versus re-installs and updates. When do you need to byte-compile
-   again, etc...
+   again, update submodules, etc...
 
 2. Extend OS specific configurations, such as Anaconda, python
    environment, javascript environment etc...

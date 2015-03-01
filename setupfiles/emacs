@@ -46,6 +46,8 @@
 ;; COPYING: `M-w' (`kill-ring-save') saves the region as the last
 ;; killed text without actually killing it.
 
+;; FILL PARAGRAPH: `M-q' (`fill-paragraph')
+
 ;; PREFIX & INDENDATION: Type `C-x .' to set the `fill-prefix', and
 ;; then `C-M-\' (`indent-region') will indent the region to that
 ;; pattern. To reset the `fill-prefix', simply type `C-x .' at the
