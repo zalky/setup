@@ -15,7 +15,7 @@ TARGETLIST="\
 .emacs.conf \
 local/share/elisp"
 
-ELISP_PACKAGES="\
+BYTE_COMPILE_ELISP_PACKAGES="\
 cedet-bzr \
 ecb"
 
@@ -60,6 +60,7 @@ case "$OS" in
         fi
         brew update
         brew upgrade
+        brew install node npm
         ;;
     Linux*)
         EMACS=$(which emacs)
@@ -78,7 +79,7 @@ esac
 
 # Byte compile elisp packages
 if [[ ! $EMACS == "NOT_INSTALLED/UNSUPPORTED" ]] ; then
-    for PACKAGE in $ELISP_PACKAGES ; do
+    for PACKAGE in $BYTE_COMPILE_ELISP_PACKAGES ; do
         pushd setupfiles/elisp/$PACKAGE
         make EMACS=$EMACS
         popd

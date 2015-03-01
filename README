@@ -1,4 +1,0 @@
-README for Setup Repository
-
-Run setup.sh to populate user specific dotfiles and configure the development
-environment, including emacs.
