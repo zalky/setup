@@ -1,4 +1,4 @@
-;;;; .emacs --- init file
+;;;; .emacs --- init file for editing git commit messages
 
 ;; Copyright (C) Zalan Kemenczy
 
@@ -8,145 +8,7 @@
 ;; Emacs v: 24.4.90.1
 
 
-;;;; Notes and Reminders
-
-;; HELP: Type `C-h' (`help-command'), and then type a letter to
-;; indicate the subject on which you want help. For an explanation on
-;; the help facility type `C-h C-h' (`help-for-help').
-
-;; APROPOS: Type `C-h d' (`apropos-documentation') to show symbols
-;; whose documentation contains matches for regexp. `info-apropos'
-;; grovels indices of all known info files for keywords, and builds a
-;; menu of possible matches.
-
-;; DESCRIBE KEY: `C-h c' (`describe-key-briefly') displays the command
-;; run by the given key sequence.
-
-;; DESCRIBE VARIABLE: `C-h v' (`describe-variable') displays the full
-;; documentation of a given variable. If the variable has a
-;; buffer-local value (default to the current buffer), it is displayed
-;; along with the global value.
-
-;; DESCRIBE FUNCTION: `C-h f' (`describe-function') displays the full
-;; documentation of a given function.
-
-;; MODE HELP: `C-h m' (`describe-mode') finds documentation about the
-;; current mode.
-
-;; NARROW: `C-x n n' restricts editing of the buffer to between the
-;; point and mark (`narrow-to-region'). `C-x n w' widens to make the
-;; entire buffer accessible again (`widen').
-
-;; KILL RECTANGLE: `C-x r k' (`kill-rectangle') kills text within the
-;; rectangluar region demarcated by the cursor and the mark.
-
-;; YANK RECTANGLE: `C-x r y' (`yank-rectangle') yanks text within the
-;; rectangular region demarcated by the cursor and the mark.
-
-;; COPYING: `M-w' (`kill-ring-save') saves the region as the last
-;; killed text without actually killing it.
-
-;; FILL PARAGRAPH: `M-q' (`fill-paragraph')
-
-;; PREFIX & INDENDATION: Type `C-x .' to set the `fill-prefix', and
-;; then `C-M-\' (`indent-region') will indent the region to that
-;; pattern. To reset the `fill-prefix', simply type `C-x .' at the
-;; beginning of a line. Note: numerous editing commands use
-;; `fill-prefix' to extend functionality. `M-q' (`fill-paragraph') for
-;; instance fills the current paragraph and `C-x f'
-;; (`set-fill-column') sets the fill column local to the buffer. Use
-;; `M-x fill-region' to fill each paragraph in the region.
-
-;; LISP EVAL: `C-x C-e' (`eval-last-sexp') evaluates the Lisp
-;; expression BEFORE the point, and prints the value in the echo
-;; area. `M-:' (`eval-expression') reads a single Lisp expression in
-;; the minibuffer, evaluates it, and prints the value in the echo
-;; area. `eval-region' evaluates all the Lisp expressions in the
-;; selected region.  `eval-buffer' evaluates all the Lisp expressions
-;; in the current buffer.
-
-
-;;;; Loads and Requires
-
-;; The `load' command evaluates a complete file, thereby installing
-;; all of the functions and variables in that file into Emacs. Rather
-;; than load each file explicity, you add a directory to the load-path
-;; which Emacs searches when loading a file or function. The `autoload'
-;; command makes a function available, but does not evaluate the
-;; containing file until the function is actually called.
-
-;; Load individual elisp files first:
-;; -- fit-frame.el
-;; -- transpose-frame.el
-;; -- word-count.el
-
 (add-to-list 'load-path "~/local/share/elisp/")
-
-;; transpose-frame.el
-(require 'transpose-frame)
-
-;; This program provides some interactive functions which allows users
-;; to transpose windows arrangement in currently selected frame:
-;;
-;; `transpose-frame'  ...  Swap x-direction and y-direction
-;;
-;;        +------------+------------+      +----------------+--------+
-;;        |            |     B      |      |        A       |        |
-;;        |     A      +------------+      |                |        |
-;;        |            |     C      |  =>  +--------+-------+   D    |
-;;        +------------+------------+      |   B    |   C   |        |
-;;        |            D            |      |        |       |        |
-;;        +-------------------------+      +--------+-------+--------+
-;;
-;; `flip-frame'  ...  Flip vertically
-;;
-;;        +------------+------------+      +------------+------------+
-;;        |            |     B      |      |            D            |
-;;        |     A      +------------+      +------------+------------+
-;;        |            |     C      |  =>  |            |     C      |
-;;        +------------+------------+      |     A      +------------+
-;;        |            D            |      |            |     B      |
-;;        +-------------------------+      +------------+------------+
-;;
-;; `flop-frame'  ...  Flop horizontally
-;;
-;;        +------------+------------+      +------------+------------+
-;;        |            |     B      |      |     B      |            |
-;;        |     A      +------------+      +------------+     A      |
-;;        |            |     C      |  =>  |     C      |            |
-;;        +------------+------------+      +------------+------------+
-;;        |            D            |      |            D            |
-;;        +-------------------------+      +-------------------------+
-;;
-;; `rotate-frame'  ...  Rotate 180 degrees
-;;
-;;        +------------+------------+      +-------------------------+
-;;        |            |     B      |      |            D            |
-;;        |     A      +------------+      +------------+------------+
-;;        |            |     C      |  =>  |     C      |            |
-;;        +------------+------------+      +------------+     A      |
-;;        |            D            |      |     B      |            |
-;;        +-------------------------+      +------------+------------+
-;;
-;; `rotate-frame-clockwise'  ...  Rotate 90 degrees clockwise
-;;
-;;        +------------+------------+      +-------+-----------------+
-;;        |            |     B      |      |       |        A        |
-;;        |     A      +------------+      |       |                 |
-;;        |            |     C      |  =>  |   D   +--------+--------+
-;;        +------------+------------+      |       |   B    |   C    |
-;;        |            D            |      |       |        |        |
-;;        +-------------------------+      +-------+--------+--------+
-;;
-;; `rotate-frame-anticlockwise'  ...  Rotate 90 degrees anti-clockwise
-;;
-;;        +------------+------------+      +--------+--------+-------+
-;;        |            |     B      |      |   B    |   C    |       |
-;;        |     A      +------------+      |        |        |       |
-;;        |            |     C      |  =>  +--------+--------+   D   |
-;;        +------------+------------+      |        A        |       |
-;;        |            D            |      |                 |       |
-;;        +-------------------------+      +-----------------+-------+
 
 ;; Load word-count-mode
 (require 'word-count)
@@ -154,23 +16,11 @@
 ;; "Shrink-wrap" frame to buffer size.
 (require 'fit-frame)
 
-;; Load CEDET init/config file
-(load "~/.emacs.conf/cedet-config.el")
-
-(require 'semantic/sb)
-
-;; Prevent semantic from littering directories with cache files
-(setq semanticdb-default-save-directory "~/.emacs.d/semanticdb/")
-
-;; Load Emacs Code Browser init/config file
-(load "~/.emacs.conf/ecb-config.el")
-
 ;; If "feature" is not already loaded, then it is loaded from either
 ;; the given filename, or from the filename taken to be feature.el(c).
 (require 'info)
 (require 'advice)
 (require 'cl)
-
 
 ;;;; Load utility functions
 
@@ -271,9 +121,6 @@
 (setq current-language-environment "UTF-8")
 (setq default-input-method "rfc1345")
 
-;; Set Emacs Code Browser version
-(setq ecb-option-version "2.32")
-
 ;; Highlight matching parenthesis
 (show-paren-mode t)
 
@@ -336,7 +183,7 @@
 
 ;; Set default frame attributes and initial position
 (setq my-frame-alist `((width . 90)
-		       (height . 90)))
+		       (height . 30)))
 
 ;; You can specify geometry-related options for the initial frame,
 ;; however they won't take effect until Emacs reads `.emacs', which
@@ -487,13 +334,7 @@
          "Entering Writer Mode"))
 
 
-;;;; Desktop
-
-;; The first time an Emacs session is saved, it must be done manually
-;; using `M-x desktop-save'. Save to the directory from which you will
-;; start your next emacs session. Emacs will use the .emacs.desktop in
-;; the current directory at startup.
-(desktop-save-mode t)
+;;;; Customize
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

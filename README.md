@@ -4,6 +4,7 @@ Development Environment Setup Repository
 Run `setup.sh` to populate user specific dotfiles and configure the
 development environment, including emacs.
 
+
 Setup Script
 ------------
 
@@ -30,10 +31,12 @@ Setup Script
 
    Linux: Any
 
+5. Sets git specific emacs init.
+
 4. Byte compiles each elisp package listed in
    `BYTE_COMPILE_ELISP_PACKAGE`.
 
------
+
 Notes
 -----
 
@@ -41,33 +44,26 @@ Because all installed files and directories are symlinked to
 `~/.setup/setupfiles` directory, you can pull or reset git directory
 at any time to update or revert your development environment.
 
------
+
 TO-DO
 -----
 
 1. Make `setup.sh` more flexible in how it handles initial install
    versus re-installs and updates. Specifically:
-
-          * When do you to byte-compile again?
-          * When do you update submodules?
-          * When do you need to make backups?
-
-   etc...
+       * When do you to byte-compile again?
+       * When do you update submodules?
+       * When do you need to make backups?
 
 2. Extend OS specific configurations:
+       * Anaconda
+       * Python environment
+       * Javascript environment
 
-          * Anaconda
-          * Python environment
-          * Javascript environment
-
-   etc...
-
-3. Is there a way to integrate bzr CEDET package as a submodules?
+3. Is there a way to integrate bzr CEDET package as a submodule?
 
 
---------------------------------
 Elisp Packages
---------------------------------
+--------------
 
 List of installed elisp packages:
 

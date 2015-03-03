@@ -33,13 +33,10 @@ done
 
 # Initialize setup submodiles. These include:
 #   -- ECB
-
 git init submodule
 git submodule update
 
-# Set version of Emacs to byte-compile lisp packages, and perform OS
-# specific configuration code
-
+# Execute OS specific configuration steps, as well as set Emacs version.
 OS=$(uname -s)
 
 test-for-emacs () {
@@ -47,14 +44,14 @@ test-for-emacs () {
         echo "Warning: supported version of Emacs ($EMACS) not installed."        
         EMACS="NOT_INSTALLED/UNSUPPORTED"
     fi
-    echo $EMACS
+    echo "Emacs Version: $EMACS"
 }    
 
 case "$OS" in
     Darwin*)
         EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs-x86_64-10_9"
-        # Install and/or update homebrew and packages
         test-for-emacs
+        # Install and/or update homebrew and packages
         if ! which brew; then
             ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         fi
@@ -77,8 +74,11 @@ case "$OS" in
         ;;
 esac
 
-# Byte compile elisp packages
+# Setup git to use Emacs editor with lite init file and byte compile
+# all elisp packages
 if [[ ! $EMACS == "NOT_INSTALLED/UNSUPPORTED" ]] ; then
+    git config --global core.editor "$EMACS --no-desktop -q --load \
+~/.setup/setupfiles/emacs-git.el"
     for PACKAGE in $BYTE_COMPILE_ELISP_PACKAGES ; do
         pushd setupfiles/elisp/$PACKAGE
         make EMACS=$EMACS
