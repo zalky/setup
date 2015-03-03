@@ -22,6 +22,7 @@
 (require 'advice)
 (require 'cl)
 
+
 ;;;; Load utility functions
 
 ;; Function to swap a buffer with the one in a window bellow it. This function
@@ -97,8 +98,15 @@
 (setq-default indent-tabs-mode nil)
 
 ;; Additional space to put between lines when displaying a buffer.
-;; The space is measured in pixels.
+;; The space is measured in pixels...
 (setq-default line-spacing 2)
+
+;; ...Except in term-mode, where extra line-spacing messes up expected
+;; buffer lengths. Set line-spacing to 0.
+(add-hook 'term-mode-hook
+          (lambda ()
+            (set (make-local-variable 'line-spacing)
+                 0)))
 
 ;; Set default indendation width
 (setq-default standard-indent 4)
