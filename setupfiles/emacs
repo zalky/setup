@@ -223,7 +223,6 @@
  
 (set-exec-path-from-shell-PATH)
 
-
 ;;;; Enable disabled commands
 
 ;; Enable narrowing

@@ -24,7 +24,7 @@ for TARGET in $TARGETLIST ; do
     if [[ -e $HOME/$TARGET || -h $HOME/$TARGET ]] ; then
         echo "Warning, $HOME/$TARGET already exists, \
 backing up as $TARGET.$(date +%Y%m%d-%H.%M.%S).setup.bak"
-        mv $HOME/$TARGET $HOME/$TARGET.`date "+%Y%m%d-%H.%M.%S"`.setup.bak
+        mv $HOME/$TARGET $HOME/$TARGET.$(date "+%Y%m%d-%H.%M.%S").setup.bak
     fi
     BASENAME=${TARGET##*/}
     NODOT=${BASENAME#.}
@@ -78,7 +78,7 @@ esac
 # all elisp packages
 if [[ ! $EMACS == "NOT_INSTALLED/UNSUPPORTED" ]] ; then
     git config --global core.editor "$EMACS --no-desktop -q --load \
-~/.setup/setupfiles/emacs-git.el"
+~/.setup/setupfiles/emacs.conf/emacs-git.el"
     for PACKAGE in $BYTE_COMPILE_ELISP_PACKAGES ; do
         pushd setupfiles/elisp/$PACKAGE
         make EMACS=$EMACS
