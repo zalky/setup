@@ -430,6 +430,14 @@
 (add-hook 'text-mode-hook 'text-mode-hook-identify)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
+;; Configure Octave Mode
+(add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
+(add-hook 'octave-mode-hook
+          (lambda ()
+            (abbrev-mode 1)
+            (auto-fill-mode 1)
+            (font-lock-mode 1)))
+
 ;; Set CC mode default styles
 (setq c-default-style '((c-mode . "bsd")
                         (c++-mode . "bsd")))
