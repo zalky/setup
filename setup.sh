@@ -47,6 +47,8 @@ git submodule update
 # Execute OS specific configuration steps, as well as set Emacs version.
 OS=$(uname -s)
 
+# This function returns 0 if version $1 is less than version $2,
+# else it returns 1
 version_less_than() {
     V="$1."
     V_REQ="$2."
@@ -71,6 +73,8 @@ version_less_than() {
     fi
 }
 
+# This function test to see if Emacs is installed and checks to see
+# if version is greater than $REQUIRED_EMACS_VERSION at top of file
 test-emacs () {
     # Which Emacs is installed?
     echo "Checking to see if supported version of Emacs is installed..."
@@ -92,12 +96,15 @@ Emacs Code Browser! (Require >= $REQUIRED_EMACS_VERSION)"
     fi
 }    
 
+# OS Specific configuration
+# 1. Test for Emacs
+# 2. Install important packages and tools
 case "$OS" in
     Darwin*)
         EMACS=$MAC_EMACS
         test-emacs
         # Install and/or update homebrew and packages
-        echo "Install and/or update homebrew..."
+        echo "Install and update homebrew..."
         if ! which brew; then
             ruby -e "$(curl -fsSL \
 https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -124,14 +131,15 @@ esac
 # Setup git to use Emacs editor with lite init file and byte compile
 # all elisp packages
 echo "Setting Emacs as default git editor..."
-echo "Byte-compile elisp packages using $EMACS..."
+echo "Byte-compile using $EMACS"
 if [[ ! $EMACS == "NOT_INSTALLED/UNSUPPORTED" ]] ; then
     git config --global core.editor "$EMACS --no-desktop -q --load \
 ~/.setup/setupfiles/emacs.conf/emacs-git.el"
     for PACKAGE in $BYTE_COMPILE_ELISP_PACKAGES ; do
-        pushd setupfiles/elisp/$PACKAGE
-        make EMACS=$EMACS
-        popd
+        echo "Byte-compiling $PACKAGE..."
+        pushd setupfiles/elisp/$PACKAGE &>/dev/null
+        make EMACS=$EMACS &>/dev/null
+        popd &>/dev/null
     done
 fi
 
