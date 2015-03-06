@@ -19,7 +19,15 @@ BYTE_COMPILE_ELISP_PACKAGES="\
 cedet-bzr \
 ecb"
 
-Simlink to basic configuration files
+# This is to make ECB byte-compile properly
+REQUIRED_EMACS_VERSION="24.4.90.1"
+
+MAC_EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs-x86_64-10_9"
+WIN_EMACS="/usr/bin/emacs-w32.exe"
+LIN_EMACS=$(which emacs)
+
+
+# Simlink to basic configuration files
 for TARGET in $TARGETLIST ; do
     if [[ -e $HOME/$TARGET || -h $HOME/$TARGET ]] ; then
         echo "Warning, $HOME/$TARGET already exists, \
@@ -39,43 +47,84 @@ git submodule update
 # Execute OS specific configuration steps, as well as set Emacs version.
 OS=$(uname -s)
 
-test-for-emacs () {
+version_less_than() {
+    V="$1."
+    V_REQ="$2."
+    VER=${V%%.*}
+    VER_REQ=${V_REQ%%.*}
+
+    if (( $(echo "$VER < $VER_REQ" | bc -l) )) ; then
+        return 0
+    elif (( $(echo "$VER > $VER_REQ" | bc -l) )) ; then
+        return 1
+    else
+        VER=${V#*.}
+        VER_REQ=${V_REQ#*.}
+        VER=${VER%.}
+        VER_REQ=${VER_REQ%.}
+        if (( $(echo "${V%%.*} == 0 && ${V_REQ%%.*} == 0" | bc -l) ))\
+            && [[ -z $VER$VER_REQ ]] ; then
+            return 1
+        fi
+        version_less_than ${VER:-"0"} ${VER_REQ:-"0"}
+        return $?
+    fi
+}
+
+test-emacs () {
+    # Which Emacs is installed?
+    echo "Checking to see if supported version of Emacs is installed..."
     if [[ ! -x $EMACS ]] ; then
         echo "Warning: supported version of Emacs ($EMACS) not installed."        
         EMACS="NOT_INSTALLED/UNSUPPORTED"
+    else
+        # What version? Required version set at beginning of script.
+        # Lots of string -> number conversions here.
+        EMACS_VERSION=$($EMACS --version | egrep "GNU Emacs [[:digit:]]+" | \
+            sed -E "s/GNU Emacs //")
+        if version_less_than $EMACS_VERSION $REQUIRED_EMACS_VERSION ; then
+            echo -e "Warning: version $EMACS_VERSION of Emacs breaks \
+Emacs Code Browser! (Require >= $REQUIRED_EMACS_VERSION)"
+            EMACS="NOT_INSTALLED/UNSUPPORTED"
+        else
+            echo -e "Using Emacs: $EMACS\nVersion: $EMACS_VERSION"
+        fi
     fi
-    echo "Emacs Version: $EMACS"
 }    
 
 case "$OS" in
     Darwin*)
-        EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs-x86_64-10_9"
-        test-for-emacs
+        EMACS=$MAC_EMACS
+        test-emacs
         # Install and/or update homebrew and packages
+        echo "Install and/or update homebrew..."
         if ! which brew; then
-            ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+            ruby -e "$(curl -fsSL \
+https://raw.githubusercontent.com/Homebrew/install/master/install)"
         fi
         brew update
         brew upgrade
         brew install node npm
         ;;
     Linux*)
-        EMACS=$(which emacs)
-        test-for-emacs
+        EMACS=$LIN_EMACS
+        test-emacs
         ;;
     MINGW32_NT*|CYGWIN-NT*)
         # Test under proper cygwin env, using proper location of emacs-w32.exe
-        EMACS="/usr/bin/emacs-w32.exe"
-        test-for-emacs
+        EMACS=$WIN_EMACS
+        test-emacs
         ;;
     *)
-        test-for-emacs
+        test-emacs
         echo "Warning: unspported OS."
         ;;
 esac
 
 # Setup git to use Emacs editor with lite init file and byte compile
 # all elisp packages
+echo "Setting Emacs as default git editor..."
+echo "Byte-compile elisp packages using $EMACS..."
 if [[ ! $EMACS == "NOT_INSTALLED/UNSUPPORTED" ]] ; then
     git config --global core.editor "$EMACS --no-desktop -q --load \
 ~/.setup/setupfiles/emacs.conf/emacs-git.el"
