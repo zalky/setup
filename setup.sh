@@ -7,13 +7,16 @@
 # the development environment, including emacs.
 
 
+# TODO: This string could mangle for loop if filenames have spaces.
+# Consider implementing as an array.
 TARGETLIST="\
 .bashrc \
 .profile \
 .screenrc \
 .emacs \
 .emacs.conf \
-local/share/elisp"
+local/share/elisp \
+src/scripts"
 
 BYTE_COMPILE_ELISP_PACKAGES="\
 cedet-bzr \
@@ -22,12 +25,13 @@ ecb"
 # This is to make ECB byte-compile properly
 REQUIRED_EMACS_VERSION="24.4.90.1"
 
+# Which emacs
 MAC_EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs-x86_64-10_9"
 WIN_EMACS="/usr/bin/emacs-w32.exe"
 LIN_EMACS=$(which emacs)
 
 
-# Simlink to basic configuration files
+# Simlink basic configuration files in .setup/setupfiles to target locations
 for TARGET in $TARGETLIST ; do
     if [[ -e $HOME/$TARGET || -h $HOME/$TARGET ]] ; then
         echo "Warning, $HOME/$TARGET already exists, \
@@ -36,11 +40,14 @@ backing up as $TARGET.$(date +%Y%m%d-%H.%M.%S).setup.bak"
     fi
     BASENAME=${TARGET##*/}
     NODOT=${BASENAME#.}
+    # If $NODOT is directory, ensure that ${TARGET%/*} path to target exists.
+    if [[ -d $(pwd)/setupfiles/$NODOT && -d $HOME/${TARGET%/*} ]] ; then
+        mkdir -p $HOME/${TARGET%/*}
+    fi
     ln -sf $(pwd)/setupfiles/$NODOT $HOME/$TARGET
 done
 
-# Initialize setup submodiles. These include:
-#   -- ECB
+# Initialize ECB submodile.
 git init submodule
 git submodule update
 

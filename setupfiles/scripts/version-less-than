@@ -1,0 +1,38 @@
+#! /bin/bash
+
+version_less_than() {
+    V="$1."
+    V_REQ="$2."
+    VER=${V%%.*}
+    VER_REQ=${V_REQ%%.*}
+
+    if (( $(echo "$VER < $VER_REQ" | bc -l) )) ; then
+        return 0
+    elif (( $(echo "$VER > $VER_REQ" | bc -l) )) ; then
+        return 1
+    else
+        VER=${V#*.}
+        VER_REQ=${V_REQ#*.}
+        VER=${VER%.}
+        VER_REQ=${VER_REQ%.}
+        if (( $(echo "${V%%.*} == 0 && ${V_REQ%%.*} == 0" | bc -l) ))\
+            && [[ -z $VER$VER_REQ ]] ; then
+            return 1
+        fi
+        version_less_than ${VER:-"0"} ${VER_REQ:-"0"}
+        return $?
+    fi
+}
+
+if (( $# != 2 )) ; then
+    echo "Usage: $0 <version no. 1> <version no. 2>"
+    exit 1
+fi
+
+if version_less_than $1 $2 ; then
+    echo "exit [0]: Version $1 is less than $2"
+    exit 0
+else
+    echo "exit [1]: Version $1 is greater than or equal to $2"
+    exit 1
+fi
