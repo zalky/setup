@@ -13,6 +13,7 @@ TARGETLIST="\
 .bashrc \
 .profile \
 .screenrc \
+.octaverc \
 .emacs \
 .emacs.conf \
 local/share/elisp \

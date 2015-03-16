@@ -1,0 +1,6 @@
+# ~/.octaverc
+setenv ("GNUTERM", "X11")
+
+PS1(">> ")
+
+# Can add directores to search path using addpath function
