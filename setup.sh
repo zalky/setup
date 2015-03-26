@@ -16,6 +16,7 @@ TARGETLIST="\
 .octaverc \
 .emacs \
 .emacs.conf \
+.gitignore_global \
 local/share/elisp \
 src/scripts"
 
@@ -51,6 +52,12 @@ done
 # Initialize ECB submodile.
 git init submodule
 git submodule update
+
+# Setup Git
+git config --global core.excludefile ~/.gitignore_global
+git config --global alias.graph "log --oneline --decorate --graph --all"
+git config --global alias.unstage "reset HEAD --"
+git config --global alias.last "log -1 HEAD"
 
 # Execute OS specific configuration steps, as well as set Emacs version.
 OS=$(uname -s)

@@ -434,7 +434,7 @@
 (add-hook 'octave-mode-hook
           (lambda ()
             (abbrev-mode 1)
-            (auto-fill-mode 1)
+            (auto-fill-mode 0)
             (font-lock-mode 1)))
 
 ;; Set CC mode default styles
