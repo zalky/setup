@@ -109,6 +109,34 @@
 
 ;;;; Major Modes
 
+;; Set Org Mode agenda files from which to collect information. List
+;; can be individual files or contain directories.
+(setq org-agenda-files (list "~/Documents/Work/Semion/org/"))
+
+;; Load Markdown exporter automatically with Org Mode
+(eval-after-load "org"
+  '(require 'ox-md nil t))
+
+;; Save Org clock history across Emacs sessions
+(setq org-clock-persist 'history)
+(org-clock-persistence-insinuate)
+
+;; Set default Org columns in column view
+(setq-default org-columns-default-format
+              "#+COLUMNS: %30ITEM(Task) %TODO %DEADLINE(Due) %Effort{:} %CLOCKSUM(Time Spent) %TAGS")
+(setq-default org-startup-indented t)
+
+;; Format string used when creating CLOCKSUM lines and when generating
+;; a time duration (avoid showing days)
+(setq org-time-clocksum-format
+      '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
+
+;; By default insert clock keywords + timestamp into :LOGBOOK: drawer
+(setq-default org-clock-into-drawer t)
+
+(setq org-log-done t)
+
+
 ;; Set Text Mode as the default mode with Autofill enabled.
 (setq default-major-mode 'text-mode)
 (add-hook 'text-mode-hook 'text-mode-hook-identify)
@@ -151,6 +179,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(coffee-tab-width 2)
  '(ecb-options-version "2.40"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -158,4 +187,20 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(font-lock-comment-face ((t (:foreground "gray45" :slant italic))))
- '(font-lock-keyword-face ((t (:foreground "gray85" :weight bold)))))
+ '(font-lock-keyword-face ((t (:foreground "gray85" :weight bold))))
+ '(link ((t (:foreground "plum2" :underline t))))
+ '(org-agenda-done ((t (:foreground "PaleGreen"))))
+ '(org-date ((t (:foreground "gray45" :underline t))))
+ '(org-done ((t (:foreground "gray35" :weight bold))))
+ '(org-level-1 ((t (:inherit outline-1 :weight bold))))
+ '(org-level-2 ((t (:inherit outline-2 :foreground "aquamarine1" :weight bold))))
+ '(org-level-3 ((t (:inherit outline-2 :foreground "LightSkyBlue3" :weight bold))))
+ '(org-level-4 ((t (:inherit outline-3 :foreground "plum3" :weight bold))))
+ '(org-level-5 ((t (:inherit outline-5 :weight bold))))
+ '(org-level-6 ((t (:inherit outline-6 :weight bold))))
+ '(org-level-7 ((t (:inherit outline-7 :weight bold))))
+ '(org-level-8 ((t (:inherit outline-8 :weight bold))))
+ '(org-mode-line-clock ((t (:inherit mode-line :foreground "plum2"))) t)
+ '(org-mode-line-clock-overrun ((t (:inherit mode-line :foreground "magenta1"))) t)
+ '(org-special-keyword ((t (:inherit font-lock-comment-face :foreground "gray35" :slant italic :weight normal))))
+ '(org-todo ((t (:weight bold)))))

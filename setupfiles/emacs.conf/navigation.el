@@ -16,8 +16,16 @@
 (setq recentf-max-menu-items 40)
 
 ;; Enable Windmove commands to move directionally between windows with
-;; `S-right', `S-left', `S-up' and `S-down'.
-(windmove-default-keybindings)
+;; `S-right', `S-left', `S-up' and `S-down'.  Default keybindings with
+;; Shift don't work in some modes such as Org mode, instead use
+;; C-S-(j|k|i|l)
+;; (windmove-default-keybindings)
+
+;; Make windmove work in org-mode:
+(add-hook 'org-shiftup-final-hook 'windmove-up)
+(add-hook 'org-shiftleft-final-hook 'windmove-left)
+(add-hook 'org-shiftdown-final-hook 'windmove-down)
+(add-hook 'org-shiftright-final-hook 'windmove-right)
 
 ;; Function to swap a buffer with the one in a window bellow it. This function
 ;; is later bound globally to the key `C-x 9'

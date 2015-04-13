@@ -99,6 +99,9 @@
 ;; Load documentation system
 (require 'info)
 
+;; Load Org Mode
+(require 'org)
+
 ;; The advice feature lets you add to the existing definition of a
 ;; function, by advising the function. This is a cleaner method than
 ;; redefining the whole function. But be careful as this can
