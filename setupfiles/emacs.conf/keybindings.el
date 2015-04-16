@@ -14,6 +14,7 @@
 (global-set-key (kbd "S-C-M-l") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-M-k") 'shrink-window)
 (global-set-key (kbd "S-C-M-i") 'enlarge-window)
+
 ;; (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 ;; (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 ;; (global-set-key (kbd "S-C-<down>") 'shrink-window)
@@ -26,6 +27,8 @@
 (global-set-key (kbd "S-C-i") 'windmove-up)
 (global-set-key (kbd "S-C-k") 'windmove-down)
 (global-set-key (kbd "S-C-l") 'windmove-right)
+
+(global-set-key (kbd "M-t") 'tab-to-tab-stop)
 
 ;; Change mac command keys
 (setq mac-option-key-is-meta t)

@@ -109,6 +109,21 @@
 
 ;;;; Major Modes
 
+;; Apply a new font-lock face for numbers
+(make-face 'font-lock-number-face)
+(set-face-attribute 'font-lock-number-face nil :inherit font-lock-constant-face)
+(setq font-lock-number-face 'font-lock-number-face)
+(defvar font-lock-number "[-+]?\b[0-9]*\.?[0-9]+\(?:[eE][-+]?[0-9]+\)?\b")
+(defvar font-lock-hexnumber "0[xX][0-9a-fA-F]+")
+(defun add-font-lock-numbers ()
+        (font-lock-add-keywords nil (list
+                      (list (concat "\\<\\(" font-lock-number "\\)\\>" )
+                       0 font-lock-number-face)
+                      (list (concat "\\<\\(" font-lock-hexnumber "\\)\\>" )
+                       0 font-lock-number-face)
+                      )))
+(add-hook 'prog-mode-hook 'add-font-lock-numbers)
+
 ;; Set Org Mode agenda files from which to collect information. List
 ;; can be individual files or contain directories.
 (setq org-agenda-files (list "~/Documents/Work/Semion/org/"))
@@ -124,6 +139,7 @@
 ;; Set default Org columns in column view
 (setq-default org-columns-default-format
               "#+COLUMNS: %30ITEM(Task) %TODO %DEADLINE(Due) %Effort{:} %CLOCKSUM(Time Spent) %TAGS")
+
 (setq-default org-startup-indented t)
 
 ;; Format string used when creating CLOCKSUM lines and when generating
@@ -186,12 +202,20 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(font-lock-builtin-face ((t (:foreground "SlateGray3"))))
  '(font-lock-comment-face ((t (:foreground "gray45" :slant italic))))
+ '(font-lock-constant-face ((t (:foreground "PaleTurquoise4"))))
+ '(font-lock-doc-face ((t (:inherit font-lock-comment-face))))
+ '(font-lock-function-name-face ((t (:foreground "SkyBlue3"))))
  '(font-lock-keyword-face ((t (:foreground "gray85" :weight bold))))
+ '(font-lock-string-face ((t (:foreground "plum4"))))
+ '(font-lock-type-face ((t (:foreground "PaleVioletRed1"))))
+ '(font-lock-variable-name-face ((t (:foreground "DarkSeaGreen3"))))
  '(link ((t (:foreground "plum2" :underline t))))
  '(org-agenda-done ((t (:foreground "PaleGreen"))))
  '(org-date ((t (:foreground "gray45" :underline t))))
  '(org-done ((t (:foreground "gray35" :weight bold))))
+ '(org-hide ((t (:foreground "#303030"))))
  '(org-level-1 ((t (:inherit outline-1 :weight bold))))
  '(org-level-2 ((t (:inherit outline-2 :foreground "aquamarine1" :weight bold))))
  '(org-level-3 ((t (:inherit outline-2 :foreground "LightSkyBlue3" :weight bold))))
@@ -204,3 +228,4 @@
  '(org-mode-line-clock-overrun ((t (:inherit mode-line :foreground "magenta1"))) t)
  '(org-special-keyword ((t (:inherit font-lock-comment-face :foreground "gray35" :slant italic :weight normal))))
  '(org-todo ((t (:weight bold)))))
+ '(org-hide ((t (:foreground "#303030"))))
