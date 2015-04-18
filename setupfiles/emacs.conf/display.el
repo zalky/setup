@@ -10,7 +10,7 @@
 
 ;; Set default frame attributes and initial position
 (setq my-frame-alist `((width . 90)
-		       (height . 90)))
+		       (height . 65)))
 
 ;; You can specify geometry-related options for the initial frame,
 ;; however they won't take effect until Emacs reads `.emacs', which

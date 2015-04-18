@@ -5,6 +5,11 @@
 ;; using the `define-key' function, with the specific keymap, "\key"
 ;; and 'command as arguments.
 (define-key global-map "\C-z" 'undo)
+(global-set-key (kbd "C-M-;") 'comment-region)
+(global-set-key (kbd "C-M-:") 'uncomment-region)
+
+;; Shows a list of buffers
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; Org-mode shortcuts
 (define-key global-map "\C-cl" 'org-store-link)

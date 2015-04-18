@@ -57,6 +57,9 @@
     ;; edit html tags like sexps
     tagedit
 
+    ;; highlight numbers
+    highlight-numbers
+
     ;; git integration
     magit))
 

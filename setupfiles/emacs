@@ -109,20 +109,8 @@
 
 ;;;; Major Modes
 
-;; Apply a new font-lock face for numbers
-(make-face 'font-lock-number-face)
-(set-face-attribute 'font-lock-number-face nil :inherit font-lock-constant-face)
-(setq font-lock-number-face 'font-lock-number-face)
-(defvar font-lock-number "[-+]?\b[0-9]*\.?[0-9]+\(?:[eE][-+]?[0-9]+\)?\b")
-(defvar font-lock-hexnumber "0[xX][0-9a-fA-F]+")
-(defun add-font-lock-numbers ()
-        (font-lock-add-keywords nil (list
-                      (list (concat "\\<\\(" font-lock-number "\\)\\>" )
-                       0 font-lock-number-face)
-                      (list (concat "\\<\\(" font-lock-hexnumber "\\)\\>" )
-                       0 font-lock-number-face)
-                      )))
-(add-hook 'prog-mode-hook 'add-font-lock-numbers)
+;; Enable highlighting of numbers as constants for all programming modes
+(add-hook 'prog-mode-hook 'highlight-numbers-mode)
 
 ;; Set Org Mode agenda files from which to collect information. List
 ;; can be individual files or contain directories.

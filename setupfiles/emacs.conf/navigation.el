@@ -143,9 +143,6 @@
 ;; for selecting buffer and file names
 (ido-ubiquitous-mode 1)
 
-;; Shows a list of buffers
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-
 ;; Enhances M-x to allow easier execution of commands. Provides
 ;; a filterable list of possible commands in the minibuffer
 ;; http://www.emacswiki.org/emacs/Smex
