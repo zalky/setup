@@ -88,3 +88,4 @@
 (set-face-attribute 'minibuffer-prompt t
                     :weight 'bold
                     :foreground "grey85")
+

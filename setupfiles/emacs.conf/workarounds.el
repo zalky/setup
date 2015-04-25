@@ -4,7 +4,9 @@
 (setenv "NODE_NO_READLINE" "1")
 
 ;; Fix junk characters in shell mode (due to loading .bashrc)
-(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+;;(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(setq-default ansi-color-for-comint-mode 'filter)
+
 
 ;; XFT fix for development snapshot
 (push '(font-backend xft x) default-frame-alist)

@@ -115,6 +115,9 @@
 ;; Common Lisp extensions
 (require 'cl-lib)
 
+;; Configure tools for editing python
+(load "python-config.el")
+
 ;; Configure tools for editing lisp code
 (load "elisp-config.el")
 
