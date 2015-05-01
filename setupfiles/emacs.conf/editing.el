@@ -49,6 +49,9 @@
 ;; Set default indendation width
 (setq-default standard-indent 4)
 
+;; Set default tab width
+(setq-default tab-width 4)
+
 ;; use 2 spaces for tabs
 (defun die-tabs ()
   (interactive)
@@ -73,7 +76,7 @@
 
 ;; Additional space to put between lines when displaying a buffer.
 ;; The space is measured in pixels...
-(setq-default line-spacing 2)
+(setq-default line-spacing 3)
 
 ;; ...Except in term-mode, where extra line-spacing messes up expected
 ;; buffer lengths. Set line-spacing to 0.

@@ -36,3 +36,7 @@
 
 ;; Change all 'yes/no' questions to 'y/n'
 (fset 'yes-or-no-p 'y-or-n-p)
+
+;; Set 'vertical' window split in ediff by default
+(setq ediff-split-window-function 'split-window-horizontally)
+(setq ediff-merge-split-window-function 'split-window-horizontally)
