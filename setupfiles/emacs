@@ -249,6 +249,9 @@
  '(font-lock-string-face ((t (:foreground "plum4"))))
  '(font-lock-type-face ((t (:foreground "PaleVioletRed1"))))
  '(font-lock-variable-name-face ((t (:foreground "DarkSeaGreen3"))))
+ '(ido-indicator ((t (:inherit link :underline nil :width condensed))))
+ '(ido-only-match ((t (:inherit font-lock-variable-name-face))))
+ '(ido-subdir ((t (:inherit font-lock-function-name-face))))
  '(link ((t (:foreground "plum2" :underline t))))
  '(org-agenda-done ((t (:foreground "PaleGreen"))))
  '(org-date ((t (:foreground "gray45" :underline t))))
@@ -265,7 +268,8 @@
  '(org-mode-line-clock ((t (:inherit mode-line :foreground "plum2"))) t)
  '(org-mode-line-clock-overrun ((t (:inherit mode-line :foreground "magenta1" :background "#303030"))) t)
  '(org-special-keyword ((t (:inherit font-lock-comment-face :foreground "gray35" :slant italic :weight normal))))
- '(org-todo ((t (:weight bold)))))
+ '(org-todo ((t (:weight bold))))
+ '(speedbar-tag-face ((t (:inherit link :underline nil)))))
 
 
 ;;;: Customize Workarounds for faces that aren't being properly set

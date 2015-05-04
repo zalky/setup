@@ -18,6 +18,7 @@ TARGETLIST="\
 .emacs.conf \
 .gitignore_global \
 local/share/elisp \
+.ipython \
 src/scripts"
 
 BYTE_COMPILE_ELISP_PACKAGES="\
