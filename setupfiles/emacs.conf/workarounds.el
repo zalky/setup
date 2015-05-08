@@ -5,7 +5,9 @@
 
 ;; Fix junk characters in shell mode (due to loading .bashrc)
 ;;(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-(setq-default ansi-color-for-comint-mode 'filter)
+
+;; Filter out ansi colour characters
+;; (setq-default ansi-color-for-comint-mode 'filter)
 
 
 ;; XFT fix for development snapshot

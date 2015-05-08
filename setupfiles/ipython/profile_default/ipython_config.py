@@ -9,11 +9,11 @@ c.InteractiveShell.editor = 'emacs'
 c.InteractiveShell.xmode = 'Context'
 
 # Set the color scheme (NoColor, Linux, or LightBG).
-#c.TerminalInteractiveShell.colors = 'NoColor'
+c.TerminalInteractiveShell.colors = 'LightBG'
 
-c.PromptManager.in_template = "{color.LightGray}In [{count}]: "
-c.PromptManager.out_template = "{color.LightGray}Out[{count}]: "
-c.PromptManager.in2_template = '   {color.LightGray}.\\D.: '
+c.PromptManager.in_template = "{color.DarkGray}In [{count}]: "
+c.PromptManager.out_template = "{color.DarkGray}Out[{count}]: "
+c.PromptManager.in2_template = '   {color.DarkGray}.\\D.: '
 
 #------------------------------------------------------------------------------
 # InteractiveShellApp configuration

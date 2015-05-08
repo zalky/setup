@@ -186,6 +186,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#303030" "PaleVioletRed4" "#197590" "thistle1" "#0a7bcc" "orchid4" "#607683" "gray80"])
  '(coffee-tab-width 2)
  '(ecb-key-map
    (quote
@@ -246,13 +248,13 @@
  '(error ((t (:inherit font-lock-type-face :weight bold))))
  '(font-lock-builtin-face ((t (:foreground "gray30"))))
  '(font-lock-comment-face ((t (:foreground "gray41" :slant italic))))
- '(font-lock-constant-face ((t (:foreground "#607683"))))
+ '(font-lock-constant-face ((t (:foreground "#616682"))))
  '(font-lock-doc-face ((t (:inherit font-lock-comment-face))))
- '(font-lock-function-name-face ((t (:foreground "#0a7bcc"))))
+ '(font-lock-function-name-face ((t (:foreground "#2467A5"))))
  '(font-lock-keyword-face ((t (:foreground "gray30" :weight bold))))
  '(font-lock-string-face ((t (:foreground "plum4"))))
  '(font-lock-type-face ((t (:foreground "PaleVioletRed4"))))
- '(font-lock-variable-name-face ((t (:foreground "#197590"))))
+ '(font-lock-variable-name-face ((t (:foreground "#486b7a"))))
  '(fringe ((t (:background "#b9b9b9" :foreground "#555555"))))
  '(header-line ((t (:inherit mode-line :background "#a9a9a9" :foreground "#555555" :box nil))))
  '(highlight ((t (:background "gray75"))))
@@ -271,7 +273,7 @@
  '(org-hide ((t (:foreground "#303030"))))
  '(org-level-1 ((t (:inherit outline-1 :weight bold))))
  '(org-level-2 ((t (:inherit outline-2 :weight bold))))
- '(org-level-3 ((t (:inherit outline-3 :foreground "MediumOrchid4" :weight bold))))
+ '(org-level-3 ((t (:inherit font-lock-type-face :weight bold))))
  '(org-level-4 ((t (:inherit link :underline nil :weight bold))))
  '(org-level-5 ((t (:inherit outline-5 :foreground "SkyBlue4" :weight bold))))
  '(org-level-6 ((t (:inherit outline-6 :weight bold))))
@@ -290,5 +292,5 @@
 ;;;: Customize Workarounds for faces that aren't being properly set
 
 (set-face-attribute 'org-mode-line-clock-overrun t
-                    :background "#404040"
+                    :background "#999999"
                     :foreground "magenta1")

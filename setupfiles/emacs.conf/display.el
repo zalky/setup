@@ -91,3 +91,12 @@
                     :weight 'bold
                     :foreground "gray30")
 
+(setq ansi-term-color-vector [default
+                               default
+                               font-lock-type-face
+                               font-lock-variable-name-face
+                               font-lock-comment-face
+                               font-lock-function-name-face
+                               font-lock-string-face
+                               font-lock-constant-face
+                               font-lock-builtin-face])
