@@ -5,8 +5,8 @@
 
 ;; Define custom face attributes
 (setq my-font "Menlo") ;; On Windows: "Consolas"
-(setq my-fgcolor "#cccccc")
-(setq my-bgcolor "#303030")
+(setq my-fgcolor "#b9b9b9") ;; "#cccccc"
+(setq my-bgcolor "#303030") ;; "#303030"
 
 ;; Set default frame attributes and initial position
 (setq my-frame-alist `((width . 90)
@@ -35,10 +35,10 @@
                     :family my-font)
 
 (set-face-attribute 'border t
-                    :background "#454545")
+                    :background "#404040") ; "#454545"
 
 (set-face-attribute 'vertical-border t
-                    :foreground "#454545")
+                    :foreground "#404040") ; "#454545")
 
 (set-face-attribute 'cursor t
                     :background "#ecdc6b"
@@ -49,7 +49,7 @@
                     :foreground "#555555")
 
 (set-face-attribute 'highlight t
-                    :background "#3f3f3f")
+                    :background "gray20") ; "#3f3f3f"
 
 (set-face-attribute 'header-line t
                     :inherit 'mode-line
@@ -68,20 +68,20 @@
                     :background "Red")
 
 (set-face-attribute 'region t
-                    :background "grey30")
+                    :background "grey28")
 
 (set-face-attribute 'secondary-selection t
                     :background "grey50")
 
 (set-face-attribute 'mode-line t
-                    :background "#444444" 
+                    :background "#404040"; "#444444" 
                     :foreground "#909090"
-                    :box '(:line-width 1 :color "#454545"))
+                    :box '(:line-width 1 :color "#404040")) ; "#454545"
 
 (set-face-attribute 'mode-line-inactive t
-                    :background "#444444"
+                    :background "#404040"  ; "#444444"
                     :foreground my-bgcolor
-                    :box '(:line-width 1 :color "#454545"))
+                    :box '(:line-width 1 :color "#404040")) ; "#454545"
 
 (set-face-attribute 'mode-line-highlight nil)
 

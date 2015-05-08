@@ -239,9 +239,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(border ((t (:background "#454545"))))
  '(ecb-default-highlight-face ((t (:background "gray20"))))
+ '(ecb-mode-line-prefix-face ((t (:inherit font-lock-builtin-face))))
  '(font-lock-builtin-face ((t (:foreground "SlateGray3"))))
- '(font-lock-comment-face ((t (:foreground "gray45" :slant italic))))
+ '(font-lock-comment-face ((t (:foreground "gray41" :slant italic))))
  '(font-lock-constant-face ((t (:foreground "PaleTurquoise4"))))
  '(font-lock-doc-face ((t (:inherit font-lock-comment-face))))
  '(font-lock-function-name-face ((t (:foreground "SkyBlue3"))))
@@ -253,6 +255,8 @@
  '(ido-only-match ((t (:inherit font-lock-variable-name-face))))
  '(ido-subdir ((t (:inherit font-lock-function-name-face))))
  '(link ((t (:foreground "plum2" :underline t))))
+ '(mode-line ((t (:background "#404040" :foreground "#909090" :box (:line-width 1 :color "#404040")))))
+ '(mode-line-inactive ((t (:inherit mode-line :background "#404040" :foreground "#303030" :box (:line-width 1 :color "#404040") :weight light))))
  '(org-agenda-done ((t (:foreground "PaleGreen"))))
  '(org-date ((t (:foreground "gray45" :underline t))))
  '(org-done ((t (:foreground "gray35" :weight bold))))
@@ -269,11 +273,13 @@
  '(org-mode-line-clock-overrun ((t (:inherit mode-line :foreground "magenta1" :background "#303030"))) t)
  '(org-special-keyword ((t (:inherit font-lock-comment-face :foreground "gray35" :slant italic :weight normal))))
  '(org-todo ((t (:weight bold))))
- '(speedbar-tag-face ((t (:inherit link :underline nil)))))
+ '(semantic-highlight-func-current-tag-face ((t (:background "gray20"))))
+ '(speedbar-tag-face ((t (:inherit link :underline nil))))
+ '(vertical-border ((t (:foreground "#404040")))))
 
 
 ;;;: Customize Workarounds for faces that aren't being properly set
 
 (set-face-attribute 'org-mode-line-clock-overrun t
-                    :background "#444444"
+                    :background "#404040"
                     :foreground "magenta1")
