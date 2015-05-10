@@ -36,25 +36,25 @@
                     :family my-font)
 
 (set-face-attribute 'border t
-                    :background "#999999") ; "#454545"
+                    :background "#a0a0a0") ; "#454545"
 
 (set-face-attribute 'vertical-border t
-                    :foreground "#999999") ; "#454545")
+                    :foreground "#a0a0a0") ; "#454545")
 
 (set-face-attribute 'cursor t
-                    :background "#ecdc6b"
-                    :foreground "Black")
+                    :background "HotPink3"
+                    :foreground "#303030")
 
 (set-face-attribute 'fringe t
                     :background my-bgcolor
-                    :foreground "#555555")
+                    :foreground "#777777")
 
 (set-face-attribute 'highlight t
                     :background "gray75") ; "#3f3f3f"
 
 (set-face-attribute 'header-line t
                     :inherit 'mode-line
-                    :background "#a9a9a9"
+                    :background "#b0b0b0"
                     :foreground "#555555"
                     :box nil)
 
@@ -70,20 +70,20 @@
                     :background "Red")
 
 (set-face-attribute 'region t
-                    :background "grey75")
+                    :background "grey73")
 
 (set-face-attribute 'secondary-selection t
                     :background "grey79")
 
 (set-face-attribute 'mode-line t
-                    :background "#999999"; "#444444" 
-                    :foreground "#555555"
-                    :box '(:line-width 1 :color "#999999")) ; "#454545"
+                    :background "#a0a0a0"; "#444444" 
+                    :foreground "#595959"
+                    :box '(:line-width 1 :color "#a0a0a0")) ; "#454545"
 
 (set-face-attribute 'mode-line-inactive t
-                    :background "#999999"  ; "#444444"
+                    :background "#a0a0a0"  ; "#444444"
                     :foreground my-bgcolor
-                    :box '(:line-width 1 :color "#999999")) ; "#454545"
+                    :box '(:line-width 1 :color "#a0a0a0")) ; "#454545"
 
 (set-face-attribute 'mode-line-highlight nil)
 
