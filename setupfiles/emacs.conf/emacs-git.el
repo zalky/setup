@@ -186,12 +186,13 @@
 
 ;; Define custom face attributes
 (setq my-font "Menlo") ;; On Windows: "Consolas"
-(setq my-fgcolor "#cccccc")
-(setq my-bgcolor "#303030")
+(setq my-fgcolor "#303030");; "#b9b9b9" ;; "#cccccc"
+(setq my-bgcolor "#c0c0c0") ;; "#303030") ;; "#303030
+
 
 ;; Set default frame attributes and initial position
 (setq my-frame-alist `((width . 90)
-		       (height . 30)))
+		       (height . 40)))
 
 ;; You can specify geometry-related options for the initial frame,
 ;; however they won't take effect until Emacs reads `.emacs', which
@@ -216,59 +217,54 @@
                     :family my-font)
 
 (set-face-attribute 'border t
-                    :background "#454545")
+                    :background "#a0a0a0") ; "#454545"
 
 (set-face-attribute 'vertical-border t
-                    :foreground "#454545")
+                    :foreground "#a0a0a0") ; "#454545")
 
 (set-face-attribute 'cursor t
-                    :background "#ecdc6b"
-                    :foreground "Black")
+                    :background "HotPink3"
+                    :foreground "#303030")
 
 (set-face-attribute 'fringe t
                     :background my-bgcolor
-                    :foreground "#555555")
+                    :foreground "#777777")
 
 (set-face-attribute 'highlight t
-                    :background "DarkOrange")
-
-(set-face-attribute 'header-line t
-                    :inherit 'mode-line
-                    :background "#383838"
-                    :box nil)
-
-(set-face-attribute 'info-header-xref t
-                    :inherit 'info-xref :foreground "LightSteelBlue")
-
-(set-face-attribute 'info-node t
-                    :foreground "DeepSkyBlue"
-                    :slant 'italic
-                    :weight 'bold)
-
-(set-face-attribute 'mouse t
-                    :background "Red")
+                    :background "gray65") ; "#3f3f3f"
 
 (set-face-attribute 'region t
-                    :background "grey30")
+                    :background "grey75")
 
 (set-face-attribute 'secondary-selection t
-                    :background "grey50")
+                    :background "grey79")
 
 (set-face-attribute 'mode-line t
-                    :background "#444444" 
-                    :foreground "#909090"
-                    :box '(:line-width 1 :color "#454545"))
+                    :background "#a0a0a0"; "#444444" 
+                    :foreground "#595959"
+                    :box '(:line-width 1 :color "#a0a0a0")) ; "#454545"
 
 (set-face-attribute 'mode-line-inactive t
-                    :background "#444444"
+                    :background "#a0a0a0"  ; "#444444"
                     :foreground my-bgcolor
-                    :box '(:line-width 1 :color "#454545"))
+                    :box '(:line-width 1 :color "#a0a0a0")) ; "#454545"
 
 (set-face-attribute 'mode-line-highlight nil)
 
 (set-face-attribute 'minibuffer-prompt t
                     :weight 'bold
-                    :foreground "grey85")
+                    :foreground "gray30")
+
+(setq ansi-term-color-vector [default
+                               default
+                               font-lock-type-face
+                               font-lock-variable-name-face
+                               font-lock-comment-face
+                               font-lock-function-name-face
+                               font-lock-string-face
+                               font-lock-constant-face
+                               font-lock-builtin-face])
+
 
 ;;;; Major Modes
 

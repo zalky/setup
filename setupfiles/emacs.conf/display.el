@@ -6,7 +6,7 @@
 ;; Define custom face attributes
 (setq my-font "Menlo") ;; On Windows: "Consolas"
 (setq my-fgcolor "#303030");; "#b9b9b9" ;; "#cccccc"
-(setq my-bgcolor "#b9b9b9") ;; "#303030") ;; "#303030
+(setq my-bgcolor "#c0c0c0") ;; "#303030") ;; "#303030
 
 
 ;; Set default frame attributes and initial position
@@ -36,10 +36,10 @@
                     :family my-font)
 
 (set-face-attribute 'border t
-                    :background "#a0a0a0") ; "#454545"
+                    :background "#a9a9a9") ; "#454545"
 
 (set-face-attribute 'vertical-border t
-                    :foreground "#a0a0a0") ; "#454545")
+                    :foreground "#a9a9a9") ; "#454545")
 
 (set-face-attribute 'cursor t
                     :background "HotPink3"
@@ -50,27 +50,10 @@
                     :foreground "#777777")
 
 (set-face-attribute 'highlight t
-                    :background "gray75") ; "#3f3f3f"
-
-(set-face-attribute 'header-line t
-                    :inherit 'mode-line
-                    :background "#b0b0b0"
-                    :foreground "#555555"
-                    :box nil)
-
-(set-face-attribute 'info-header-xref t
-                    :inherit 'info-xref :foreground "LightSteelBlue")
-
-(set-face-attribute 'info-node t
-                    :foreground "DeepSkyBlue"
-                    :slant 'italic
-                    :weight 'bold)
-
-(set-face-attribute 'mouse t
-                    :background "Red")
+                    :background "gray65") ; "#3f3f3f"
 
 (set-face-attribute 'region t
-                    :background "grey73")
+                    :background "grey75")
 
 (set-face-attribute 'secondary-selection t
                     :background "grey79")

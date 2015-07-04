@@ -242,10 +242,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "#c0c0c0" :foreground "#303030" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Menlo"))))
- '(border ((t (:background "#454545"))))
+ '(border ((t (:background "#a9a9a9"))))
  '(cursor ((t (:background "HotPink3" :foreground "#303030"))))
- '(ecb-default-highlight-face ((t (:background "gray62"))))
+ '(ecb-default-highlight-face ((t (:inherit highlight))))
  '(ecb-mode-line-prefix-face ((t (:inherit font-lock-builtin-face))))
+ '(ecb-tag-header-face ((t (:inherit highlight))))
  '(error ((t (:inherit font-lock-type-face :weight bold))))
  '(font-lock-builtin-face ((t (:foreground "gray30"))))
  '(font-lock-comment-face ((t (:foreground "gray41" :slant italic))))
@@ -253,15 +254,20 @@
  '(font-lock-doc-face ((t (:inherit font-lock-comment-face))))
  '(font-lock-function-name-face ((t (:foreground "#246db0"))))
  '(font-lock-keyword-face ((t (:foreground "gray30" :weight bold))))
- '(font-lock-string-face ((t (:foreground "#84788e"))))
+ '(font-lock-string-face ((t (:foreground "#817595"))))
  '(font-lock-type-face ((t (:foreground "PaleVioletRed4"))))
  '(font-lock-variable-name-face ((t (:foreground "#486b7a"))))
- '(fringe ((t (:background "#c0c0c0" :foreground "#555555"))))
+ '(fringe ((t (:background "#c0c0c0" :foreground "#777777"))))
  '(header-line ((t (:inherit mode-line :background "#b0b0b0" :foreground "#555555" :box nil))))
- '(highlight ((t (:background "gray75"))))
+ '(highlight ((t (:background "gray65"))))
  '(ido-indicator ((t (:inherit link :underline nil :width condensed))))
  '(ido-only-match ((t (:inherit font-lock-variable-name-face))))
  '(ido-subdir ((t (:inherit font-lock-function-name-face))))
+ '(info-header-xref ((t (:inherit info-xref))))
+ '(info-node ((t (:inherit link :slant italic :weight bold))))
+ '(isearch ((t (:background "hotpink4" :foreground "#b9b9b9"))))
+ '(isearch-fail ((t (:inherit isearch))))
+ '(lazy-highlight ((t (:background "gray55" :foreground "#c0c0c0"))))
  '(link ((t (:foreground "orchid4" :underline t))))
  '(link-visited ((t (:inherit link :foreground "MediumPurple4"))))
  '(mode-line ((t (:background "#a0a0a0" :foreground "#595959" :box (:line-width 1 :color "#a0a0a0")))))
@@ -281,20 +287,13 @@
  '(org-level-7 ((t (:inherit outline-7 :weight bold))))
  '(org-level-8 ((t (:inherit outline-8 :weight bold))))
  '(org-mode-line-clock ((t (:inherit mode-line :foreground "gray78"))) t)
- '(org-mode-line-clock-overrun ((t (:inherit mode-line :background "#a0a0a0" :foreground "gray78" :weight bold))) t)
+ '(org-mode-line-clock-overrun ((t (:inherit mode-line :foreground "gray78" :weight bold))) t)
  '(org-special-keyword ((t (:inherit font-lock-comment-face :foreground "gray50" :slant italic :weight normal))))
  '(org-todo ((t (:foreground "gray40" :weight bold))))
- '(region ((t (:background "grey70"))))
- '(semantic-highlight-func-current-tag-face ((t (:background "gray62"))))
- '(show-paren-match ((t (:background "#909090" :foreground "#c0c0c0"))))
+ '(region ((t (:background "grey75"))))
+ '(semantic-highlight-func-current-tag-face ((t (:inherit highlight))))
+ '(show-paren-match ((t (:background "#999999" :foreground "#c0c0c0"))))
  '(show-paren-mismatch ((t (:background "PaleVioletRed4" :foreground "#c0c0c0"))))
  '(speedbar-tag-face ((t (:inherit link :underline nil))))
- '(vertical-border ((t (:foreground "#a0a0a0")))))
+ '(vertical-border ((t (:foreground "#a9a9a9")))))
 
-
-;;;: Customize Workarounds for faces that aren't being properly set
-
-(set-face-attribute 'org-mode-line-clock-overrun t
-                    :weight bold
-                    :background "#a0a0a0"
-                    :foreground "gray78")

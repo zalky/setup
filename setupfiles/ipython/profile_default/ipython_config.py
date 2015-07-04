@@ -2,9 +2,9 @@
 
 c = get_config()
 
-#c.InteractiveShell.autoindent = True
+c.InteractiveShell.autoindent = False
 c.InteractiveShell.confirm_exit = False
-c.InteractiveShell.deep_reload = True
+c.InteractiveShell.deep_reload = False
 c.InteractiveShell.editor = 'emacs'
 c.InteractiveShell.xmode = 'Context'
 
@@ -61,7 +61,7 @@ c.InteractiveShellApp.exec_lines = ['%autoreload 2']
 # c.InteractiveShellApp.pylab_import_all = True
 
 # A list of dotted module names of IPython extensions to load.
-c.InteractiveShellApp.extensions = ['autoreload']
+c.InteractiveShellApp.extensions = ['autoreload', 'line_profiler']
 
 # Run the module as a script.
 # c.InteractiveShellApp.module_to_run = ''

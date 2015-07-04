@@ -1,5 +1,12 @@
 ;;;; Workarounds
 
+;; Note: There is a line in org-faces.el:
+;; (org-copy-face 'mode-line 'org-mode-line-clock-overrun
+;;   "Face used for clock display for overrun tasks in mode line.")
+;; That sets org-mode-line-clock-overrun to red background. This
+;; overrides any customizations being set by user init. This should be
+;; removed.
+
 ;; Fix node.js prompt in eshell
 (setenv "NODE_NO_READLINE" "1")
 
