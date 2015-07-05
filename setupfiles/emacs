@@ -292,6 +292,7 @@
  '(org-todo ((t (:foreground "gray40" :weight bold))))
  '(region ((t (:background "grey75"))))
  '(semantic-highlight-func-current-tag-face ((t (:inherit highlight))))
+ '(sh-quoted-exec ((t (:inherit font-lock-builtin-face))))
  '(show-paren-match ((t (:background "#999999" :foreground "#c0c0c0"))))
  '(show-paren-mismatch ((t (:background "PaleVioletRed4" :foreground "#c0c0c0"))))
  '(speedbar-tag-face ((t (:inherit link :underline nil))))

@@ -18,8 +18,10 @@ TARGETLIST="\
 .emacs.conf \
 .gitignore_global \
 local/share/elisp \
-.ipython/profile_default/ipython_conf.py \
 src/scripts"
+
+# Unfortunately, .ipython/profile_default/ipython_conf.py fails as a
+# sym-link, must hard copy file later in script
 
 BYTE_COMPILE_ELISP_PACKAGES="\
 cedet-bzr \
@@ -35,20 +37,38 @@ LIN_EMACS=$(which emacs)
 
 
 # Simlink basic configuration files in .setup/setupfiles to target locations
+echo "Populating basic configuration files as symbolic links..."
 for TARGET in $TARGETLIST ; do
-    if [[ -e $HOME/$TARGET || -h $HOME/$TARGET ]] ; then
+    # If file already exists, even if it just a symlink, backup.
+    if [[ -e $HOME/$TARGET ]] ; then
         echo "Warning, $HOME/$TARGET already exists, \
 backing up as $TARGET.$(date +%Y%m%d-%H.%M.%S).setup.bak"
         mv $HOME/$TARGET $HOME/$TARGET.$(date "+%Y%m%d-%H.%M.%S").setup.bak
     fi
     BASENAME=${TARGET##*/}
     NODOT=${BASENAME#.}
-    # If $NODOT is directory, ensure that ${TARGET%/*} path to target exists.
-    if [[ -d $(pwd)/setupfiles/$NODOT && -d $HOME/${TARGET%/*} ]] ; then
+    # If $NODOT is directory, and path to target does not exist, create.
+    if [[ -d $(pwd)/setupfiles/$NODOT && ! -d $HOME/${TARGET%/*} ]] ; then
         mkdir -p $HOME/${TARGET%/*}
     fi
     ln -sf $(pwd)/setupfiles/$NODOT $HOME/$TARGET
 done
+
+echo "Hard copy ipython_conf.py since it doesn't work as a symlink..."
+# WORKAROUND: Hard copy ipython_conf.py since it doesn't work with symlink
+if [[ ! -d $HOME/.ipython/profile_default ]] ; then
+    mkdir -p $HOME/.ipython/profile_default
+fi
+if [[ -e $HOME/.ipython/profile_default/ipython_config.py ]] ; then
+    echo "Warning, $HOME/.ipython/profile_default/ipython_config.py \
+already exists, backing up as $HOME/.ipython/profile_default/ipython_config.py\
+.$(date +%Y%m%d-%H.%M.%S).setup.bak"
+    mv $HOME/.ipython/profile_default/ipython_config.py \
+       $HOME/.ipython/profile_default/ipython_config.py\
+.$(date +%Y%m%d-%H.%M.%S).setup.bak
+fi
+cp $(pwd)/setupfiles/ipython_config.py \
+   $HOME/.ipython/profile_default/ipython_config.py
 
 # Initialize ECB submodile.
 git init submodule
