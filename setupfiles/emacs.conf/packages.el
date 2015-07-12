@@ -4,11 +4,11 @@
 (require 'package)
 
 (add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
 ;; (add-to-list 'package-archives
 ;;              '("tromey" . "http://tromey.com/elpa/") t)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa" . "http://melpa.org/packages/"))
 
 ;; Load and activate emacs packages. Do this first so that the
 ;; packages are loaded before you start trying to modify them.  This
@@ -26,8 +26,12 @@
 (defvar my-packages
   '(;; makes handling lisp expressions much, much easier Cheatsheet:
     ;; http://www.emacswiki.org/emacs/PareditCheatsheet
-    paredit
+    ;; paredit
 
+    ;; load smartparens mode instead of paredit: paredit is useless as
+    ;; there is no way to edit keybindings
+    smartparens
+    
     ;; key bindings and code colorization for Clojure
     ;; https://github.com/clojure-emacs/clojure-mode
     clojure-mode
@@ -73,6 +77,7 @@
 ;; (if (eq system-type 'darwin)
 ;;     (add-to-list 'my-packages 'exec-path-from-shell))
 
+;; Actually install packages that have not been installed yet.
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
@@ -118,6 +123,9 @@
 ;; Configure tools for editing python
 (load "python-config.el")
 
+;; Configure smartparens
+(load "smartparens-init.el")
+
 ;; Configure tools for editing lisp code
 (load "elisp-config.el")
 
@@ -126,3 +134,4 @@
 
 ;; Configure tools for editing java
 (load "js-config.el")
+
