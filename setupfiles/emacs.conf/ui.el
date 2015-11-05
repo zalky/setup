@@ -40,3 +40,6 @@
 ;; Set 'vertical' window split in ediff by default
 (setq ediff-split-window-function 'split-window-horizontally)
 (setq ediff-merge-split-window-function 'split-window-horizontally)
+
+;; Disable dialog box prompts
+(setq-default use-dialog-box nil)

@@ -24,11 +24,7 @@
 ;; The packages you want installed. You can also install these
 ;; manually with M-x package-install Add in your own as you wish:
 (defvar my-packages
-  '(;; makes handling lisp expressions much, much easier Cheatsheet:
-    ;; http://www.emacswiki.org/emacs/PareditCheatsheet
-    ;; paredit
-
-    ;; load smartparens mode instead of paredit: paredit is useless as
+  '(;; load smartparens mode instead of paredit: paredit is useless as
     ;; there is no way to edit keybindings
     smartparens
     
@@ -119,6 +115,9 @@
 
 ;; Common Lisp extensions
 (require 'cl-lib)
+
+;; Configure helm
+(load "helm-config.el")
 
 ;; Configure tools for editing python
 (load "python-config.el")

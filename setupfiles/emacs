@@ -189,6 +189,7 @@
  '(ansi-color-names-vector
    ["#303030" "PaleVioletRed4" "#197590" "thistle1" "#0a7bcc" "orchid4" "#607683" "gray80"])
  '(coffee-tab-width 2)
+ '(ecb-auto-expand-tag-tree (quote expand-spec))
  '(ecb-key-map
    (quote
     ("C-c ."
@@ -235,13 +236,16 @@
      (t "/" ecb-toggle-compile-window-height)
      (t "," ecb-cycle-maximized-ecb-buffers)
      (t "." ecb-cycle-through-compilation-buffers))))
- '(ecb-options-version "2.40"))
+ '(ecb-options-version "2.40")
+ '(helm-display-header-line nil)
+ '(helm-full-frame nil)
+ '(helm-prevent-escaping-from-minibuffer nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#c0c0c0" :foreground "#303030" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Menlo"))))
+ '(default ((t (:inherit nil :stipple nil :background "#c0c0c0" :foreground "#404040" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Menlo"))))
  '(border ((t (:background "#a9a9a9"))))
  '(cursor ((t (:background "HotPink3" :foreground "#303030"))))
  '(ecb-default-highlight-face ((t (:inherit highlight))))
@@ -253,12 +257,26 @@
  '(font-lock-constant-face ((t (:foreground "#717a96"))))
  '(font-lock-doc-face ((t (:inherit font-lock-comment-face))))
  '(font-lock-function-name-face ((t (:foreground "#246db0"))))
- '(font-lock-keyword-face ((t (:foreground "gray30" :weight bold))))
+ '(font-lock-keyword-face ((t (:foreground "grey30" :weight bold))))
  '(font-lock-string-face ((t (:foreground "#817595"))))
  '(font-lock-type-face ((t (:foreground "PaleVioletRed4"))))
  '(font-lock-variable-name-face ((t (:foreground "#486b7a"))))
  '(fringe ((t (:background "#c0c0c0" :foreground "#777777"))))
  '(header-line ((t (:inherit mode-line :background "#b0b0b0" :foreground "#555555" :box nil))))
+ '(helm-buffer-directory ((t (:inherit font-lock-function-name-face))))
+ '(helm-buffer-not-saved ((t (:inherit font-lock-type-face))))
+ '(helm-buffer-process ((t (:inherit font-lock-comment-face))))
+ '(helm-buffer-saved-out ((t (:inherit font-lock-variable-name-face))))
+ '(helm-candidate-number ((t (:inherit org-mode-line-clock))))
+ '(helm-ff-directory ((t (:inherit font-lock-function-name-face))))
+ '(helm-header ((t (:inherit header-line :slant italic))))
+ '(helm-match ((t (:inherit ido-only-match))))
+ '(helm-match-item ((t (:inherit lazy-highlight))))
+ '(helm-prefarg ((t (:inherit font-lock-builtin-face))))
+ '(helm-selection ((t (:inherit highlight))))
+ '(helm-separator ((t (:inherit font-lock-type-face))))
+ '(helm-source-header ((t (:inherit font-lock-keyword-face :weight bold))))
+ '(helm-visible-mark ((t (:inherit region))))
  '(highlight ((t (:background "gray65"))))
  '(ido-indicator ((t (:inherit link :underline nil :width condensed))))
  '(ido-only-match ((t (:inherit font-lock-variable-name-face))))
@@ -292,6 +310,7 @@
  '(org-todo ((t (:foreground "gray40" :weight bold))))
  '(region ((t (:background "grey75"))))
  '(semantic-highlight-func-current-tag-face ((t (:inherit highlight))))
+ '(sh-heredoc ((t (:inherit font-lock-string-face))))
  '(sh-quoted-exec ((t (:inherit font-lock-builtin-face))))
  '(show-paren-match ((t (:background "#999999" :foreground "#c0c0c0"))))
  '(show-paren-mismatch ((t (:background "PaleVioletRed4" :foreground "#c0c0c0"))))
