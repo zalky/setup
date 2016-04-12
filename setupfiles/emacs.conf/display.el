@@ -8,6 +8,7 @@
 (setq my-fgcolor "#303030");; "#b9b9b9" ;; "#cccccc"
 (setq my-bgcolor "#c0c0c0") ;; "#303030") ;; "#303030
 
+(setq-default line-spacing 5)
 
 ;; Set default frame attributes and initial position
 (setq my-frame-alist `((width . 90)

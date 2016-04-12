@@ -6,7 +6,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; keybinding management
 (define-key smartparens-mode-map (kbd "C-M-f") 'sp-forward-sexp)
-(define-key smartparens-mode-map (kbd "C-M-b") 'sp-backward-sexp)
+(define-key smartparens-mode-map (kbd "C-M-b") nil)
+(define-key smartparens-mode-map (kbd "C-M-r") 'sp-backward-sexp)
 
 (define-key smartparens-mode-map (kbd "C-M-n") 'sp-next-sexp)
 (define-key smartparens-mode-map (kbd "C-M-p") 'sp-previous-sexp)
@@ -14,7 +15,7 @@
 (define-key smartparens-mode-map (kbd "C-S-a") 'sp-beginning-of-sexp)
 (define-key smartparens-mode-map (kbd "C-S-e") 'sp-end-of-sexp)
 
-(define-key smartparens-mode-map (kbd "C-M-d") 'sp-down-sexp)
+;; (define-key smartparens-mode-map (kbd "C-M-d") 'sp-down-sexp)
 (define-key smartparens-mode-map (kbd "C-M-S-d") 'sp-backward-down-sexp)
 
 (define-key smartparens-mode-map (kbd "C-M-u") 'sp-up-sexp)
