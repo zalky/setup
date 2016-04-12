@@ -83,10 +83,6 @@
 (load "packages.el")
 
 
-;;;; Global Key-Bindings
-(load "keybindings.el")
-
-
 ;;;; Workarounds
 (load "workarounds.el")
 
@@ -105,6 +101,10 @@
 
 ;;;; Display
 (load "display.el")
+
+
+;;;; Global Key-Bindings
+(load "keybindings.el")
 
 
 ;;;; Major Modes

@@ -4,7 +4,7 @@
 ;; "\key" and 'command as arguments. Mode specific keymaps are bound
 ;; using the `define-key' function, with the specific keymap, "\key"
 ;; and 'command as arguments.
-(define-key global-map "\C-z" 'undo)
+(global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-M-;") 'comment-region)
 (global-set-key (kbd "C-M-:") 'uncomment-region)
 
@@ -21,13 +21,17 @@
 (define-key isearch-mode-map (kbd "M-r") nil)
 (define-key isearch-mode-map (kbd "C-M-s") 'isearch-repeat-backward)
 
+;; Ido
+(define-key ido-common-completion-map (kbd "C-r") 'ido-magic-backward-char)
+(define-key ido-common-completion-map (kbd "C-M-s") 'ido-prev-match)
+
 ;; Shows a list of buffers
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x g") 'ctl-x-5-prefix)
 
 ;; Org-mode shortcuts
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
 
 (global-set-key (kbd "S-C-M-j") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-M-l") 'enlarge-window-horizontally)
