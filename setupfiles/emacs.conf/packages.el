@@ -51,6 +51,8 @@
     ;; project navigation
     projectile
 
+    swiper
+
     ;; colorful parenthesis matching
     rainbow-delimiters
 
@@ -85,7 +87,7 @@
 (require 'fit-frame)
 
 ;; Configure CEDET
-(load "cedet-config.el")
+;; (load "cedet-config.el")
 
 ;; Semantic is a package that provides language-aware editing commands
 ;; based on source code parsers. Semantic can do things such as prompt
@@ -98,7 +100,7 @@
 (setq semanticdb-default-save-directory "~/.emacs.d/semanticdb/")
 
 ;; Conifgure Emacs Code Browser
-(load "ecb-config.el")
+;; (load "ecb-config.el")
 
 ;; Load documentation system
 (require 'info)
@@ -117,7 +119,7 @@
 (require 'cl-lib)
 
 ;; Configure helm
-(load "helm-config.el")
+;; (load "helm-config.el")
 
 ;; Configure tools for editing python
 (load "python-config.el")
@@ -134,3 +136,5 @@
 ;; Configure tools for editing java
 (load "js-config.el")
 
+;; Configure swiper
+(load "swiper-config.el")

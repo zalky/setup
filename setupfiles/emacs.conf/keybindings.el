@@ -9,11 +9,57 @@
 (global-set-key (kbd "C-M-:") 'uncomment-region)
 
 ;; Basic navigation
-(global-set-key (kbd "C-r") 'backward-char)
-(global-set-key (kbd "M-r") 'backward-word)
-(global-set-key (kbd "C-b") nil)
-(global-set-key (kbd "M-b") nil)
-(global-set-key (kbd "C-M-r") 'sp-backward-sexp)
+(defvar basic-keys-minor-mode-map
+  (let ((map (make-sparse-keymap)))
+    (global-set-key (kbd "C-r") 'backward-char)
+    (global-set-key (kbd "M-r") 'backward-word)
+    (global-set-key (kbd "C-b") nil)
+    (global-set-key (kbd "M-b") nil)
+    (global-set-key (kbd "C-M-r") 'sp-backward-sexp)
+    map)
+  "basic-keymap-minor-mode keymap.")
+
+(define-minor-mode basic-keys-minor-mode
+  "A minor mode so that my key settings override annoying major modes."
+  :init-value t
+  :lighter " basic-keys")
+
+(add-hook 'after-load-functions 'my-keys-have-priority)
+
+(defun my-keys-have-priority (_file)
+  "Try to ensure that my keybindings retain priority over other
+  minor modes. Called via the `after-load-functions' special hook."
+  (unless (eq (caar minor-mode-map-alist) 'basic-keys-minor-mode)
+    (let ((mykeys (assq 'basic-keys-minor-mode minor-mode-map-alist)))
+      (assq-delete-all 'basic-keys-minor-mode minor-mode-map-alist)
+      (add-to-list 'minor-mode-map-alist mykeys))))
+
+(basic-keys-minor-mode t)
+
+;; Helm
+;; (global-set-key (kbd "M-RET") 'helm-M-x)
+;; (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+;; (global-set-key (kbd "C-x b") 'helm-mini)
+;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
+
+;; Ivy
+
+(global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-load-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(global-set-key (kbd "C-c k") 'counsel-ag)
+(global-set-key (kbd "C-x l") 'counsel-locate)
+(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
 
 ;; ISearch
 (global-set-key (kbd "C-M-s") 'isearch-backward-regexp)

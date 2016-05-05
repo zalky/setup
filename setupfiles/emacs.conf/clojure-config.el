@@ -50,9 +50,16 @@
                                     "\\>")
                            0 font-lock-builtin-face)))
 
+;;;; Clojurescript indenting
+
+(load "clojurescript-indenting.el")
+
 ;;;;
 ;; Cider
 ;;;;
+
+;; disable cider's dynamic font-lock overrides
+(setq cider-font-lock-dynamically nil)
 
 ;; go right to the REPL buffer when it's finished connecting
 (setq cider-repl-pop-to-buffer-on-connect t)

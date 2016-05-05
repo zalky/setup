@@ -42,61 +42,13 @@
 (define-key smartparens-mode-map (kbd "C-M-S-<backspace>") 'sp-backward-unwrap-sexp)
 
 (define-key smartparens-mode-map (kbd "M-D") 'sp-splice-sexp)
-;; (define-key smartparens-mode-map (kbd "C-M-<delete>") 'sp-splice-sexp-killing-forward)
-;; (define-key smartparens-mode-map (kbd "C-M-<backspace>") 'sp-splice-sexp-killing-backward)
 (define-key smartparens-mode-map (kbd "C-S-<backspace>") 'sp-splice-sexp-killing-around)
 
 (define-key smartparens-mode-map (kbd "C-]") 'sp-select-next-thing-exchange)
 (define-key smartparens-mode-map (kbd "C-<left_bracket>") 'sp-select-previous-thing)
-;;(define-key smartparens-mode-map (kbd "C-M-]") 'sp-select-next-thing)
 
 (define-key smartparens-mode-map (kbd "M-F") 'sp-forward-symbol)
 (define-key smartparens-mode-map (kbd "M-B") 'sp-backward-symbol)
-
-;; (bind-key "C-M-s"
-;;           (defhydra smartparens-hydra (:color red)
-;;             "Smartparens"
-;;             ("d" sp-down-sexp "Down")
-;;             ("e" sp-up-sexp "Up")
-;;             ("u" sp-backward-up-sexp "Up")
-;;             ("a" sp-backward-down-sexp "Down")
-;;             ("f" sp-forward-sexp "Forward")
-;;             ("b" sp-backward-sexp "Backward")
-;;             ("k" sp-kill-sexp "Kill" :color blue)
-;;             ("q" nil "Quit" :color blue))
-;;           smartparens-mode-map)
-
-;; (bind-key "H-t" 'sp-prefix-tag-object smartparens-mode-map)
-;; (bind-key "H-p" 'sp-prefix-pair-object smartparens-mode-map)
-;; (bind-key "H-y" 'sp-prefix-symbol-object smartparens-mode-map)
-;; (bind-key "H-h" 'sp-highlight-current-sexp smartparens-mode-map)
-;; (bind-key "H-e" 'sp-prefix-save-excursion smartparens-mode-map)
-;; (bind-key "H-s c" 'sp-convolute-sexp smartparens-mode-map)
-;; (bind-key "H-s a" 'sp-absorb-sexp smartparens-mode-map)
-;; (bind-key "H-s e" 'sp-emit-sexp smartparens-mode-map)
-;; (bind-key "H-s p" 'sp-add-to-previous-sexp smartparens-mode-map)
-;; (bind-key "H-s n" 'sp-add-to-next-sexp smartparens-mode-map)
-;; (bind-key "H-s j" 'sp-join-sexp smartparens-mode-map)
-;; (bind-key "H-s s" 'sp-split-sexp smartparens-mode-map)
-;; (bind-key "H-s r" 'sp-rewrap-sexp smartparens-mode-map)
-;; (defvar hyp-s-x-map)
-;; (define-prefix-command 'hyp-s-x-map)
-;; (bind-key "H-s x" hyp-s-x-map smartparens-mode-map)
-;; (bind-key "H-s x x" 'sp-extract-before-sexp smartparens-mode-map)
-;; (bind-key "H-s x a" 'sp-extract-after-sexp smartparens-mode-map)
-;; (bind-key "H-s x s" 'sp-swap-enclosing-sexp smartparens-mode-map)
-
-;; (bind-key "C-x C-t" 'sp-transpose-hybrid-sexp smartparens-mode-map)
-
-;; (bind-key ";" 'sp-comment emacs-lisp-mode-map)
-
-;; (bind-key [remap c-electric-backspace] 'sp-backward-delete-char smartparens-strict-mode-map)
-
-;;;;;;;;;;;;;;;;;;
-;; pair management
-
-;; (sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
-;; (bind-key "C-(" 'sp---wrap-with-40 minibuffer-local-map)
 
 ;;; markdown-mode
 (sp-with-modes '(markdown-mode gfm-mode rst-mode)
@@ -172,6 +124,16 @@
     (save-excursion
       (backward-char 1)
       (looking-back "\\sw\\|\\s_\\|\\s'"))))
+
+;;; Clojure modes
+(sp-with-modes '(clojure-mode clojurec-mode clojurescript-mode)
+  (sp-local-pair "'" nil)
+  (sp-local-pair "'" nil))
+
+(sp-pair "'" nil :actions :rem)
+(sp-pair "`" nil :actions :rem)
+
+;;; Other modes
 
 (sp-with-modes '(php-mode)
   (sp-local-pair "/**" "*/" :post-handlers '(("| " "SPC")
