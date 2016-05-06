@@ -36,40 +36,16 @@
 
 (basic-keys-minor-mode t)
 
-;; Helm
-;; (global-set-key (kbd "M-RET") 'helm-M-x)
-;; (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-;; (global-set-key (kbd "C-x b") 'helm-mini)
-;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
-
-;; Ivy
-
-(global-set-key (kbd "C-s") 'swiper)
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "<f1> f") 'counsel-describe-function)
-(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-(global-set-key (kbd "<f1> l") 'counsel-load-library)
-(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-
-(global-set-key (kbd "C-c g") 'counsel-git)
-(global-set-key (kbd "C-c j") 'counsel-git-grep)
-(global-set-key (kbd "C-c k") 'counsel-ag)
-(global-set-key (kbd "C-x l") 'counsel-locate)
-(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-
-(global-set-key (kbd "C-c C-r") 'ivy-resume)
-
-;; ISearch
-(global-set-key (kbd "C-M-s") 'isearch-backward-regexp)
-(define-key isearch-mode-map (kbd "C-r") nil)
-(define-key isearch-mode-map (kbd "M-r") nil)
-(define-key isearch-mode-map (kbd "C-M-s") 'isearch-repeat-backward)
-
 ;; Ido
 (define-key ido-common-completion-map (kbd "C-r") 'ido-magic-backward-char)
 (define-key ido-common-completion-map (kbd "C-M-s") 'ido-prev-match)
+
+;; ;; Interactive search key bindings. By default, C-s runs
+;; ;; isearch-forward, so this swaps the bindings.
+;; (global-set-key (kbd "C-s") 'isearch-forward-regexp)
+;; (global-set-key (kbd "C-r") 'isearch-backward-regexp)
+;; (global-set-key (kbd "C-M-s") 'isearch-forward)
+;; (global-set-key (kbd "C-M-r") 'isearch-backward)
 
 ;; Shows a list of buffers
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -99,3 +75,23 @@
 (setq mac-command-key-is-meta t)
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'meta)
+
+;;;; Helm
+
+(global-set-key (kbd "M-m") 'smex)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-s") 'helm-swoop)
+(global-set-key (kbd "C-M-s") 'helm-swoop-back-to-last-point)
+;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
+
+;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-unset-key (kbd "C-x c"))
+
+;; Key binding to use "hippie expand" for text autocompletion
+;; http://www.emacswiki.org/emacs/HippieExpand
+(global-set-key (kbd "M-/") 'hippie-expand)

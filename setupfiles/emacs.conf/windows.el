@@ -8,11 +8,14 @@
 ;; keep track of saved places in ~/.emacs.d/places
 (setq save-place-file (concat user-emacs-directory "places"))
 
+;; "Shrink-wrap" frame to buffer size.
+(require 'fit-frame)
+
 ;; Turn on recent file mode so that you can more easily switch to
 ;; recently edited files when you first start emacs
 (setq recentf-save-file (concat user-emacs-directory ".recentf"))
 (require 'recentf)
-(recentf-mode 1)
+(recentf-mode t)
 (setq recentf-max-menu-items 40)
 
 ;; Enable Windmove commands to move directionally between windows with
@@ -116,77 +119,3 @@
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Uniquify.html
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
-
-;; ido-mode allows you to more easily navigate choices. For example,
-;; when you want to switch buffers, ido presents you with a list
-;; of buffers in the the mini-buffer. As you start to type a buffer's
-;; name, ido will narrow down the list of buffers to match the text
-;; you've typed in
-;; http://www.emacswiki.org/emacs/InteractivelyDoThings
-(ido-mode t)
-
-;; This allows partial matches, e.g. "tl" will match "Tyrion Lannister"
-(setq ido-enable-flex-matching t)
-
-;; Turn this behavior off because it's annoying
-(setq ido-use-filename-at-point nil)
-
-;; Don't try to match file across all "work" directories; only match files
-;; in the current directory displayed in the minibuffer
-(setq ido-auto-merge-work-directories-length -1)
-
-;; Includes buffer names of recently open files, even if they're not
-;; open now
-(setq ido-use-virtual-buffers t)
-
-;; This enables ido in all contexts where it could be useful, not just
-;; for selecting buffer and file names
-(ido-ubiquitous-mode 1)
-
-;; Enhances M-x to allow easier execution of commands. Provides
-;; a filterable list of possible commands in the minibuffer
-;; http://www.emacswiki.org/emacs/Smex
-(setq smex-save-file (concat user-emacs-directory ".smex-items"))
-(smex-initialize)
-(global-set-key (kbd "M-x") 'smex)
-
-;; projectile everywhere!
-(projectile-global-mode)
-
-;; Interactive search key bindings. By default, C-s runs
-;; isearch-forward, so this swaps the bindings.
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-M-s") 'isearch-forward)
-(global-set-key (kbd "C-M-r") 'isearch-backward)
-
-;; Set non-nil to ignore case when searching with isearch
-(setq case-fold-search t)
-
-;; Preserve cursor position when scrolling
-(setq-default scroll-preserve-screen-position t)
-
-;; Enable horizontal scrolling
-(put 'scroll-left 'disabled nil)
-
-;; Toggle progressive scroll speed (the faster the user moves the
-;; wheel, the faster the scrolling). By default the
-;; `mouse-wheel-scroll-amount' is 5 (1 with shift held down).
-(setq-default mouse-wheel-progressive-speed nil)
-
-;; Set the number of lines of overlap that the `C-v' and `M-v'
-;; commands leave
-(setq next-screen-context-lines 8)
-
-;; Specify whether to have vertical scroll bars, and on which side.
-;; Possible values are `nil' (no scroll bars), `left' (scroll bars on
-;; left) and `right' (scroll bars on right).
-(scroll-bar-mode -1)
-
-;; In Transient Mark mode, the region is highlighted when the mark is
-;; set, done in customize.
-(transient-mark-mode t)
-
-;; Highlight matching parenthesis, done in customize
-(show-paren-mode t)
-

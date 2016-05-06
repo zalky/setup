@@ -15,10 +15,6 @@
 (setq default-truncate-lines t)
 (global-set-key [f12] 'toggle-truncate-lines)
 
-;; Key binding to use "hippie expand" for text autocompletion
-;; http://www.emacswiki.org/emacs/HippieExpand
-(global-set-key (kbd "M-/") 'hippie-expand)
-
 ;; Lisp-friendly hippie expand
 (setq hippie-expand-try-functions-list
       '(try-expand-dabbrev
@@ -26,12 +22,6 @@
         try-expand-dabbrev-from-kill
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol))
-
-;; Highlights matching parenthesis
-(show-paren-mode t)
-
-;; Highlight current line
-(setq-default global-hl-line-mode nil)
 
 ;; Use spaces only when auto-formating a region
 (setq-default indent-tabs-mode nil)
@@ -42,9 +32,6 @@
   (interactive)
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 (global-set-key (kbd "C-;") 'toggle-comment-on-line)
-
-;; yay rainbows!
-;;(global-rainbow-delimiters-mode t)
 
 ;; Set default indendation width
 (setq-default standard-indent 4)
@@ -73,17 +60,6 @@
 ;; Enable narrowing
 (put 'narrow-to-region 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
-
-;; Additional space to put between lines when displaying a buffer.
-;; The space is measured in pixels...
-(setq-default line-spacing 3)
-
-;; ...Except in term-mode, where extra line-spacing messes up expected
-;; buffer lengths. Set line-spacing to 0.
-(add-hook 'term-mode-hook
-          (lambda ()
-            (set (make-local-variable 'line-spacing)
-                 0)))
 
 ;; These settings relate to how emacs interacts with your operating system
 (setq

@@ -4,10 +4,6 @@
 (require 'package)
 
 (add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
-;; (add-to-list 'package-archives
-;;              '("tromey" . "http://tromey.com/elpa/") t)
-(add-to-list 'package-archives
              '("melpa-stable" . "http://stable.melpa.org/packages/"))
 
 ;; Load and activate emacs packages. Do this first so that the
@@ -40,7 +36,7 @@
     cider
 
     ;; allow ido usage in as many contexts as possible. see
-    ;; navigation.el line 23 for a description of ido
+    ;; workflow.el for a description of ido
     ido-ubiquitous
 
     ;; Enhances M-x to allow easier execution of commands. Provides a
@@ -48,13 +44,15 @@
     ;; http://www.emacswiki.org/emacs/Smex
     smex
 
+    ;; Emacs incremental completion and selection narrowing framework
+    ;; https://emacs-helm.github.io/helm/
+    helm
+
+    ;; Search hopping powered by helm
+    helm-swoop
+
     ;; project navigation
     projectile
-
-    swiper
-
-    ;; colorful parenthesis matching
-    rainbow-delimiters
 
     ;; edit html tags like sexps
     tagedit
@@ -83,12 +81,6 @@
 ;; Load word-count-mode
 (require 'word-count)
 
-;; "Shrink-wrap" frame to buffer size.
-(require 'fit-frame)
-
-;; Configure CEDET
-;; (load "cedet-config.el")
-
 ;; Semantic is a package that provides language-aware editing commands
 ;; based on source code parsers. Semantic can do things such as prompt
 ;; for the name of a function defined in the current file, and move
@@ -105,9 +97,6 @@
 ;; Load documentation system
 (require 'info)
 
-;; Load Org Mode
-(require 'org)
-
 ;; The advice feature lets you add to the existing definition of a
 ;; function, by advising the function. This is a cleaner method than
 ;; redefining the whole function. But be careful as this can
@@ -115,26 +104,3 @@
 ;; customization.
 (require 'advice)
 
-;; Common Lisp extensions
-(require 'cl-lib)
-
-;; Configure helm
-;; (load "helm-config.el")
-
-;; Configure tools for editing python
-(load "python-config.el")
-
-;; Configure smartparens
-(load "smartparens-init.el")
-
-;; Configure tools for editing lisp code
-(load "elisp-config.el")
-
-;; Configure tools for editing clojure
-(load "clojure-config.el")
-
-;; Configure tools for editing java
-(load "js-config.el")
-
-;; Configure swiper
-(load "swiper-config.el")

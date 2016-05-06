@@ -83,62 +83,54 @@
 (load "packages.el")
 
 
-;;;; Workarounds
-(load "workarounds.el")
+;;;; Configuration Settings
 
-
-;;;; Configuration settings for: Editing Buffers
+;; Editing buffers
 (load "editing.el")
 
+;; Window management
+(load "windows.el")
 
-;;;; Configuration settings for: Navigation
-(load "navigation.el")
+;; Workflow and convenience tools
+(load "workflow.el")
 
+;; UI and display configuration
+(load "ui-display.el")
 
-;;;; Configuration settings for: User Interface
-(load "ui.el")
-
+;; Org Mode
+(load "org-config.el")
 
 ;;;; Display
-(load "display.el")
+(load "theme.el")
+
+;; Configure helm
+(load "helm-my-config.el")
+
+;; Pythong tools
+(load "python-config.el")
+
+;; Configure smartparens
+(load "smartparens-init.el")
+
+;; Configure tools for editing lisp code
+(load "elisp-config.el")
+
+;; Configure tools for editing clojure
+(load "clojure-config.el")
 
 
 ;;;; Global Key-Bindings
 (load "keybindings.el")
 
 
+;;;; Workarounds
+(load "workarounds.el")
+
+
 ;;;; Major Modes
 
 ;; Enable highlighting of numbers as constants for all programming modes
 (add-hook 'prog-mode-hook 'highlight-numbers-mode)
-
-;; Set Org Mode agenda files from which to collect information. List
-;; can be individual files or contain directories.
-(setq org-agenda-files (list "~/Documents/Work/Semion/org/"))
-
-;; Load Markdown exporter automatically with Org Mode
-(eval-after-load "org"
-  '(require 'ox-md nil t))
-
-;; Save Org clock history across Emacs sessions
-(setq org-clock-persist 'history)
-(org-clock-persistence-insinuate)
-
-;; Set default Org columns in column view
-(setq-default org-columns-default-format
-              "#+COLUMNS: %30ITEM(Task) %TODO %DEADLINE(Due) %Effort{:} %CLOCKSUM(Time Spent) %TAGS")
-
-(setq-default org-startup-indented t)
-
-;; Format string used when creating CLOCKSUM lines and when generating
-;; a time duration (avoid showing days)
-(setq org-time-clocksum-format
-      '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
-
-;; By default insert clock keywords + timestamp into :LOGBOOK: drawer
-(setq-default org-clock-into-drawer t)
-
-(setq org-log-done t)
 
 
 ;; Set Text Mode as the default mode with Autofill enabled.
@@ -296,6 +288,10 @@
  '(helm-selection ((t (:inherit highlight))))
  '(helm-separator ((t (:inherit font-lock-type-face))))
  '(helm-source-header ((t (:inherit font-lock-keyword-face :weight bold))))
+ '(helm-swoop-line-number-face ((t (:inherit font-lock-comment-face))))
+ '(helm-swoop-target-line-block-face ((t (:inherit region))))
+ '(helm-swoop-target-line-face ((t (:inherit highlight))))
+ '(helm-swoop-target-word-face ((t (:inherit lazy-highlight))))
  '(helm-visible-mark ((t (:inherit region))))
  '(highlight ((t (:background "gray65"))))
  '(ido-indicator ((t (:inherit link :underline nil :width condensed))))
@@ -307,7 +303,7 @@
  '(isearch-fail ((t (:inherit isearch))))
  '(ivy-current-match ((t (:inherit highlight))))
  '(ivy-match-required-face ((t (:inherit link :underline nil :weight bold))))
- '(lazy-highlight ((t (:background "gray55" :foreground "#c0c0c0"))))
+ '(lazy-highlight ((t (:background "gray58" :foreground "#c0c0c0"))))
  '(link ((t (:foreground "orchid4" :underline t))))
  '(link-visited ((t (:inherit link :foreground "MediumPurple4"))))
  '(match ((t (:inherit (link highlight) :underline nil :weight bold))))
