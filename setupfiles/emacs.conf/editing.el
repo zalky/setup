@@ -1,4 +1,4 @@
-;;;; Configuration settings for: Editing Buffers
+;;;; Editing Buffers
 
 ;; Emacs can automatically create backup files. This tells Emacs to
 ;; put all backups in ~/.emacs.d/backups. More info:
@@ -7,17 +7,24 @@
                                                "backups"))))
 (setq auto-save-default nil)
 
+;; When you visit a file, point goes to the last place where it
+;; was when you previously visited the same file.
+;; http://www.emacswiki.org/emacs/SavePlace
+(require 'saveplace)
+(setq-default save-place t)
+;; keep track of saved places in ~/.emacs.d/places
+(setq save-place-file (concat user-emacs-directory "places"))
+
+;; Turn on recent file mode so that you can more easily switch to
+;; recently edited files when you first start emacs
+(setq recentf-save-file (concat user-emacs-directory ".recentf"))
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-items 40)
+
 ;; Set language environment and input method
 (setq current-language-environment "UTF-8")
 (setq default-input-method "rfc1345")
-
-;; Disable Word-Wrap and set F12 to toggle Word-Wrap
-(setq default-truncate-lines t)
-(global-set-key [f12] 'toggle-truncate-lines)
-
-;; Key binding to use "hippie expand" for text autocompletion
-;; http://www.emacswiki.org/emacs/HippieExpand
-(global-set-key (kbd "M-/") 'hippie-expand)
 
 ;; Lisp-friendly hippie expand
 (setq hippie-expand-try-functions-list
@@ -27,24 +34,14 @@
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol))
 
-;; Highlights matching parenthesis
-(show-paren-mode t)
-
-;; Highlight current line
-(setq-default global-hl-line-mode nil)
-
 ;; Use spaces only when auto-formating a region
 (setq-default indent-tabs-mode nil)
 
-;; comments
+;; Comment and uncomment lines
 (defun toggle-comment-on-line ()
   "comment or uncomment current line"
   (interactive)
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
-(global-set-key (kbd "C-;") 'toggle-comment-on-line)
-
-;; yay rainbows!
-;;(global-rainbow-delimiters-mode t)
 
 ;; Set default indendation width
 (setq-default standard-indent 4)
@@ -60,30 +57,12 @@
   (untabify (region-beginning) (region-end))
   (keyboard-quit))
 
-;; fix weird os x kill error
-(defun ns-get-pasteboard ()
-  "Returns the value of the pasteboard, or nil for unsupported formats."
-  (condition-case nil
-      (ns-get-selection-internal 'CLIPBOARD)
-    (quit nil)))
-
 ;; Automatically indent to proper level after every <RET>. t by default.
 (setq electric-indent-mode t)
 
 ;; Enable narrowing
 (put 'narrow-to-region 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
-
-;; Additional space to put between lines when displaying a buffer.
-;; The space is measured in pixels...
-(setq-default line-spacing 3)
-
-;; ...Except in term-mode, where extra line-spacing messes up expected
-;; buffer lengths. Set line-spacing to 0.
-(add-hook 'term-mode-hook
-          (lambda ()
-            (set (make-local-variable 'line-spacing)
-                 0)))
 
 ;; These settings relate to how emacs interacts with your operating system
 (setq

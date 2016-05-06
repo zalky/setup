@@ -83,63 +83,50 @@
 (load "packages.el")
 
 
-;;;; Workarounds
-(load "workarounds.el")
+;;;; Configuration
 
-
-;;;; Configuration settings for: Editing Buffers
+;; Editing buffers
 (load "editing.el")
 
+;; Workflow and convenience tools
+(load "workflow.el")
 
-;;;; Configuration settings for: Navigation
-(load "navigation.el")
+;; Navigation and window management
+(load "windows.el")
 
+;; User Interface and display settings
+(load "ui-display.el")
 
-;;;; Configuration settings for: User Interface
-(load "ui.el")
+;; Colors and themes
+(load "theme.el")
 
+;; Configure tools for editing python
+(load "python-config.el")
 
-;;;; Display
-(load "display.el")
+;; Configure smartparens
+(load "smartparens-init.el")
 
+;; Configure tools for editing lisp code
+(load "elisp-config.el")
 
-;;;; Global Key-Bindings
+;; Configure tools for editing clojure
+(load "clojure-config.el")
+
+;; Org config
+(load "org-config.el")
+
+;; Global Key-Bindings
 (load "keybindings.el")
+
+
+;;;; Workarounds
+(load "workarounds.el")
 
 
 ;;;; Major Modes
 
 ;; Enable highlighting of numbers as constants for all programming modes
 (add-hook 'prog-mode-hook 'highlight-numbers-mode)
-
-;; Set Org Mode agenda files from which to collect information. List
-;; can be individual files or contain directories.
-(setq org-agenda-files (list "~/Documents/Work/Semion/org/"))
-
-;; Load Markdown exporter automatically with Org Mode
-(eval-after-load "org"
-  '(require 'ox-md nil t))
-
-;; Save Org clock history across Emacs sessions
-(setq org-clock-persist 'history)
-(org-clock-persistence-insinuate)
-
-;; Set default Org columns in column view
-(setq-default org-columns-default-format
-              "#+COLUMNS: %30ITEM(Task) %TODO %DEADLINE(Due) %Effort{:} %CLOCKSUM(Time Spent) %TAGS")
-
-(setq-default org-startup-indented t)
-
-;; Format string used when creating CLOCKSUM lines and when generating
-;; a time duration (avoid showing days)
-(setq org-time-clocksum-format
-      '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
-
-;; By default insert clock keywords + timestamp into :LOGBOOK: drawer
-(setq-default org-clock-into-drawer t)
-
-(setq org-log-done t)
-
 
 ;; Set Text Mode as the default mode with Autofill enabled.
 (setq default-major-mode 'text-mode)
@@ -298,6 +285,11 @@
  '(helm-source-header ((t (:inherit font-lock-keyword-face :weight bold))))
  '(helm-visible-mark ((t (:inherit region))))
  '(highlight ((t (:background "gray65"))))
+ '(hydra-face-amaranth ((t (:inherit font-lock-type-face))))
+ '(hydra-face-blue ((t (:inherit font-lock-function-name-face))))
+ '(hydra-face-pink ((t (:inherit font-lock-type-face))))
+ '(hydra-face-red ((t (:inherit font-lock-type-face :weight bold))))
+ '(hydra-face-teal ((t (:inherit font-lock-variable-name-face))))
  '(ido-indicator ((t (:inherit link :underline nil :width condensed))))
  '(ido-only-match ((t (:inherit font-lock-variable-name-face))))
  '(ido-subdir ((t (:inherit font-lock-function-name-face))))
@@ -305,9 +297,16 @@
  '(info-node ((t (:inherit link :slant italic :weight bold))))
  '(isearch ((t (:background "hotpink4" :foreground "#b9b9b9"))))
  '(isearch-fail ((t (:inherit isearch))))
+ '(ivy-confirm-face ((t (:inherit minibuffer-prompt))))
  '(ivy-current-match ((t (:inherit highlight))))
  '(ivy-match-required-face ((t (:inherit link :underline nil :weight bold))))
- '(lazy-highlight ((t (:background "gray55" :foreground "#c0c0c0"))))
+ '(ivy-minibuffer-match-face-1 ((t (:inherit highlight))))
+ '(ivy-minibuffer-match-face-2 ((t (:inherit region))))
+ '(ivy-minibuffer-match-face-3 ((t (:inherit highlight))))
+ '(ivy-minibuffer-match-face-4 ((t (:inherit region))))
+ '(ivy-modified-buffer ((t (:inherit (quote font-lock-type-face)))))
+ '(ivy-virtual ((t (:inherit font-lock-comment-face))))
+ '(lazy-highlight ((t (:background "gray58" :foreground "#c0c0c0"))))
  '(link ((t (:foreground "orchid4" :underline t))))
  '(link-visited ((t (:inherit link :foreground "MediumPurple4"))))
  '(match ((t (:inherit (link highlight) :underline nil :weight bold))))
@@ -339,8 +338,9 @@
  '(show-paren-mismatch ((t (:background "PaleVioletRed4" :foreground "#c0c0c0"))))
  '(speedbar-tag-face ((t (:inherit link :underline nil))))
  '(swiper-line-face ((t (:inherit highlight))))
+ '(swiper-match-face-1 ((t (:inherit highlight))))
  '(swiper-match-face-2 ((t (:inherit isearch-lazy-highlight-face))))
- '(swiper-match-face-3 ((t (:inherit isearch-lazy-highlight-faec))))
+ '(swiper-match-face-3 ((t (:inherit isearch-lazy-highlight-face))))
  '(swiper-match-face-4 ((t (:inherit isearch-lazy-highlight-face))))
  '(vertical-border ((t (:foreground "#a9a9a9")))))
 

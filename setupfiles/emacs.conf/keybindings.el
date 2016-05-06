@@ -9,6 +9,8 @@
 (global-set-key (kbd "C-M-:") 'uncomment-region)
 
 ;; Basic navigation
+;; Use minor mode to ensure these basic navigation keys are always
+;; available.
 (defvar basic-keys-minor-mode-map
   (let ((map (make-sparse-keymap)))
     (global-set-key (kbd "C-r") 'backward-char)
@@ -36,14 +38,7 @@
 
 (basic-keys-minor-mode t)
 
-;; Helm
-;; (global-set-key (kbd "M-RET") 'helm-M-x)
-;; (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-;; (global-set-key (kbd "C-x b") 'helm-mini)
-;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
-
 ;; Ivy
-
 (global-set-key (kbd "C-s") 'swiper)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
@@ -58,18 +53,24 @@
 (global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+(global-set-key (kbd "M-m") 'counsel-imenu)
 
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
+(define-key ivy-minibuffer-map (kbd "C-r") nil)
 
-;; ISearch
-(global-set-key (kbd "C-M-s") 'isearch-backward-regexp)
-(define-key isearch-mode-map (kbd "C-r") nil)
-(define-key isearch-mode-map (kbd "M-r") nil)
-(define-key isearch-mode-map (kbd "C-M-s") 'isearch-repeat-backward)
+;; Interactive search key bindings. By default, C-s runs
+;; isearch-forward, so this swaps the bindings to regexp.
+;; (global-set-key (kbd "C-s") 'isearch-forward-regexp)
+;; (global-set-key (kbd "C-M-s") 'isearch-backward-regexp)
+;; (global-set-key (kbd "C-M-s") 'isearch-forward)
+;; (global-set-key (kbd "C-M-r") 'isearch-backward)
+;; (define-key isearch-mode-map (kbd "C-r") nil)
+;; (define-key isearch-mode-map (kbd "M-r") nil)
+;; (define-key isearch-mode-map (kbd "C-M-s") 'isearch-repeat-backward)
 
 ;; Ido
-(define-key ido-common-completion-map (kbd "C-r") 'ido-magic-backward-char)
-(define-key ido-common-completion-map (kbd "C-M-s") 'ido-prev-match)
+;; (define-key ido-common-completion-map (kbd "C-r") 'ido-magic-backward-char)
+;; (define-key ido-common-completion-map (kbd "C-M-s") 'ido-prev-match)
 
 ;; Shows a list of buffers
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -99,3 +100,58 @@
 (setq mac-command-key-is-meta t)
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'meta)
+
+;; Key binding to use "hippie expand" for text autocompletion
+(global-set-key (kbd "M-/") 'hippie-expand)
+
+;; Toggle word-wrap
+(global-set-key [f12] 'toggle-truncate-lines)
+
+;; Comments
+(global-set-key (kbd "C-;") 'toggle-comment-on-line)
+
+;;;; Smartparens
+(define-key smartparens-mode-map (kbd "C-M-f") 'sp-forward-sexp)
+(define-key smartparens-mode-map (kbd "C-M-b") nil)
+(define-key smartparens-mode-map (kbd "C-M-r") 'sp-backward-sexp)
+
+(define-key smartparens-mode-map (kbd "C-M-n") 'sp-next-sexp)
+(define-key smartparens-mode-map (kbd "C-M-p") 'sp-previous-sexp)
+
+(define-key smartparens-mode-map (kbd "C-S-a") 'sp-beginning-of-sexp)
+(define-key smartparens-mode-map (kbd "C-S-e") 'sp-end-of-sexp)
+
+;; (define-key smartparens-mode-map (kbd "C-M-d") 'sp-down-sexp)
+(define-key smartparens-mode-map (kbd "C-M-S-d") 'sp-backward-down-sexp)
+
+(define-key smartparens-mode-map (kbd "C-M-u") 'sp-up-sexp)
+(define-key smartparens-mode-map (kbd "C-M-S-u") 'sp-backward-up-sexp)
+
+(define-key smartparens-mode-map (kbd "C-M-k") 'sp-kill-sexp)
+(define-key smartparens-mode-map (kbd "C-M-w") 'sp-copy-sexp)
+
+(define-key smartparens-mode-map (kbd "C-)") 'sp-forward-slurp-sexp)
+(define-key smartparens-mode-map (kbd "C-(") 'sp-forward-barf-sexp)
+(define-key smartparens-mode-map (kbd "C-M-(") 'sp-backward-slurp-sexp)
+(define-key smartparens-mode-map (kbd "C-M-)") 'sp-backward-barf-sexp)
+
+(define-key smartparens-mode-map (kbd "M-s M-s") 'sp-splice-sexp)
+(define-key smartparens-mode-map (kbd "M-s M-S") 'sp-split-sexp)
+(define-key smartparens-mode-map (kbd "M-s M-c") 'sp-convolute-sexp)
+(define-key smartparens-mode-map (kbd "M-s M-a") 'sp-absorb-sexp)
+(define-key smartparens-mode-map (kbd "M-s M-e") 'sp-emit-sexp)
+(define-key smartparens-mode-map (kbd "M-s M-n") 'sp-add-to-next-sexp)
+(define-key smartparens-mode-map (kbd "M-s M-p") 'sp-add-to-previous-sexp)
+(define-key smartparens-mode-map (kbd "M-s M-j") 'sp-join-sexp)
+
+(define-key smartparens-mode-map (kbd "C-M-<backspace>") 'sp-unwrap-sexp)
+(define-key smartparens-mode-map (kbd "C-M-S-<backspace>") 'sp-backward-unwrap-sexp)
+
+(define-key smartparens-mode-map (kbd "M-D") 'sp-splice-sexp)
+(define-key smartparens-mode-map (kbd "C-S-<backspace>") 'sp-splice-sexp-killing-around)
+
+(define-key smartparens-mode-map (kbd "C-]") 'sp-select-next-thing-exchange)
+(define-key smartparens-mode-map (kbd "C-<left_bracket>") 'sp-select-previous-thing)
+
+(define-key smartparens-mode-map (kbd "M-F") 'sp-forward-symbol)
+(define-key smartparens-mode-map (kbd "M-B") 'sp-backward-symbol)
