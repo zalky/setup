@@ -9,9 +9,9 @@
 
 ;; When you visit a file, point goes to the last place where it
 ;; was when you previously visited the same file.
-;; http://www.emacswiki.org/emacs/SavePlace
 (require 'saveplace)
 (setq-default save-place t)
+
 ;; keep track of saved places in ~/.emacs.d/places
 (setq save-place-file (concat user-emacs-directory "places"))
 
@@ -41,7 +41,8 @@
 (defun toggle-comment-on-line ()
   "comment or uncomment current line"
   (interactive)
-  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+  (comment-or-uncomment-region (line-beginning-position)
+                               (line-end-position)))
 
 ;; Set default indendation width
 (setq-default standard-indent 4)
