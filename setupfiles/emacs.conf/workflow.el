@@ -34,4 +34,8 @@
 (global-set-key (kbd "M-x") 'smex)
 
 ;; projectile everywhere!
-(projectile-global-mode)
+;; (add-to-list 'load-path "~/local/share/elisp/helm-projectile")
+;; (require 'helm-projectile)
+;; (projectile-global-mode)
+;; (setq projectile-completion-system 'helm)
+;; (helm-projectile-on)

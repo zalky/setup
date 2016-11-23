@@ -13,7 +13,7 @@
 
 ;; Additional space to put between lines when displaying a buffer.
 ;; The space is measured in pixels...
-(setq-default line-spacing 3)
+(setq-default line-spacing 0)   ; used to be 6
 
 ;; ...Except in term-mode, where extra line-spacing messes up expected
 ;; buffer lengths. Set line-spacing to 0.

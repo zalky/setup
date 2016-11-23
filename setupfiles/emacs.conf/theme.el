@@ -4,15 +4,13 @@
 (global-font-lock-mode t)
 
 ;; Define custom face attributes
-(setq my-font "Menlo") ;; On Windows: "Consolas"
+;; (setq my-font "Menlo") ;; On Windows: "Consolas"
 (setq my-fgcolor "#303030");; "#b9b9b9" ;; "#cccccc"
 (setq my-bgcolor "#c0c0c0") ;; "#303030") ;; "#303030
 
-(setq-default line-spacing 5)
-
 ;; Set default frame attributes and initial position
 (setq my-frame-alist `((width . 90)
-		       (height . 65)))
+                       (height . 65)))
 
 ;; You can specify geometry-related options for the initial frame,
 ;; however they won't take effect until Emacs reads `.emacs', which
@@ -27,14 +25,14 @@
 (set-face-attribute 'default t
                     :background my-bgcolor
                     :foreground my-fgcolor
-                    :family my-font
+;;                    :family my-font
                     :height 130)
 
-(set-face-attribute 'variable-pitch t
-                    :family my-font)
+;; (set-face-attribute 'variable-pitch t
+                    ;; :family my-font)
 
-(set-face-attribute 'fixed-pitch t
-                    :family my-font)
+;; (set-face-attribute 'fixed-pitch t
+                    ;; :family my-font)
 
 (set-face-attribute 'border t
                     :background "#a9a9a9") ; "#454545"

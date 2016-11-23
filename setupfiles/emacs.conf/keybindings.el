@@ -86,6 +86,11 @@
 (global-set-key (kbd "C-M-s") 'helm-swoop-back-to-last-point)
 ;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
+(define-key helm-map (kbd "C-M-n") 'helm-next-source)
+(define-key helm-map (kbd "C-M-p") 'helm-previous-source)
+(define-key helm-map (kbd "C-r") 'backward-char)
+(define-key helm-map (kbd "M-r") 'backward-word)
+
 ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
 ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
 ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.

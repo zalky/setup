@@ -1,9 +1,4 @@
-;;;;
-;; Clojure
-;;;;
-
-;; Enable paredit for Clojure
-;; (add-hook 'clojure-mode-hook 'enable-paredit-mode)
+;;;; Clojure Configuration
 
 ;; This is useful for working with camel-case tokens, like names of
 ;; Java classes (e.g. JavaClassName)
@@ -11,6 +6,35 @@
 
 ;; A little more syntax highlighting
 (require 'clojure-mode-extra-font-locking)
+
+;; extra syntax hilighting for clojurec and clojurescript modes.
+(font-lock-add-keywords
+ 'clojurec-mode
+ `((,(concat "(\\(?:\.*/\\)?"
+             (regexp-opt clojure-built-in-vars t)
+             "\\>")
+    1 font-lock-builtin-face)))
+
+(font-lock-add-keywords
+ 'clojurec-mode
+ `((,(concat "\\<"
+             (regexp-opt clojure-built-in-dynamic-vars t)
+             "\\>")
+    0 font-lock-builtin-face)))
+
+(font-lock-add-keywords
+ 'clojurescript-mode
+ `((,(concat "(\\(?:\.*/\\)?"
+             (regexp-opt clojure-built-in-vars t)
+             "\\>")
+    1 font-lock-builtin-face)))
+
+(font-lock-add-keywords
+ 'clojurescript-mode
+ `((,(concat "\\<"
+             (regexp-opt clojure-built-in-dynamic-vars t)
+             "\\>")
+    0 font-lock-builtin-face)))
 
 ;; syntax hilighting for midje
 (add-hook 'clojure-mode-hook
@@ -25,38 +49,12 @@
             (define-clojure-indent (fact 1))
             (define-clojure-indent (facts 1))))
 
-;; extra syntax hilighting for clojurec and clojurescript modes.
-(font-lock-add-keywords 'clojurec-mode
-                        `((,(concat "(\\(?:\.*/\\)?"
-                                    (regexp-opt clojure-built-in-vars t)
-                                    "\\>")
-                           1 font-lock-builtin-face)))
-
-(font-lock-add-keywords 'clojurec-mode
-                        `((,(concat "\\<"
-                                    (regexp-opt clojure-built-in-dynamic-vars t)
-                                    "\\>")
-                           0 font-lock-builtin-face)))
-
-(font-lock-add-keywords 'clojurescript-mode
-                        `((,(concat "(\\(?:\.*/\\)?"
-                                    (regexp-opt clojure-built-in-vars t)
-                                    "\\>")
-                           1 font-lock-builtin-face)))
-
-(font-lock-add-keywords 'clojurescript-mode
-                        `((,(concat "\\<"
-                                    (regexp-opt clojure-built-in-dynamic-vars t)
-                                    "\\>")
-                           0 font-lock-builtin-face)))
-
 ;;;; Clojurescript indenting
 
 (load "clojurescript-indenting.el")
 
-;;;;
-;; Cider
-;;;;
+
+;;;; Cider
 
 ;; disable cider's dynamic font-lock overrides
 (setq cider-font-lock-dynamically nil)
@@ -74,26 +72,8 @@
 ;; Wrap when navigating history.
 (setq cider-repl-wrap-history t)
 
-;; enable paredit in your REPL
-;;(add-hook 'cider-repl-mode-hook 'paredit-mode)
-
-;; Use clojure mode for other extensions
-;; (add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
-;; (add-to-list 'auto-mode-alist '("\\.boot$" . clojure-mode))
-;; (add-to-list 'auto-mode-alist '("\\.cljs.*$" . clojure-mode))
-;; (add-to-list 'auto-mode-alist '("lein-env" . enh-ruby-mode))
-;; (add-to-list 'magic-mode-alist '(".* boot" . clojure-mode))
-
-;; key bindings
-;; these help me out with the way I usually develop web apps
-;; (defun cider-start-http-server ()
-;;   (interactive)
-;;   (cider-load-current-buffer)
-;;   (let ((ns (cider-current-ns)))
-;;     (cider-repl-set-ns ns)
-;;     (cider-interactive-eval (format "(println '(def server (%s/start))) (println 'server)" ns))
-;;     (cider-interactive-eval (format "(def server (%s/start)) (println server)" ns))))
-
+;; Disable cider documentation tooltips.
+(setq cider-use-tooltips nil)
 
 (defun cider-refresh ()
   (interactive)
@@ -105,9 +85,22 @@
 
 (eval-after-load 'cider
   '(progn
-;;     (define-key clojure-mode-map (kbd "C-c C-v") 'cider-start-http-server)
+     ;; (define-key clojure-mode-map (kbd "C-c C-v") 'cider-start-http-server)
      (define-key clojure-mode-map (kbd "C-M-r") 'cider-refresh)
      (define-key clojure-mode-map (kbd "C-c u") 'cider-user-ns)
      (define-key cider-mode-map (kbd "C-c u") 'cider-user-ns)
      (define-key cider-repl-mode-map (kbd "M-r") 'backward-word)))
 
+;; Special clojure indentation
+(put-clojure-indent 'match :defn)
+(put-clojure-indent 'fdef :defn)
+(put-clojure-indent 'deftask :defn)
+(put-clojure-indent 'pod-safe-vars :defn)
+(put-clojure-indent 'go-comm :defn)
+(put-clojure-indent 'if-conform 1)
+
+(define-clojure-indent
+  (defrelations '(0 :defn))
+  (deftypes '(0 :defn))
+  (deflogic '(0 :defn))
+  (add-meta '(1 :form (1))))

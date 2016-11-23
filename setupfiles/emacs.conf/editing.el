@@ -31,6 +31,7 @@
   "comment or uncomment current line"
   (interactive)
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+
 (global-set-key (kbd "C-;") 'toggle-comment-on-line)
 
 ;; Set default indendation width
@@ -38,14 +39,6 @@
 
 ;; Set default tab width
 (setq-default tab-width 4)
-
-;; use 2 spaces for tabs
-(defun die-tabs ()
-  (interactive)
-  (set-variable 'tab-width standard-indent)
-  (mark-whole-buffer)
-  (untabify (region-beginning) (region-end))
-  (keyboard-quit))
 
 ;; fix weird os x kill error
 (defun ns-get-pasteboard ()

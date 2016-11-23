@@ -19,6 +19,9 @@
 ;; scroll 8 lines other window using M-<next>/M-<prior>
 (setq helm-scroll-amount 8)
 
+;; If nil, you can slightly boost invoke speed in exchange for text color
+(setq helm-swoop-speed-or-color t)
+
 (setq helm-ff-file-name-history-use-recentf t)
 (setq helm-buffer-max-length nil)
 
@@ -30,4 +33,3 @@
 
 ;; Don't use pre-input for helm-swoop
 (setq helm-swoop-pre-input-function (lambda () ""))
-

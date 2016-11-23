@@ -75,6 +75,13 @@
 ;; command makes a function available, but does not evaluate the
 ;; containing file until the function is actually called.
 
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (add-to-list 'load-path "~/local/share/elisp/")
 (add-to-list 'load-path "~/.emacs.conf/")
 
@@ -181,6 +188,7 @@
  '(ansi-color-names-vector
    ["#303030" "PaleVioletRed4" "#197590" "thistle1" "#0a7bcc" "orchid4" "#607683" "gray80"])
  '(coffee-tab-width 2)
+ '(cursor-type t)
  '(ecb-auto-expand-tag-tree (quote expand-spec))
  '(ecb-key-map
    (quote
@@ -229,18 +237,29 @@
      (t "," ecb-cycle-maximized-ecb-buffers)
      (t "." ecb-cycle-through-compilation-buffers))))
  '(ecb-options-version "2.40")
+ '(global-company-mode nil)
  '(helm-display-header-line nil)
  '(helm-full-frame nil)
- '(helm-prevent-escaping-from-minibuffer nil))
+ '(helm-prevent-escaping-from-minibuffer nil)
+ '(package-selected-packages
+   (quote
+    (cider-eval-sexp-fu tagedit smex smartparens projectile magit ido-ubiquitous highlight-numbers helm-swoop company clojure-mode-extra-font-locking clj-refactor))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#c0c0c0" :foreground "#303030" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Menlo"))))
+ '(default ((t (:inherit nil :stipple nil :background "#c0c0c0" :foreground "#303030" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Fira Mono"))))
  '(border ((t (:background "#a9a9a9"))))
  '(cider-debug-code-overlay-face ((t (:inherit highlight))))
  '(cider-result-overlay-face ((t (:inherit highlight))))
+ '(company-scrollbar-bg ((t nil)))
+ '(company-scrollbar-fg ((t (:inherit highlight))))
+ '(company-tooltip ((t (:inherit region))))
+ '(company-tooltip-annotation ((t (:inherit font-lock-comment-face))))
+ '(company-tooltip-common ((t (:inherit font-lock-type-face))))
+ '(company-tooltip-search ((t (:inherit company-tooltip-selection))))
+ '(company-tooltip-selection ((t (:inherit highlight))))
  '(cursor ((t (:background "HotPink3" :foreground "#303030"))))
  '(ecb-default-highlight-face ((t (:inherit highlight))))
  '(ecb-mode-line-prefix-face ((t (:inherit font-lock-builtin-face))))
@@ -326,6 +345,7 @@
  '(org-mode-line-clock ((t (:inherit mode-line :foreground "gray78"))) t)
  '(org-mode-line-clock-overrun ((t (:inherit mode-line :foreground "gray78" :weight bold))) t)
  '(org-special-keyword ((t (:inherit font-lock-comment-face :foreground "gray50" :slant italic :weight normal))))
+ '(org-table ((t (:inherit default))))
  '(org-todo ((t (:foreground "gray40" :weight bold))))
  '(region ((t (:background "grey75"))))
  '(semantic-highlight-func-current-tag-face ((t (:inherit highlight))))

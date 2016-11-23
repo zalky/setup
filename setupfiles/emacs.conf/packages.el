@@ -35,6 +35,9 @@
     ;; https://github.com/clojure-emacs/cider
     cider
 
+    ;; Provides refactoring support for clojure.
+    clj-refactor
+
     ;; allow ido usage in as many contexts as possible. see
     ;; workflow.el for a description of ido
     ido-ubiquitous
