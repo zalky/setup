@@ -146,4 +146,3 @@
 
 (dolist (tag om-fn-symbols)
   (put-clojure-indent tag 1))
-
