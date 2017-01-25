@@ -49,9 +49,21 @@
             (define-clojure-indent (fact 1))
             (define-clojure-indent (facts 1))))
 
-;;;; Clojurescript indenting
+;;;; Clojure Refactor
+
+(setq cljr-favor-prefix-notation nil)
+
+
+;;;; Clojurescript
+
+;; Indenting
 
 (load "clojurescript-indenting.el")
+
+;; have nREPL start browser-connected figwheel repl.
+(setq cider-cljs-lein-repl
+      "(do (user/run)
+           (user/browser-repl))")
 
 
 ;;;; Cider
@@ -74,6 +86,9 @@
 
 ;; Disable cider documentation tooltips.
 (setq cider-use-tooltips nil)
+
+;; Disable cider fringe loaded code indicators.
+(setq cider-use-fringe-indicators nil)
 
 (defun cider-refresh ()
   (interactive)

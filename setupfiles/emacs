@@ -252,6 +252,7 @@
  '(default ((t (:inherit nil :stipple nil :background "#c0c0c0" :foreground "#303030" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Fira Mono"))))
  '(border ((t (:background "#a9a9a9"))))
  '(cider-debug-code-overlay-face ((t (:inherit highlight))))
+ '(cider-fringe-good-face ((t (:inherit highlight))))
  '(cider-result-overlay-face ((t (:inherit highlight))))
  '(company-scrollbar-bg ((t nil)))
  '(company-scrollbar-fg ((t (:inherit highlight))))

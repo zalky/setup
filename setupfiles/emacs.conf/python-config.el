@@ -10,3 +10,6 @@
 ;; the tradeoff in namespace confusion.
 ;; (setq python-shell-interpreter-args "--pylab")
 
+;; Keybindings
+(define-key inferior-python-mode-map (kbd "M-r") 'backward-word)
+(define-key inferior-python-mode-map (kbd "M-h") 'comint-history-isearch-backward-regexp)

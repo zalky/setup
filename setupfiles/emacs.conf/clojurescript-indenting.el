@@ -74,7 +74,7 @@
     li
     link
     main
-    map
+    ;; map
     mark
     marquee
     menu
@@ -141,7 +141,23 @@
     stop
     tspan))
 
+(defvar grid-helpers
+  '(inset-row
+    row
+    column-full
+    full-row
+    column-sml
+    column-sm
+    column-s
+    column))
+
 (dolist (tag my-dom-tags)
+  (let ((tag (intern (concat "dom/" (symbol-name tag)))))
+    (put-clojure-indent tag :defn))
+  (let ((tag (intern (concat "d/" (symbol-name tag)))))
+    (put-clojure-indent tag :defn)))
+
+(dolist (tag grid-helpers)
   (put-clojure-indent tag :defn))
 
 (dolist (tag om-fn-symbols)

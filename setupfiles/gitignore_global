@@ -16,3 +16,4 @@ Thumbs.db
 !/.gitignore
 figwheel_server.log
 .projectile
+log/
