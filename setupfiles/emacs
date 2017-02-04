@@ -236,7 +236,6 @@
      (t "/" ecb-toggle-compile-window-height)
      (t "," ecb-cycle-maximized-ecb-buffers)
      (t "." ecb-cycle-through-compilation-buffers))))
- '(ecb-options-version "2.40")
  '(global-company-mode nil)
  '(helm-display-header-line nil)
  '(helm-full-frame nil)

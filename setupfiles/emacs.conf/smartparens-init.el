@@ -3,6 +3,9 @@
 (require 'smartparens-config)
 (smartparens-global-mode 1)
 
+;; Don't highlight space inside newly created s-exps.
+(setq sp-highlight-pair-overlay nil)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; keybinding management
 (define-key smartparens-mode-map (kbd "C-M-f") 'sp-forward-sexp)

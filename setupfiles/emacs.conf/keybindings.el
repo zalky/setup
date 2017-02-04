@@ -1,5 +1,26 @@
 ;;;; Global Key Bindings
 
+(defvar super-keys-minor-mode-map
+  (make-sparse-keymap)
+  "Super keys: these keys should always work anywhere in emacs.")
+
+;; These basic keybindings should always work.
+(define-key super-keys-minor-mode-map (kbd "C-r") 'backward-char)
+(define-key super-keys-minor-mode-map (kbd "M-r") 'backward-word)
+(define-key super-keys-minor-mode-map (kbd "C-b") nil)
+(define-key super-keys-minor-mode-map (kbd "M-b") nil)
+(define-key super-keys-minor-mode-map (kbd "C-M-r") 'sp-backward-sexp)
+
+(define-minor-mode super-keys-minor-mode
+  "A minor mode so that my key settings override annoying major modes."
+  :init-value t
+  :lighter "SK"
+  :keymap super-keys-minor-mode-map)
+
+(add-hook 'term-mode-hook (lambda () (super-keys-minor-mode -1)))
+
+(super-keys-minor-mode t)
+
 ;; Global keymaps can be done using `global-set-key', which takes
 ;; "\key" and 'command as arguments. Mode specific keymaps are bound
 ;; using the `define-key' function, with the specific keymap, "\key"
@@ -8,44 +29,10 @@
 (global-set-key (kbd "C-M-;") 'comment-region)
 (global-set-key (kbd "C-M-:") 'uncomment-region)
 
-;; Basic navigation
-(defvar basic-keys-minor-mode-map
-  (let ((map (make-sparse-keymap)))
-    (global-set-key (kbd "C-r") 'backward-char)
-    (global-set-key (kbd "M-r") 'backward-word)
-    (global-set-key (kbd "C-b") nil)
-    (global-set-key (kbd "M-b") nil)
-    (global-set-key (kbd "C-M-r") 'sp-backward-sexp)
-    map)
-  "basic-keymap-minor-mode keymap.")
-
-(define-minor-mode basic-keys-minor-mode
-  "A minor mode so that my key settings override annoying major modes."
-  :init-value t
-  :lighter " basic-keys")
-
-(add-hook 'after-load-functions 'my-keys-have-priority)
-
-(defun my-keys-have-priority (_file)
-  "Try to ensure that my keybindings retain priority over other
-  minor modes. Called via the `after-load-functions' special hook."
-  (unless (eq (caar minor-mode-map-alist) 'basic-keys-minor-mode)
-    (let ((mykeys (assq 'basic-keys-minor-mode minor-mode-map-alist)))
-      (assq-delete-all 'basic-keys-minor-mode minor-mode-map-alist)
-      (add-to-list 'minor-mode-map-alist mykeys))))
-
-(basic-keys-minor-mode t)
-
 ;; Ido
-(define-key ido-common-completion-map (kbd "C-r") 'ido-magic-backward-char)
-(define-key ido-common-completion-map (kbd "C-M-s") 'ido-prev-match)
-
-;; ;; Interactive search key bindings. By default, C-s runs
-;; ;; isearch-forward, so this swaps the bindings.
-;; (global-set-key (kbd "C-s") 'isearch-forward-regexp)
-;; (global-set-key (kbd "C-r") 'isearch-backward-regexp)
-;; (global-set-key (kbd "C-M-s") 'isearch-forward)
-;; (global-set-key (kbd "C-M-r") 'isearch-backward)
+(when (require 'ido nil 'noerror)
+  (define-key ido-common-completion-map (kbd "C-r") 'ido-magic-backward-char)
+  (define-key ido-common-completion-map (kbd "C-M-s") 'ido-prev-match))
 
 ;; Shows a list of buffers
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -78,25 +65,26 @@
 
 ;;;; Helm
 
-(global-set-key (kbd "M-m") 'smex)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "C-s") 'helm-swoop)
-(global-set-key (kbd "C-M-s") 'helm-swoop-back-to-last-point)
-;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
+(when (require 'helm nil 'noerror)
+  (global-set-key (kbd "M-m") 'smex)
+  (global-set-key (kbd "M-x") 'helm-M-x)
+  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+  (global-set-key (kbd "C-x b") 'helm-mini)
+  (global-set-key (kbd "C-s") 'helm-swoop)
+  (global-set-key (kbd "C-M-s") 'helm-swoop-back-to-last-point)
+  ;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
-(define-key helm-map (kbd "C-M-n") 'helm-next-source)
-(define-key helm-map (kbd "C-M-p") 'helm-previous-source)
-(define-key helm-map (kbd "C-r") 'backward-char)
-(define-key helm-map (kbd "M-r") 'backward-word)
+  (define-key helm-map (kbd "C-M-n") 'helm-next-source)
+  (define-key helm-map (kbd "C-M-p") 'helm-previous-source)
+  (define-key helm-map (kbd "C-r") 'backward-char)
+  (define-key helm-map (kbd "M-r") 'backward-word)
 
-;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
-;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
-;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-(global-set-key (kbd "C-c h") 'helm-command-prefix)
-(global-unset-key (kbd "C-x c"))
+  ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+  ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+  ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+  (global-set-key (kbd "C-c h") 'helm-command-prefix)
+  (global-unset-key (kbd "C-x c"))
 
-;; Key binding to use "hippie expand" for text autocompletion
-;; http://www.emacswiki.org/emacs/HippieExpand
-(global-set-key (kbd "M-/") 'hippie-expand)
+  ;; Key binding to use "hippie expand" for text autocompletion
+  ;; http://www.emacswiki.org/emacs/HippieExpand
+  (global-set-key (kbd "M-/") 'hippie-expand))

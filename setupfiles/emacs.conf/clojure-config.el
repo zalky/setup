@@ -112,6 +112,9 @@
 (put-clojure-indent 'deftask :defn)
 (put-clojure-indent 'pod-safe-vars :defn)
 (put-clojure-indent 'go-comm :defn)
+(put-clojure-indent 'transact! :defn)
+(put-clojure-indent 'update! :defn)
+(put-clojure-indent 'err! :defn)
 (put-clojure-indent 'if-conform 1)
 
 (define-clojure-indent
