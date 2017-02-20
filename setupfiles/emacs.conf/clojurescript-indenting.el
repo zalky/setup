@@ -153,10 +153,7 @@
 
 (dolist (tag my-dom-tags)
   (let ((tag (intern (concat "dom/" (symbol-name tag)))))
-    (put-clojure-indent tag :defn))
-  ;; (let ((tag (intern (concat "d/" (symbol-name tag)))))
-  ;;     (put-clojure-indent tag :defn))
-  )
+    (put-clojure-indent tag :defn)))
 
 (dolist (tag grid-helpers)
   (put-clojure-indent tag :defn))
