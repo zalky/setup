@@ -68,6 +68,9 @@
 
 ;;;; Cider
 
+;; use pprint by default to print to repl
+(setq cider-repl-use-pretty-printing t)
+
 ;; disable cider's dynamic font-lock overrides
 (setq cider-font-lock-dynamically nil)
 
@@ -104,17 +107,27 @@
      (define-key clojure-mode-map (kbd "C-M-r") 'cider-refresh)
      (define-key clojure-mode-map (kbd "C-c u") 'cider-user-ns)
      (define-key cider-mode-map (kbd "C-c u") 'cider-user-ns)
-     (define-key cider-repl-mode-map (kbd "M-r") 'backward-word)))
+     (define-key cider-repl-mode-map (kbd "M-r") 'backward-word)
+     (define-key cider-repl-mode-map (kbd "C-c C-r") 'clojure-refactor-map)))
 
 ;; Special clojure indentation
-(put-clojure-indent 'match :defn)
-(put-clojure-indent 'fdef :defn)
-(put-clojure-indent 'deftask :defn)
-(put-clojure-indent 'pod-safe-vars :defn)
-(put-clojure-indent 'go-comm :defn)
-(put-clojure-indent 'transact! :defn)
-(put-clojure-indent 'update! :defn)
-(put-clojure-indent 'err! :defn)
+
+(defvar my-fn-tags
+  '(or-join
+    not-join
+    match
+    fdef
+    deftask
+    pod-safe-vars
+    go-comm
+    transact!
+    update!
+    err!))
+
+;; Forms that should be indented like fns.
+(dolist (tag my-fn-tags)
+  (put-clojure-indent tag :defn))
+
 (put-clojure-indent 'if-conform 1)
 
 (define-clojure-indent
