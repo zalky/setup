@@ -23,6 +23,7 @@
 (add-hook 'emacs-lisp-mode-hook 'linum-mode)
 (add-hook 'python-mode-hook 'linum-mode)
 (add-hook 'c-mode-hook 'linum-mode)
+(add-hook 'sh-mode-hook 'linum-mode)
 
 ;; Additional space to put between lines when displaying a buffer.
 ;; The space is measured in pixels...

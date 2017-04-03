@@ -118,17 +118,20 @@
     match
     fdef
     deftask
+    respond-to
     pod-safe-vars
     go-comm
     transact!
     update!
-    err!))
+    err!
+    respond-to))
 
 ;; Forms that should be indented like fns.
 (dolist (tag my-fn-tags)
   (put-clojure-indent tag :defn))
 
 (put-clojure-indent 'if-conform 1)
+(put-clojure-indent 'symbol-macrolet 1)
 
 (define-clojure-indent
   (defrelations '(0 :defn))

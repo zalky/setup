@@ -82,7 +82,10 @@
   ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
   ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
   ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-  (global-set-key (kbd "C-c h") 'helm-command-prefix)
+  (define-prefix-command 'helm-command-prefix)
+  (global-set-key (kbd "M-h") 'helm-command-prefix)
+  ;; (global-set-key (kbd "C-c h") 'helm-command-prefix)
+  (global-set-key (kbd "M-h M-i") 'helm-semantic-or-imenu)
   (global-unset-key (kbd "C-x c"))
 
   ;; Key binding to use "hippie expand" for text autocompletion
