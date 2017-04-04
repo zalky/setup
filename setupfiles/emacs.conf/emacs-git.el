@@ -15,6 +15,8 @@
 (setq package-load-list '((magit nil) all))
 (package-initialize)
 
+(setq no-helm-rebind-prefix t)
+
 ;; Configure smartparens
 (load "smartparens-init.el")
 (load "keybindings.el")

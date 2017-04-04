@@ -65,7 +65,7 @@
 
 ;;;; Helm
 
-(when (require 'helm nil 'noerror)
+(when (and (require 'helm nil 'noerror))
   (global-set-key (kbd "M-m") 'smex)
   (global-set-key (kbd "M-x") 'helm-M-x)
   (global-set-key (kbd "M-y") 'helm-show-kill-ring)
@@ -79,14 +79,20 @@
   (define-key helm-map (kbd "C-r") 'backward-char)
   (define-key helm-map (kbd "M-r") 'backward-word)
 
-  ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
-  ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
-  ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-  (define-prefix-command 'helm-command-prefix)
-  (global-set-key (kbd "M-h") 'helm-command-prefix)
-  ;; (global-set-key (kbd "C-c h") 'helm-command-prefix)
-  (global-set-key (kbd "M-h M-i") 'helm-semantic-or-imenu)
+  ;; The default helm prefix "C-x c" is quite close to "C-x C-c",
+  ;; which quits Emacs. Change helm command prefix to "M-h".
   (global-unset-key (kbd "C-x c"))
+  (if (boundp 'no-helm-rebind-prefix)
+      ;; For some reason this does not work with `git-config.el`, so
+      ;; use a regular prefix "C-c h". Note: We must set "C-c h"
+      ;; globally, because we cannot change `helm-command-prefix-key'
+      ;; once `helm-config' is loaded.
+      ;; (define-prefix-command 'helm-command-prefix)
+      (global-set-key (kbd "C-c h") 'helm-command-prefix)
+    (global-set-key (kbd "M-h") 'helm-command-prefix)
+    (global-set-key (kbd "M-h M-i") 'helm-semantic-or-imenu)
+    (global-set-key (kbd "M-h i") 'helm-semantic-or-imenu))
+  
 
   ;; Key binding to use "hippie expand" for text autocompletion
   ;; http://www.emacswiki.org/emacs/HippieExpand
