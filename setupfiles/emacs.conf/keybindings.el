@@ -97,3 +97,11 @@
   ;; Key binding to use "hippie expand" for text autocompletion
   ;; http://www.emacswiki.org/emacs/HippieExpand
   (global-set-key (kbd "M-/") 'hippie-expand))
+
+;;;; ISpell
+
+(global-set-key (kbd "M-s s") 'ispell)
+(global-set-key (kbd "M-s w") 'ispell-word)
+
+;; Disable Emacs Web Browser keybinding
+(global-unset-key (kbd "M-s M-w"))
