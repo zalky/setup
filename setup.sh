@@ -6,37 +6,23 @@
 # This setup script populates user specific dotfiles and configures
 # the development environment, including emacs.
 
-
 # TODO: This string could mangle for loop if filenames have spaces.
 # Consider implementing as an array.
 TARGETLIST="\
 .bashrc \
-.profile \
-.screenrc \
-.octaverc \
+.boot/boot.properties \
+.boot/profile.boot \
 .emacs \
 .emacs.conf \
+.gitconfig \
 .gitignore_global \
-local/share/elisp \
-src/scripts"
+.ipython/profile_default \
+.lein/profiles.clj
+.octaverc \
+.profile \
+.screenrc"
 
-# Unfortunately, .ipython/profile_default/ipython_conf.py fails as a
-# sym-link, must hard copy file later in script
-
-BYTE_COMPILE_ELISP_PACKAGES="\
-cedet-bzr \
-ecb"
-
-# This is to make ECB byte-compile properly
-REQUIRED_EMACS_VERSION="24.4.90.1"
-
-# Which emacs
-MAC_EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs-x86_64-10_9"
-WIN_EMACS="/usr/bin/emacs-w32.exe"
-LIN_EMACS=$(which emacs)
-
-
-# Simlink basic configuration files in .setup/setupfiles to target locations
+# Simlink basic configuration files in .setup/dotfiles to target locations
 echo "Populating basic configuration files as symbolic links..."
 for TARGET in $TARGETLIST ; do
     # If file already exists, even if it just a symlink, backup.
@@ -45,138 +31,9 @@ for TARGET in $TARGETLIST ; do
 backing up as $TARGET.$(date +%Y%m%d-%H.%M.%S).setup.bak"
         mv $HOME/$TARGET $HOME/$TARGET.$(date "+%Y%m%d-%H.%M.%S").setup.bak
     fi
-    BASENAME=${TARGET##*/}
-    NODOT=${BASENAME#.}
-    # If $NODOT is directory, and path to target does not exist, create.
-    if [[ -d $(pwd)/setupfiles/$NODOT && ! -d $HOME/${TARGET%/*} ]] ; then
-        mkdir -p $HOME/${TARGET%/*}
+    BASE_DIR=$(dirname $TARGET)
+    if [[ ! -d $HOME/$BASE_DIR ]] ; then
+        mkdir -p $HOME/$BASE_DIR
     fi
-    ln -sf $(pwd)/setupfiles/$NODOT $HOME/$TARGET
+    ln -sf $(pwd)/dotfiles/$TARGET $HOME/$TARGET    
 done
-
-echo "Hard copy ipython_conf.py since it doesn't work as a symlink..."
-# WORKAROUND: Hard copy ipython_conf.py since it doesn't work with symlink
-if [[ ! -d $HOME/.ipython/profile_default ]] ; then
-    mkdir -p $HOME/.ipython/profile_default
-fi
-if [[ -e $HOME/.ipython/profile_default/ipython_config.py ]] ; then
-    echo "Warning, $HOME/.ipython/profile_default/ipython_config.py \
-already exists, backing up as $HOME/.ipython/profile_default/ipython_config.py\
-.$(date +%Y%m%d-%H.%M.%S).setup.bak"
-    mv $HOME/.ipython/profile_default/ipython_config.py \
-       $HOME/.ipython/profile_default/ipython_config.py\
-.$(date +%Y%m%d-%H.%M.%S).setup.bak
-fi
-cp $(pwd)/setupfiles/ipython_config.py \
-   $HOME/.ipython/profile_default/ipython_config.py
-
-# Initialize ECB submodile.
-git init submodule
-git submodule update
-
-# Setup Git
-git config --global core.excludefile ~/.gitignore_global
-git config --global alias.graph "log --oneline --decorate --graph --all"
-git config --global alias.unstage "reset HEAD --"
-git config --global alias.last "log -1 HEAD"
-
-# Execute OS specific configuration steps, as well as set Emacs version.
-OS=$(uname -s)
-
-# This function returns 0 if version $1 is less than version $2,
-# else it returns 1
-version_less_than() {
-    V="$1."
-    V_REQ="$2."
-    VER=${V%%.*}
-    VER_REQ=${V_REQ%%.*}
-
-    if (( $(echo "$VER < $VER_REQ" | bc -l) )) ; then
-        return 0
-    elif (( $(echo "$VER > $VER_REQ" | bc -l) )) ; then
-        return 1
-    else
-        VER=${V#*.}
-        VER_REQ=${V_REQ#*.}
-        VER=${VER%.}
-        VER_REQ=${VER_REQ%.}
-        if (( $(echo "${V%%.*} == 0 && ${V_REQ%%.*} == 0" | bc -l) ))\
-            && [[ -z $VER$VER_REQ ]] ; then
-            return 1
-        fi
-        version_less_than ${VER:-"0"} ${VER_REQ:-"0"}
-        return $?
-    fi
-}
-
-# This function test to see if Emacs is installed and checks to see
-# if version is greater than $REQUIRED_EMACS_VERSION at top of file
-test-emacs () {
-    # Which Emacs is installed?
-    echo "Checking to see if supported version of Emacs is installed..."
-    if [[ ! -x $EMACS ]] ; then
-        echo "Warning: supported version of Emacs ($EMACS) not installed."        
-        EMACS="NOT_INSTALLED/UNSUPPORTED"
-    else
-        # What version? Required version set at beginning of script.
-        # Lots of string -> number conversions here.
-        EMACS_VERSION=$($EMACS --version | egrep "GNU Emacs [[:digit:]]+" | \
-            sed -E "s/GNU Emacs //")
-        if version_less_than $EMACS_VERSION $REQUIRED_EMACS_VERSION ; then
-            echo -e "Warning: version $EMACS_VERSION of Emacs breaks \
-Emacs Code Browser! (Require >= $REQUIRED_EMACS_VERSION)"
-            EMACS="NOT_INSTALLED/UNSUPPORTED"
-        else
-            echo -e "Using Emacs: $EMACS\nVersion: $EMACS_VERSION"
-        fi
-    fi
-}    
-
-# OS Specific configuration
-# 1. Test for Emacs
-# 2. Install important packages and tools
-case "$OS" in
-    Darwin*)
-        EMACS=$MAC_EMACS
-        test-emacs
-        # Install and/or update homebrew and packages
-        echo "Install and update homebrew..."
-        if ! which brew; then
-            ruby -e "$(curl -fsSL \
-https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        fi
-        brew update
-        brew upgrade
-        brew install node npm
-        ;;
-    Linux*)
-        EMACS=$LIN_EMACS
-        test-emacs
-        ;;
-    MINGW32_NT*|CYGWIN-NT*)
-        # Test under proper cygwin env, using proper location of emacs-w32.exe
-        EMACS=$WIN_EMACS
-        test-emacs
-        ;;
-    *)
-        test-emacs
-        echo "Warning: unspported OS."
-        ;;
-esac
-
-# Setup git to use Emacs editor with lite init file and byte compile
-# all elisp packages
-echo "Setting Emacs as default git editor..."
-echo "Byte-compile using $EMACS"
-if [[ ! $EMACS == "NOT_INSTALLED/UNSUPPORTED" ]] ; then
-    git config --global core.editor "$EMACS --no-desktop -q --load \
-~/.setup/setupfiles/emacs.conf/emacs-git.el"
-    for PACKAGE in $BYTE_COMPILE_ELISP_PACKAGES ; do
-        echo "Byte-compiling $PACKAGE..."
-        pushd setupfiles/elisp/$PACKAGE &>/dev/null
-        make EMACS=$EMACS &>/dev/null
-        popd &>/dev/null
-    done
-fi
-
-exit 0

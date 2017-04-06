@@ -1,0 +1,17 @@
+[user]
+	name = zalky
+	email = zalan.k@gmail.com
+[core]
+	editor = /Applications/Emacs.app/Contents/MacOS/Emacs-x86_64-10_9 --no-desktop -q --load ~/.setup/setupfiles/emacs.conf/emacs-git.el
+	excludefile = /Users/zalan/.gitignore_global
+	autocrlf = false
+	excludesfile = /Users/zalan/.gitignore_global
+[alias]
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	graph = log --oneline --decorate --graph --all
+	graph-all = log --oneline --decorate --graph --all
+[credential]
+	helper = cache
+[push]
+	default = simple
