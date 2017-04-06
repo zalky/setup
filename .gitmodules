@@ -1,3 +1,0 @@
-[submodule "setupfiles/elisp/ecb"]
-	path = setupfiles/elisp/ecb
-	url = https://github.com/alexott/ecb/
