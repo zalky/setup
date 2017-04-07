@@ -101,3 +101,6 @@
 
 ;; Highlight current line
 (setq-default global-hl-line-mode nil)
+
+;; Ediff control window in same frame
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)

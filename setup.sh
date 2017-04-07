@@ -8,7 +8,8 @@
 
 # TODO: This string could mangle for loop if filenames have spaces.
 # Consider implementing as an array.
-TARGETLIST="\
+
+DOTFILES="\
 .bashrc \
 .boot/boot.properties \
 .boot/profile.boot \
@@ -24,7 +25,7 @@ TARGETLIST="\
 
 # Simlink basic configuration files in .setup/dotfiles to target locations
 echo "Populating basic configuration files as symbolic links..."
-for TARGET in $TARGETLIST ; do
+for TARGET in $DOTFILES ; do
     # If file already exists, even if it just a symlink, backup.
     if [[ -e $HOME/$TARGET ]] ; then
         echo "Warning, $HOME/$TARGET already exists, \

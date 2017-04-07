@@ -2,7 +2,7 @@
 	name = zalky
 	email = zalan.k@gmail.com
 [core]
-	editor = /Applications/Emacs.app/Contents/MacOS/Emacs-x86_64-10_9 --no-desktop -q --load ~/.setup/setupfiles/emacs.conf/emacs-git.el
+	editor = /Applications/Emacs.app/Contents/MacOS/Emacs-x86_64-10_9 --no-desktop -q --load ~/.emacs.conf/emacs-git.el
 	excludefile = /Users/zalan/.gitignore_global
 	autocrlf = false
 	excludesfile = /Users/zalan/.gitignore_global
