@@ -4,7 +4,7 @@
 (global-font-lock-mode t)
 
 ;; Define custom face attributes
-;; (setq my-font "Menlo") ;; On Windows: "Consolas"
+;; (setq my-font "Fira Mono") ;; On Windows: "Consolas"
 (setq my-fgcolor "#303030");; "#b9b9b9" ;; "#cccccc"
 (setq my-bgcolor "#c0c0c0") ;; "#303030") ;; "#303030
 
@@ -54,7 +54,7 @@
                     :background "gray65") ; "#3f3f3f"
 
 (set-face-attribute 'region t
-                    :background "grey75")
+                    :background "grey80")
 
 (set-face-attribute 'secondary-selection t
                     :background "grey79")

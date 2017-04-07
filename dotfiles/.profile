@@ -1,14 +1,14 @@
 export PS1="\u@\h:\w$ "
 
-# # If this is an xterm set the title to user@host:dir
-# case "$TERM" in
-# xterm*|rxvt*)
-#     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-#     ;;
-# *)
-# esac
-
-PATH="/Users/zalan/src/scripts:/usr/local/sbin:$PATH"
-# added by Anaconda 2.1.0 installer
-export PATH="/opt/datomic/bin:/Users/zalan/anaconda/bin:$PATH"
 export DATOMIC_HOME="/opt/datomic"
+
+# Locally install binaries, not under version control
+BIN="/Users/zalan/local/bin"
+
+# Scripts, these are under version control
+SCRIPTS="/Users/zalan/src/scripts"
+
+export PATH="$DATOMIC_HOME/bin:$BIN:$SCRIPTS:/usr/local/sbin:$PATH"
+
+# added by Anaconda2 4.3.1 installer
+export PATH="/Users/zalan/anaconda/bin:$PATH"

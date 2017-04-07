@@ -352,7 +352,7 @@
  '(org-special-keyword ((t (:inherit font-lock-comment-face :foreground "gray50" :slant italic :weight normal))))
  '(org-table ((t (:inherit default))))
  '(org-todo ((t (:foreground "gray40" :weight bold))))
- '(region ((t (:background "grey75"))))
+ '(region ((t (:background "grey80"))))
  '(semantic-highlight-func-current-tag-face ((t (:inherit highlight))))
  '(sh-heredoc ((t (:inherit font-lock-string-face))))
  '(sh-quoted-exec ((t (:inherit font-lock-builtin-face))))
