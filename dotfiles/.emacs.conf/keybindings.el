@@ -39,29 +39,36 @@
 (global-set-key (kbd "C-x g") 'ctl-x-5-prefix)
 
 ;; Org-mode shortcuts
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c a") 'org-agenda)
+(define-key org-mode-map (kbd "C-M-n") 'outline-next-visible-heading)
+(define-key org-mode-map (kbd "C-M-p") 'outline-previous-visible-heading)
 
-(global-set-key (kbd "S-C-M-j") 'shrink-window-horizontally)
-(global-set-key (kbd "S-C-M-l") 'enlarge-window-horizontally)
-(global-set-key (kbd "S-C-M-k") 'shrink-window)
-(global-set-key (kbd "S-C-M-i") 'enlarge-window)
+(define-key outline-mode-map (kbd "C-c l") 'org-store-link)
+(define-key outline-mode-map (kbd "C-c a") 'org-agenda)
 
-(global-set-key (kbd "C-x 9") 'transpose-buffers)
-(global-set-key (kbd "C-c l") 'org-store-link)
+(define-key outline-mode-map (kbd "S-C-M-j") 'shrink-window-horizontally)
+(define-key outline-mode-map (kbd "S-C-M-l") 'enlarge-window-horizontally)
+(define-key outline-mode-map (kbd "S-C-M-k") 'shrink-window)
+(define-key outline-mode-map (kbd "S-C-M-i") 'enlarge-window)
 
-(global-set-key (kbd "S-C-j") 'windmove-left)
-(global-set-key (kbd "S-C-i") 'windmove-up)
-(global-set-key (kbd "S-C-k") 'windmove-down)
-(global-set-key (kbd "S-C-l") 'windmove-right)
+(define-key outline-mode-map (kbd "C-x 9") 'transpose-buffers)
+(define-key outline-mode-map (kbd "C-c l") 'org-store-link)
 
-(global-set-key (kbd "M-t") 'tab-to-tab-stop)
+(define-key outline-mode-map (kbd "S-C-j") 'windmove-left)
+(define-key outline-mode-map (kbd "S-C-i") 'windmove-up)
+(define-key outline-mode-map (kbd "S-C-k") 'windmove-down)
+(define-key outline-mode-map (kbd "S-C-l") 'windmove-right)
+
+(define-key outline-mode-map (kbd "M-t") 'tab-to-tab-stop)
 
 ;; Change mac command keys
 (setq mac-option-key-is-meta t)
 (setq mac-command-key-is-meta t)
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'meta)
+
+;; Key binding to use "hippie expand" for text autocompletion
+;; http://www.emacswiki.org/emacs/HippieExpand
+(global-set-key (kbd "M-/") 'hippie-expand)
 
 ;;;; Helm
 
@@ -72,7 +79,6 @@
   (global-set-key (kbd "C-x b") 'helm-mini)
   (global-set-key (kbd "C-s") 'helm-swoop)
   (global-set-key (kbd "C-M-s") 'helm-swoop-back-to-last-point)
-  ;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
   (define-key helm-map (kbd "C-M-n") 'helm-next-source)
   (define-key helm-map (kbd "C-M-p") 'helm-previous-source)
@@ -87,16 +93,10 @@
       ;; use a regular prefix "C-c h". Note: We must set "C-c h"
       ;; globally, because we cannot change `helm-command-prefix-key'
       ;; once `helm-config' is loaded.
-      ;; (define-prefix-command 'helm-command-prefix)
       (global-set-key (kbd "C-c h") 'helm-command-prefix)
     (global-set-key (kbd "M-h") 'helm-command-prefix)
     (global-set-key (kbd "M-h M-i") 'helm-semantic-or-imenu)
-    (global-set-key (kbd "M-h i") 'helm-semantic-or-imenu))
-  
-
-  ;; Key binding to use "hippie expand" for text autocompletion
-  ;; http://www.emacswiki.org/emacs/HippieExpand
-  (global-set-key (kbd "M-/") 'hippie-expand))
+    (global-set-key (kbd "M-h i") 'helm-semantic-or-imenu)))
 
 ;;;; ISpell
 
