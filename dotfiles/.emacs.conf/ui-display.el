@@ -104,3 +104,7 @@
 
 ;; Ediff control window in same frame
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+;; Do not use Mac OS X native fullscreen, too buggy for mouse capture,
+;; and workspace keeps changing position.
+(setq ns-use-native-fullscreen nil)
