@@ -49,22 +49,13 @@
             (define-clojure-indent (fact 1))
             (define-clojure-indent (facts 1))))
 
-;;;; Clojure Refactor
-
+;; No prefix notation for clojure refactor
 (setq cljr-favor-prefix-notation nil)
-
-
-;;;; Clojurescript
-
-;; Indenting
-
-(load "clojurescript-indenting.el")
 
 ;; have nREPL start browser-connected figwheel repl.
 (setq cider-cljs-lein-repl
       "(do (user/run)
            (user/browser-repl))")
-
 
 ;;;; Cider
 
@@ -108,31 +99,8 @@
      (define-key cider-mode-map (kbd "C-c u") 'cider-user-ns)
      (define-key cider-repl-mode-map (kbd "C-c C-r") 'clojure-refactor-map)))
 
-;; Special clojure indentation
 
-(defvar my-fn-tags
-  '(or-join
-    not-join
-    match
-    fdef
-    deftask
-    respond-to
-    pod-safe-vars
-    go-comm
-    transact!
-    update!
-    err!
-    respond-to))
+;; Indenting
 
-;; Forms that should be indented like fns.
-(dolist (tag my-fn-tags)
-  (put-clojure-indent tag :defn))
+(load "clojure-indenting.el")
 
-(put-clojure-indent 'if-conform 1)
-(put-clojure-indent 'symbol-macrolet 1)
-
-(define-clojure-indent
-  (defrelations '(0 :defn))
-  (deftypes '(0 :defn))
-  (deflogic '(0 :defn))
-  (add-meta '(1 :form (1))))

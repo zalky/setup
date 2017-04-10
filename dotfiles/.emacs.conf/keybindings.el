@@ -38,27 +38,28 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x g") 'ctl-x-5-prefix)
 
+;; General movement
+(global-set-key (kbd "S-C-M-j") 'shrink-window-horizontally)
+(global-set-key (kbd "S-C-M-l") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-M-k") 'shrink-window)
+(global-set-key (kbd "S-C-M-i") 'enlarge-window)
+
+(global-set-key (kbd "C-x 9") 'transpose-buffers)
+(global-set-key (kbd "C-c l") 'org-store-link)
+
+(global-set-key (kbd "S-C-j") 'windmove-left)
+(global-set-key (kbd "S-C-i") 'windmove-up)
+(global-set-key (kbd "S-C-k") 'windmove-down)
+(global-set-key (kbd "S-C-l") 'windmove-right)
+
+(global-set-key (kbd "M-t") 'tab-to-tab-stop)
+
 ;; Org-mode shortcuts
 (define-key org-mode-map (kbd "C-M-n") 'outline-next-visible-heading)
 (define-key org-mode-map (kbd "C-M-p") 'outline-previous-visible-heading)
 
-(define-key outline-mode-map (kbd "C-c l") 'org-store-link)
-(define-key outline-mode-map (kbd "C-c a") 'org-agenda)
-
-(define-key outline-mode-map (kbd "S-C-M-j") 'shrink-window-horizontally)
-(define-key outline-mode-map (kbd "S-C-M-l") 'enlarge-window-horizontally)
-(define-key outline-mode-map (kbd "S-C-M-k") 'shrink-window)
-(define-key outline-mode-map (kbd "S-C-M-i") 'enlarge-window)
-
-(define-key outline-mode-map (kbd "C-x 9") 'transpose-buffers)
-(define-key outline-mode-map (kbd "C-c l") 'org-store-link)
-
-(define-key outline-mode-map (kbd "S-C-j") 'windmove-left)
-(define-key outline-mode-map (kbd "S-C-i") 'windmove-up)
-(define-key outline-mode-map (kbd "S-C-k") 'windmove-down)
-(define-key outline-mode-map (kbd "S-C-l") 'windmove-right)
-
-(define-key outline-mode-map (kbd "M-t") 'tab-to-tab-stop)
+(define-key org-mode-map (kbd "C-c l") 'org-store-link)
+(define-key org-mode-map (kbd "C-c a") 'org-agenda)
 
 ;; Change mac command keys
 (setq mac-option-key-is-meta t)
