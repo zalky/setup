@@ -6,7 +6,10 @@
   (defrelations '(0 :defn))
   (deftypes '(0 :defn))
   (deflogic '(0 :defn))
-  (add-meta '(1 :form (1))))
+  (add-meta '(1 :form (1)))
+  (extend-instance '(1 :form :form [1])))
+
+(put-clojure-indent 'if-cljs 0)
 
 ;; Let forms
 
@@ -29,7 +32,7 @@
     build
     build-all))
 
-(dolist (tag (append builtin-tags om-fn-tags))
+(dolist (tag (append builtin-tags my-let-tags om-fn-tags))
   (put-clojure-indent tag 1))
 
 ;; Function forms

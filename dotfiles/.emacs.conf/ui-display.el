@@ -107,4 +107,4 @@
 
 ;; Do not use Mac OS X native fullscreen, too buggy for mouse capture,
 ;; and workspace keeps changing position.
-(setq ns-use-native-fullscreen nil)
+;; (setq ns-use-native-fullscreen nil)

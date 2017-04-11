@@ -55,11 +55,12 @@
 (global-set-key (kbd "M-t") 'tab-to-tab-stop)
 
 ;; Org-mode shortcuts
-(define-key org-mode-map (kbd "C-M-n") 'outline-next-visible-heading)
-(define-key org-mode-map (kbd "C-M-p") 'outline-previous-visible-heading)
+(when (require 'org nil 'noerror)
+ (define-key org-mode-map (kbd "C-M-n") 'outline-next-visible-heading)
+ (define-key org-mode-map (kbd "C-M-p") 'outline-previous-visible-heading)
 
-(define-key org-mode-map (kbd "C-c l") 'org-store-link)
-(define-key org-mode-map (kbd "C-c a") 'org-agenda)
+ (define-key org-mode-map (kbd "C-c l") 'org-store-link)
+ (define-key org-mode-map (kbd "C-c a") 'org-agenda))
 
 ;; Change mac command keys
 (setq mac-option-key-is-meta t)
@@ -73,7 +74,7 @@
 
 ;;;; Helm
 
-(when (and (require 'helm nil 'noerror))
+(when (require 'helm nil 'noerror)
   (global-set-key (kbd "M-m") 'smex)
   (global-set-key (kbd "M-x") 'helm-M-x)
   (global-set-key (kbd "M-y") 'helm-show-kill-ring)
