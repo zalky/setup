@@ -5,9 +5,11 @@
 (define-clojure-indent
   (defrelations '(0 :defn))
   (deftypes '(0 :defn))
+  (decvs '(0 :defn))
   (deflogic '(0 :defn))
   (add-meta '(1 :form (1)))
-  (extend-instance '(1 :form :form [1])))
+  (extend-instance '(1 :form :form [1]))
+  (defprimitive '(2 :form :form [1])))
 
 (put-clojure-indent 'if-cljs 0)
 
