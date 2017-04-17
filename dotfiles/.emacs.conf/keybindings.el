@@ -32,7 +32,9 @@
 ;; Ido
 (when (require 'ido nil 'noerror)
   (define-key ido-common-completion-map (kbd "C-r") 'ido-magic-backward-char)
-  (define-key ido-common-completion-map (kbd "C-M-s") 'ido-prev-match))
+  (define-key ido-common-completion-map (kbd "C-M-s") 'ido-prev-match)
+  ;; Prevent space completion, useless, we already have tab
+  (define-key ido-common-completion-map " " nil))
 
 ;; Shows a list of buffers
 (global-set-key (kbd "C-x C-b") 'ibuffer)

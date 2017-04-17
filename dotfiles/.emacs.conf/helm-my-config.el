@@ -23,7 +23,7 @@
 (setq helm-swoop-speed-or-color t)
 
 (setq helm-ff-file-name-history-use-recentf t)
-(setq helm-buffer-max-length nil)
+(setq helm-buffer-max-length 30)
 
 ;; If this value is t, split window inside the current window
 (setq helm-swoop-split-with-multiple-windows t)
