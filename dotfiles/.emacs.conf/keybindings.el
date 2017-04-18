@@ -1,3 +1,4 @@
+
 ;;;; Global Key Bindings
 
 (defvar super-keys-minor-mode-map
@@ -28,6 +29,7 @@
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-M-;") 'comment-region)
 (global-set-key (kbd "C-M-:") 'uncomment-region)
+(global-set-key (kbd "C-x C-r") 'rename-buffer)
 
 ;; Ido
 (when (require 'ido nil 'noerror)
