@@ -7,6 +7,8 @@
                                                "backups"))))
 (setq auto-save-default nil)
 
+(setq create-lockfiles nil)
+
 ;; Set language environment and input method
 (setq current-language-environment "UTF-8")
 (setq default-input-method "rfc1345")
