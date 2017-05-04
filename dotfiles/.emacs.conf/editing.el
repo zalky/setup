@@ -76,3 +76,11 @@
 
  ;; Mouse yank commands yank at point instead of at click.
  mouse-yank-at-point t)
+
+;; Fills remainder of line with comment start characters
+(defun fill-to-end ()
+  (interactive)
+  (save-excursion
+    (end-of-line)
+    (while (< (current-column) 70)
+      (insert comment-start))))
