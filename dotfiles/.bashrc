@@ -1,6 +1,6 @@
 export PS1="\u@\h:\w$ "
 
-export DATOMIC_HOME="/opt/datomic"
+export DATOMIC_HOME="$HOME/opt/datomic"
 
 # Locally install binaries, not under version control
 BIN="/Users/zalan/local/bin"
