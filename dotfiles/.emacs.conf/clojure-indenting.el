@@ -6,7 +6,6 @@
   (defrelations '(0 :defn))
   (deftypes '(0 :defn))
   (defcvs '(0 :defn))
-  (deflogic '(0 :defn))
   (add-meta '(1 :form (1)))
   (extend-instance '(1 :form :form [1]))
   (defprimitive '(2 :form :form [1])))
@@ -15,9 +14,10 @@
 
 ;; Let forms
 
-(defvar builtin-tags
+(defvar my-tags
   '(if-conform
-    symbol-macrolet))
+    symbol-macrolet
+    logic))
 
 (defvar om-fn-tags
   '(init-state
@@ -34,7 +34,7 @@
     build
     build-all))
 
-(dolist (tag (append builtin-tags om-fn-tags))
+(dolist (tag (append my-tags om-fn-tags))
   (put-clojure-indent tag 1))
 
 ;; Function forms
@@ -51,6 +51,7 @@
 (defvar my-fn-tags
   '(respond-to
     pod-safe-vars
+    deflogic
     go-comm
     err!))
 

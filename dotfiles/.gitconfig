@@ -9,7 +9,7 @@
 [alias]
 	unstage = reset HEAD --
 	last = log -1 HEAD
-	graph = log --oneline --decorate --graph --all
+	graph = log --oneline --decorate --graph
 	graph-all = log --oneline --decorate --graph --all
 [credential]
 	helper = cache
