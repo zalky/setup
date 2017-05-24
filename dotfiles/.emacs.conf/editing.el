@@ -14,7 +14,7 @@
 (setq default-input-method "rfc1345")
 
 ;; Set ispell program name
-(setq ispell-program-name 'aspell)
+(setq ispell-program-name "aspell")
 
 ;; Disable Word-Wrap and set F12 to toggle Word-Wrap
 (setq default-truncate-lines t)

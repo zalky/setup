@@ -7,8 +7,9 @@
   (deftypes '(0 :defn))
   (defcvs '(0 :defn))
   (add-meta '(1 :form (1)))
+  (logic '(1 :form))
   (extend-instance '(1 :form :form [1]))
-  (defprimitive '(2 :form :form [1])))
+  (defprimitive '(2 :form :form [:defn])))
 
 (put-clojure-indent 'if-cljs 0)
 
@@ -16,8 +17,7 @@
 
 (defvar my-tags
   '(if-conform
-    symbol-macrolet
-    logic))
+    symbol-macrolet))
 
 (defvar om-fn-tags
   '(init-state
@@ -119,6 +119,7 @@
     i
     iframe
     img
+    input
     ins
     kbd
     keygen

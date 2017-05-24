@@ -45,7 +45,7 @@
 (scroll-bar-mode -1)
 
 ;; No cursor blinking, it's distracting
-(setq-default blink-cursor-mode nil)
+(blink-cursor-mode 0)
 
 ;; full path in title bar
 (setq-default frame-title-format "%b (%f)")
