@@ -8,6 +8,8 @@
   (defcvs '(0 :defn))
   (add-meta '(1 :form (1)))
   (logic '(1 :form))
+  (schema '(1 :form))
+  (fields '(0 :form))
   (extend-instance '(1 :form :form [1]))
   (defprimitive '(2 :form :form [:defn])))
 
