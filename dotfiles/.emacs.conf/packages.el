@@ -54,8 +54,8 @@
     ;; Search hopping powered by helm
     helm-swoop
 
-    ;; project navigation
-    projectile
+    ;; Project navigation
+    helm-projectile
 
     ;; edit html tags like sexps
     tagedit

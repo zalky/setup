@@ -242,7 +242,7 @@
  '(helm-prevent-escaping-from-minibuffer nil)
  '(package-selected-packages
    (quote
-    (cider-eval-sexp-fu tagedit smex smartparens projectile magit ido-ubiquitous highlight-numbers helm-swoop company clojure-mode-extra-font-locking clj-refactor))))
+    (helm-projectile cider-eval-sexp-fu tagedit smex smartparens projectile magit ido-ubiquitous highlight-numbers helm-swoop company clojure-mode-extra-font-locking clj-refactor))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

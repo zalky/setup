@@ -33,3 +33,5 @@
 
 ;; Don't use pre-input for helm-swoop
 (setq helm-swoop-pre-input-function (lambda () ""))
+
+(setq helm-truncate-lines t)

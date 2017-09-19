@@ -33,9 +33,13 @@
 (smex-initialize)
 (global-set-key (kbd "M-x") 'smex)
 
+;;;; Projectile Config
+
 ;; projectile everywhere!
-;; (add-to-list 'load-path "~/local/share/elisp/helm-projectile")
-;; (require 'helm-projectile)
-;; (projectile-global-mode)
-;; (setq projectile-completion-system 'helm)
-;; (helm-projectile-on)
+(require 'helm-projectile)
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
+;; When switching projects, show buffers not files.
+(setq projectile-switch-project-action 'projectile-switch-to-buffer)
