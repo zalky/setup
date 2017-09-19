@@ -14,6 +14,9 @@
   (defprimitive '(2 :form :form [:defn])))
 
 (put-clojure-indent 'if-cljs 0)
+(put-clojure-indent 'p 1)
+(put-clojure-indent 'profile 1)
+(put-clojure-indent 'cond-class 0)
 
 ;; Let forms
 
@@ -21,7 +24,7 @@
   '(if-conform
     symbol-macrolet))
 
-(defvar om-fn-tags
+(defvar om-lifecycle-tags
   '(init-state
     will-mount
     did-mount
@@ -32,12 +35,13 @@
     render
     render-state
     display-name
-    will-unmount
-    build
-    build-all))
+    will-unmount))
 
-(dolist (tag (append my-tags om-fn-tags))
+(dolist (tag (append my-tags om-lifecycle-tags))
   (put-clojure-indent tag 1))
+
+(put-clojure-indent 'build 2)
+(put-clojure-indent 'build-all 2)
 
 ;; Function forms
 
@@ -57,20 +61,10 @@
     go-comm
     err!))
 
-(defvar grid-helpers
-  '(inset-row
-    row
-    column-full
-    full-row
-    column-sml
-    column-sm
-    column-s
-    column))
-
-(dolist (tag (append builtin-fn-tags my-fn-tags grid-helpers))
+(dolist (tag (append builtin-fn-tags my-fn-tags))
   (put-clojure-indent tag :defn))
 
-(defvar my-dom-tags
+(defvar dom-tags
   '(a
     abbr
     address
@@ -167,6 +161,7 @@
     table
     tbody
     td
+    textarea
     tfoot
     th
     thead
@@ -197,7 +192,60 @@
     stop
     tspan))
 
-(dolist (tag my-dom-tags)
-  (let ((tag (intern (concat "dom/" (symbol-name tag)))))
-    (put-clojure-indent tag :defn)))
+(defvar grid-tags
+  '(inset-row
+    row
+    column-full
+    full-row
+    column-sml
+    column-sm
+    column-s
+    column))
 
+(defvar bootstrap-tags
+  '(breadcrumb
+    breadcrumb-item
+    button-group
+    button-toolbar
+    card
+    card-block
+    card-header
+    card-img
+    card-link
+    card-subtitle
+    card-text
+    card-title
+    col
+    collapse
+    container
+    dropdown
+    dropdown-item
+    dropdown-menu
+    dropdown-toggle
+    form
+    form-group
+    input-group
+    input-group-addon
+    menu-item
+    modal
+    modal-body
+    modal-footer
+    modal-header
+    nav-item
+    navbar
+    page-header
+    popover
+    popover
+    popover-content
+    popover-title
+    row
+    toolbar
+    tooltip
+    tooltip))
+
+(put-clojure-indent 'label-row 2)
+
+(dolist (tag (append dom-tags
+                     bootstrap-tags
+                     grid-tags))
+  (put-clojure-indent tag :defn))

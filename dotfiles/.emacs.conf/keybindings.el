@@ -58,6 +58,8 @@
 
 (global-set-key (kbd "M-t") 'tab-to-tab-stop)
 
+(global-set-key (kbd "C-c g") 'magit-status)
+
 ;; Org-mode shortcuts
 (when (require 'org nil 'noerror)
  (define-key org-mode-map (kbd "C-M-n") 'outline-next-visible-heading)
