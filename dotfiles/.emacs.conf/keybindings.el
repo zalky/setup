@@ -84,7 +84,8 @@
   (global-set-key (kbd "M-m") 'smex)
   (global-set-key (kbd "M-x") 'helm-M-x)
   (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-  (global-set-key (kbd "C-x b") 'helm-projectile-switch-to-buffer) ; helm-mini
+  (global-set-key (kbd "C-x C-b") 'helm-mini)
+  (global-set-key (kbd "C-x b") 'helm-projectile-switch-to-buffer)
   (global-set-key (kbd "C-x p") 'helm-projectile-switch-project)
   (global-set-key (kbd "C-s") 'helm-swoop)
   (global-set-key (kbd "C-M-s") 'helm-swoop-back-to-last-point)
