@@ -15,3 +15,5 @@
 	helper = cache
 [push]
 	default = simple
+[magit]
+	hideCampaign = true
