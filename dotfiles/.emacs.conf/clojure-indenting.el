@@ -7,21 +7,26 @@
   (deftypes '(0 :defn))
   (defcvs '(0 :defn))
   (add-meta '(1 :form (1)))
-  (logic '(1 :form))
   (schema '(1 :form))
   (fields '(0 :form))
   (extend-instance '(1 :form :form [1]))
   (defprimitive '(2 :form :form [:defn])))
 
-(put-clojure-indent 'if-cljs 0)
-(put-clojure-indent 'p 1)
-(put-clojure-indent 'profile 1)
-(put-clojure-indent 'cond-class 0)
+;; Body forms: 0
 
-;; Let forms
+(defvar third-party-body-tags
+  '(if-cljs
+    cond-class))
 
-(defvar my-tags
-  '(if-conform
+(dolist (tag third-party-body-tags)
+  (put-clojure-indent tag 0))
+
+;; Let forms: 1
+
+(defvar third-party-let-tags
+  '(p
+    profile
+    if-conform
     symbol-macrolet))
 
 (defvar om-lifecycle-tags
@@ -37,22 +42,24 @@
     display-name
     will-unmount))
 
-(dolist (tag (append my-tags om-lifecycle-tags))
+(dolist (tag (append third-party-let-tags
+                     om-lifecycle-tags))
   (put-clojure-indent tag 1))
 
-(put-clojure-indent 'build 2)
-(put-clojure-indent 'build-all 2)
+;; Build forms: 2
 
-;; Function forms
+(defvar my-build-tags
+  '(label-row))
 
-(defvar builtin-fn-tags
-  '(or-join
-    not-join
-    match
-    fdef
-    deftask
-    transact!
-    update!))
+(defvar third-party-build-tags
+  '(build
+    build-all))
+
+(dolist (tag (append my-build-tags
+                     third-party-build-tags))
+  (put-clojure-indent tag 2))
+
+;; Function forms: :defn
 
 (defvar my-fn-tags
   '(respond-to
@@ -61,9 +68,16 @@
     go-comm
     err!))
 
-(dolist (tag (append builtin-fn-tags my-fn-tags))
-  (put-clojure-indent tag :defn))
+(defvar third-party-fn-tags
+  '(or-join
+    not-join
+    match
+    fdef
+    deftask
+    transact!
+    update!))
 
+;; From om.dom/tags
 (defvar dom-tags
   '(a
     abbr
@@ -91,7 +105,9 @@
     datalist
     dd
     del
+    details
     dfn
+    dialog
     div
     dl
     dt
@@ -115,7 +131,6 @@
     i
     iframe
     img
-    input
     ins
     kbd
     keygen
@@ -124,9 +139,8 @@
     li
     link
     main
-    ;; map
+    map
     mark
-    marquee
     menu
     menuitem
     meta
@@ -139,6 +153,7 @@
     output
     p
     param
+    picture
     pre
     progress
     q
@@ -149,7 +164,6 @@
     samp
     script
     section
-    select
     small
     source
     span
@@ -161,7 +175,6 @@
     table
     tbody
     td
-    textarea
     tfoot
     th
     thead
@@ -173,14 +186,18 @@
     ul
     var
     video
-    wbr
-    
-    ;; svg
-    circle
+    wbr))
+
+;; From om.dom/tags
+(defvar svg-tags
+  '(circle
+    clipPath
     ellipse
     g
     line
+    mask
     path
+    pattern
     polyline
     rect
     svg
@@ -203,49 +220,81 @@
     column))
 
 (defvar bootstrap-tags
-  '(breadcrumb
+  '(alert
+    badge
+    breadcrumb
     breadcrumb-item
+    button
     button-group
-    button-toolbar
+    button-dropdown
+    uncontrolled-button-dropdown
+    dropdown
+    dropdown-toggle
+    dropdown-menu
+    dropdown-item
     card
-    card-block
-    card-header
     card-img
-    card-link
+    card-block
+    card-title
     card-subtitle
     card-text
-    card-title
-    col
+    card-link
+    card-header
+    card-footer
+    card-img-overlay
+    card-group
+    card-deck
+    card-columns
     collapse
-    container
-    dropdown
-    dropdown-item
-    dropdown-menu
-    dropdown-toggle
     form
     form-group
+    form-text
+    form-feedback
+    label
+    input
     input-group
     input-group-addon
-    menu-item
+    input-group-button
+    input-group-button
+    jumbotron
+    container
+    row
+    col
+    list-group
+    list-group-item
+    badge
+    list-group-item-heading
+    list-group-item-text
+    media
     modal
+    modal-header
     modal-body
     modal-footer
-    modal-header
-    nav-item
     navbar
-    page-header
+    navbar-toggler
+    navbar-brand
+    nav
+    nav-item
+    nav-link
+    nav-dropdown
+    uncontrolled-nav-dropdown
+    pagination
+    pagination-item
+    pagination-link
     popover
-    popover
-    popover-content
     popover-title
-    row
-    toolbar
+    popover-content
+    progress
+    table
+    tab-content
+    tab-pane
     tooltip
-    tooltip))
+    uncontrolled-tooltip))
 
-(put-clojure-indent 'label-row 2)
-
-(dolist (tag (append dom-tags
-                     bootstrap-tags
-                     grid-tags))
+(dolist (tag (append third-party-fn-tags
+                     my-fn-tags
+                     grid-tags
+                     dom-tags
+                     svg-tags
+                     bootstrap-tags))
   (put-clojure-indent tag :defn))
