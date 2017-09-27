@@ -1,0 +1,48 @@
+#! /bin/bash
+
+while getopts ":a:t:u:b:y:" opt ; do
+    case $opt in
+        a)
+            artist=$OPTARG
+            ;;
+        t)
+            title=$OPTARG
+            ;;
+        b)
+            album=$OPTARG
+            ;;
+        y)  year=$OPTARG
+            ;;
+        u)
+            url=$OPTARG
+            ;;
+        \?)
+            echo "Invalid Option: -$OPTARG" 1>&2
+            exit 1
+            ;;
+        :)
+            echo "Invalid Option: -$OPTARG requires an argument" 1>&2
+            exit 1
+            ;;
+    esac
+done
+
+name="$artist - $title"
+file="$name.mp3"
+
+echo "Downloading mp3 from $url..."
+
+youtube-dl -x --audio-format mp3 -o "$name.%(ext)s" $url 
+
+if [[ $artist ]] ; then
+    id3v2 -a "$artist" "$file"
+fi
+if [[ $title ]] ; then
+    id3v2 -t "$title" "$file"
+fi
+if [[ $album ]] ; then
+    id3v2 -A "$album" "$file"
+fi
+if [[ $year ]] ; then
+    id3v2 -y "$year" "$file"
+fi

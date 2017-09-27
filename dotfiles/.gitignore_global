@@ -18,3 +18,4 @@ figwheel_server.log
 .projectile
 log/
 db.bak*
+*flymd.*

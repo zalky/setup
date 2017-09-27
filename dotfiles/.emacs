@@ -340,6 +340,7 @@
  '(magit-branch-current ((t (:inherit magit-branch-local))))
  '(magit-branch-local ((t (:inherit font-lock-variable-name-face :weight bold))))
  '(magit-branch-remote ((t (:inherit font-lock-type-face :weight bold))))
+ '(magit-cherry-equivalent ((t (:inherit font-lock-string-face))))
  '(magit-diff-added ((t (:inherit diff-added))))
  '(magit-diff-added-highlight ((t (:inherit magit-diff-added))))
  '(magit-diff-base ((t (:inherit diff-changed))))
