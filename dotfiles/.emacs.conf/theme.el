@@ -47,10 +47,10 @@
                     :background "gray65") ; "#3f3f3f"
 
 (set-face-attribute 'region t
-                    :background "grey80")
+                    :background "grey79")
 
 (set-face-attribute 'secondary-selection t
-                    :background "grey79")
+                    :background "grey80")
 
 (set-face-attribute 'mode-line t
                     :background "#a0a0a0"; "#444444" 
@@ -77,3 +77,34 @@
                                font-lock-string-face
                                font-lock-constant-face
                                font-lock-builtin-face])
+
+(defface diff-added-bg
+  '((t :background "#aebbb1"))
+  "Face for added comparative regions."
+  :group 'diff-mode)
+
+(defface diff-removed-bg
+  '((t :background "#c4b5ba"))
+  "Face for removed comparative regions."
+  :group 'diff-mode)
+
+(defface diff-added-fine-bg
+  '((t :background "#a9d0b2"))
+  "Face for fine added comparative regions."
+  :group 'diff-mode)
+
+(defface diff-removed-fine-bg
+  '((t :background "#debfcd"))
+  "Face for fine removed comparative regions."
+  :group 'diff-mode)
+
+(defface diff-changed-bg
+  '((t :background "#b5b3c7"))
+  "Face for changed comparative regions."
+  :group 'diff-mode)
+
+(defface diff-changed-fine-bg
+  '((t :background "#b2bde8"))
+  "Face for fine changed comparative regions."
+  :group 'diff-mode)
+
