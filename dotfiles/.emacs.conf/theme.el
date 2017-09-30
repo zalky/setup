@@ -27,14 +27,7 @@
 (set-face-attribute 'default t
                     :background my-bgcolor
                     :foreground my-fgcolor
-;;                    :family my-font
                     :height 130)
-
-;; (set-face-attribute 'variable-pitch t
-                    ;; :family my-font)
-
-;; (set-face-attribute 'fixed-pitch t
-                    ;; :family my-font)
 
 (set-face-attribute 'border t
                     :background "#a9a9a9") ; "#454545"

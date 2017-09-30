@@ -57,6 +57,9 @@
     ;; Project navigation
     helm-projectile
 
+    ;; Node.js integration
+    indium
+
     ;; edit html tags like sexps
     tagedit
 

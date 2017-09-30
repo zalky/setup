@@ -186,7 +186,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
-   ["#303030" "PaleVioletRed4" "#197590" "thistle1" "#0a7bcc" "orchid4" "#607683" "gray80"])
+   ["#303030" "#a55684" "#197590" "thistle1" "#0a7bcc" "orchid4" "#607683" "gray80"])
  '(coffee-tab-width 2)
  '(cursor-type t)
  '(ecb-auto-expand-tag-tree (quote expand-spec))
@@ -242,7 +242,7 @@
  '(helm-prevent-escaping-from-minibuffer nil)
  '(package-selected-packages
    (quote
-    (helm-projectile cider-eval-sexp-fu tagedit smex smartparens projectile magit ido-ubiquitous highlight-numbers helm-swoop company clojure-mode-extra-font-locking clj-refactor))))
+    (indium helm-projectile cider-eval-sexp-fu tagedit smex smartparens projectile magit ido-ubiquitous highlight-numbers helm-swoop company clojure-mode-extra-font-locking clj-refactor))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -325,7 +325,7 @@
  '(helm-visible-mark ((t (:inherit region))))
  '(highlight ((t (:inherit header-line))))
  '(ido-indicator ((t (:inherit link :underline nil :width condensed))))
- '(ido-only-match ((t (:inherit font-lock-variable-name-face))))
+ '(ido-only-match ((t (:inherit font-lock-type-face))))
  '(ido-subdir ((t (:inherit font-lock-function-name-face))))
  '(info-header-xref ((t (:inherit info-xref))))
  '(info-node ((t (:inherit link :slant italic :weight bold))))
