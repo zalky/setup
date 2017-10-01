@@ -125,6 +125,8 @@
 ;; Configure tools for editing clojure
 (load "clojure-config.el")
 
+;; Configure tools for editing javascript
+(load "js-config.el")
 
 ;;;; Global Key-Bindings
 (load "keybindings.el")
