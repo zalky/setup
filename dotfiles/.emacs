@@ -356,7 +356,7 @@
  '(js2-instance-member ((t (:inherit font-lock-variable-name-face))))
  '(js2-private-function-call ((t (:inherit default))))
  '(js2-private-member ((t (:inherit default))))
- '(js2-warning ((t (:inherit default))))
+ '(js2-warning ((t (:inherit font-lock-warning-face))))
  '(lazy-highlight ((t (:background "gray65" :foreground "#c0c0c0"))))
  '(link ((t (:foreground "orchid4" :underline t))))
  '(link-visited ((t (:inherit link :foreground "MediumPurple4"))))

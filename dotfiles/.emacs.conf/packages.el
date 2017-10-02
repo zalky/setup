@@ -1,21 +1,17 @@
 ;;;; Configure packages, tools, dependencies and repositories
 
-;; Define package repositories
 (require 'package)
 
+;; Define package repositories
 (add-to-list 'package-archives
              '("melpa-stable" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/"))
 
-;; Load and activate emacs packages. Do this first so that the
-;; packages are loaded before you start trying to modify them.  This
-;; also sets the load path.
-(package-initialize)
-
-;; Download the ELPA archive description if needed.
-;; This informs Emacs about the latest versions of all packages, and
-;; makes them available for download.
-(when (not package-archive-contents)
-  (package-refresh-contents))
+(setq package-archive-priorities
+      '(("melpa-stable" . 10)
+        ("gnu"          . 5)
+        ("melp"         . 0)))
 
 ;; The packages you want installed. You can also install these
 ;; manually with M-x package-install Add in your own as you wish:
@@ -60,6 +56,12 @@
     ;; Node.js integration
     indium
 
+    ;; Vue integration
+    vue-mode
+
+    ;; Javascript mode
+    js2-mode
+
     ;; edit html tags like sexps
     tagedit
 
@@ -69,15 +71,20 @@
     ;; git integration
     magit))
 
-;; On OS X, an Emacs instance started from the graphical user
-;; interface will have a different environment than a shell in a
-;; terminal window, because OS X does not run a shell during the
-;; login. Obviously this will lead to unexpected results when calling
-;; external utilities like make from Emacs.  This library works around
-;; this problem by copying important environment variables from the
-;; user's shell.  https://github.com/purcell/exec-path-from-shell
-;; (if (eq system-type 'darwin)
-;;     (add-to-list 'my-packages 'exec-path-from-shell))
+(when (boundp 'package-pinned-packages)
+  (setq package-pinned-packages
+        '((indium . "melpa"))))
+
+;; Load and activate emacs packages. Do this first so that the
+;; packages are loaded before you start trying to modify them.  This
+;; also sets the load path.
+(package-initialize)
+
+;; Download the ELPA archive description if needed.
+;; This informs Emacs about the latest versions of all packages, and
+;; makes them available for download.
+(when (not package-archive-contents)
+  (package-refresh-contents))
 
 ;; Actually install packages that have not been installed yet.
 (dolist (p my-packages)
@@ -111,17 +118,22 @@
 (require 'advice)
 
 ;;;; Flymd
-(add-to-list 'load-path "~/src/elisp/flymd")
 
-(require 'flymd)
+(defvar flymd-location
+  "~/src/elisp/flymd")
 
-(defun my-flymd-browser-function (url)
-  (let ((process-environment (browse-url-process-environment)))
-    (apply 'start-process
-           (concat "firefox " url)
-           nil
-           "/usr/bin/open"
-           (list "-a" "firefox" url))))
+(when (file-exists-p (concat flymd-location "/flymd.el"))
+  (add-to-list 'load-path flymd-location)
 
-(setq flymd-browser-open-function 'my-flymd-browser-function)
+  (require 'flymd)
+
+  (defun my-flymd-browser-function (url)
+    (let ((process-environment (browse-url-process-environment)))
+      (apply 'start-process
+             (concat "firefox " url)
+             nil
+             "/usr/bin/open"
+             (list "-a" "firefox" url))))
+
+  (setq flymd-browser-open-function 'my-flymd-browser-function))
 
