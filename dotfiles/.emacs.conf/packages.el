@@ -65,6 +65,9 @@
     ;; edit html tags like sexps
     tagedit
 
+    ;; fits frame to buffer window
+    fit-frame
+
     ;; highlight numbers
     highlight-numbers
 

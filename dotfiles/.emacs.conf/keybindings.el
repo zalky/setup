@@ -93,7 +93,9 @@
   (define-key helm-map (kbd "M-r") 'backward-word)
 
   ;; Without this, we cannot access helm-M-x in terminals.
-  (define-key term-raw-map (kbd "M-x") 'helm-M-x)
+  (add-hook 'term-mode-nook
+            (lambda ()
+              (define-key term-raw-map (kbd "M-x") 'helm-M-x)))
 
   ;; The default helm prefix "C-x c" is quite close to "C-x C-c",
   ;; which quits Emacs. Change helm command prefix to "M-h".

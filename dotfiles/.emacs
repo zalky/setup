@@ -99,7 +99,7 @@
 (load "windows.el")
 
 ;; Workflow and convenience tools
-(load "workflow.el")
+(load "projectile-config.el")
 
 ;; UI and display configuration
 (load "ui-display.el")
