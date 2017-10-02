@@ -28,7 +28,7 @@
         try-complete-lisp-symbol-partially
         try-complete-lisp-symbol))
 
-;; Use spaces only when auto-formating a region
+;; Indent with spaces
 (setq-default indent-tabs-mode nil)
 
 ;; comments
@@ -36,8 +36,6 @@
   "comment or uncomment current line"
   (interactive)
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
-
-(global-set-key (kbd "C-;") 'toggle-comment-on-line)
 
 ;; Set default indendation width
 (setq-default standard-indent 4)
@@ -59,26 +57,24 @@
 (put 'narrow-to-region 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
 
-;; These settings relate to how emacs interacts with your operating system
-(setq
- ;; makes killing/yanking interact with the clipboard
- x-select-enable-clipboard t
+;;;;  These settings relate to how emacs interacts with your operating system
 
- ;; I'm actually not sure what this does but it's recommended?
- x-select-enable-primary t
+;; makes killing/yanking interact with the clipboard
+(setq x-select-enable-clipboard t
+      x-select-enable-primary t)
 
- ;; Save clipboard strings into kill ring before replacing them.
- ;; When one selects something in another program to paste it into Emacs,
- ;; but kills something in Emacs before actually pasting it,
- ;; this selection is gone unless this variable is non-nil
- save-interprogram-paste-before-kill t
+;; Save clipboard strings into kill ring before replacing them.
+;; When one selects something in another program to paste it into Emacs,
+;; but kills something in Emacs before actually pasting it,
+;; this selection is gone unless this variable is non-nil
+(setq save-interprogram-paste-before-kill t)
 
- ;; Shows all options when running apropos. For more info,
- ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Apropos.html
- apropos-do-all t
+;; Shows all options when running apropos. For more info,
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Apropos.html
+(setq apropos-do-all t)
 
- ;; Mouse yank commands yank at point instead of at click.
- mouse-yank-at-point t)
+;; Mouse yank commands yank at point instead of at click.
+(setq mouse-yank-at-point t)
 
 ;; Fills remainder of line with comment start characters
 (defun fill-to-end ()

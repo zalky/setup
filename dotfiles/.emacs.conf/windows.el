@@ -1,13 +1,5 @@
 ;;;; Configuration settings for: Navigating Buffers and Windows
 
-;; When you visit a file, point goes to the last place where it
-;; was when you previously visited the same file.
-;; http://www.emacswiki.org/emacs/SavePlace
-(require 'saveplace)
-(setq-default save-place t)
-;; keep track of saved places in ~/.emacs.d/places
-(setq save-place-file (concat user-emacs-directory "places"))
-
 ;; "Shrink-wrap" frame to buffer size.
 (require 'fit-frame)
 

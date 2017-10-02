@@ -31,13 +31,6 @@
 (global-set-key (kbd "C-M-:") 'uncomment-region)
 (global-set-key (kbd "C-x C-r") 'rename-buffer)
 
-;; Ido
-(when (require 'ido nil 'noerror)
-  (define-key ido-common-completion-map (kbd "C-r") 'ido-magic-backward-char)
-  (define-key ido-common-completion-map (kbd "C-M-s") 'ido-prev-match)
-  ;; Prevent space completion, useless, we already have tab
-  (define-key ido-common-completion-map " " nil))
-
 ;; Shows a list of buffers
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x g") 'ctl-x-5-prefix)
@@ -78,6 +71,8 @@
 ;; http://www.emacswiki.org/emacs/HippieExpand
 (global-set-key (kbd "M-/") 'hippie-expand)
 
+(global-set-key (kbd "C-;") 'toggle-comment-on-line)
+
 ;;;; Helm
 
 (when (require 'helm nil 'noerror)
@@ -88,6 +83,7 @@
   (global-set-key (kbd "C-x b") 'helm-projectile-switch-to-buffer)
   (global-set-key (kbd "C-x p") 'helm-projectile-switch-project)
   (global-set-key (kbd "C-x f") 'helm-projectile-find-file)
+  (global-set-key (kbd "C-x C-f") 'helm-find-files)
   (global-set-key (kbd "C-s") 'helm-swoop)
   (global-set-key (kbd "C-M-s") 'helm-swoop-back-to-last-point)
 
@@ -95,6 +91,9 @@
   (define-key helm-map (kbd "C-M-p") 'helm-previous-source)
   (define-key helm-map (kbd "C-r") 'backward-char)
   (define-key helm-map (kbd "M-r") 'backward-word)
+
+  ;; Without this, we cannot access helm-M-x in terminals.
+  (define-key term-raw-map (kbd "M-x") 'helm-M-x)
 
   ;; The default helm prefix "C-x c" is quite close to "C-x C-c",
   ;; which quits Emacs. Change helm command prefix to "M-h".

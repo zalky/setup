@@ -4,6 +4,8 @@
 (require 'helm)
 (require 'helm-config)
 
+(helm-mode t)
+
 (when (executable-find "curl")
   (setq helm-google-suggest-use-curl-p t))
 
@@ -35,3 +37,10 @@
 (setq helm-swoop-pre-input-function (lambda () ""))
 
 (setq helm-truncate-lines t)
+
+;; In helm, do not use 
+(dolist (n (number-sequence 1 9))
+  (define-key helm-map (kbd (format "M-%s" n))
+    `(lambda ()
+       (interactive)
+       (helm-select-nth-action ,(1- n)))))
