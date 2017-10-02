@@ -340,6 +340,7 @@
  '(magit-section-highlight ((t nil)))
  '(magit-tag ((t (:inherit font-lock-constant-face))))
  '(match ((t (:inherit (link highlight) :underline nil :weight bold))))
+ '(mmm-default-submode-face ((t nil)))
  '(mode-line ((t (:background "#a0a0a0" :foreground "#595959" :box (:line-width 1 :color "#a0a0a0")))))
  '(mode-line-inactive ((t (:inherit mode-line :background "#a0a0a0" :foreground "#c0c0c0" :box (:line-width 1 :color "#a0a0a0") :weight light))))
  '(org-agenda-done ((t (:foreground "PaleGreen"))))
