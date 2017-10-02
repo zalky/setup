@@ -34,15 +34,6 @@
     ;; Provides refactoring support for clojure.
     clj-refactor
 
-    ;; ;; allow ido usage in as many contexts as possible. see
-    ;; ;; workflow.el for a description of ido
-    ;; ido-ubiquitous
-
-    ;; ;; Enhances M-x to allow easier execution of commands. Provides a
-    ;; ;; filterable list of possible commands in the minibuffer
-    ;; ;; http://www.emacswiki.org/emacs/Smex
-    ;; smex
-
     ;; Emacs incremental completion and selection narrowing framework
     ;; https://emacs-helm.github.io/helm/
     helm
@@ -106,9 +97,6 @@
 
 ;; Prevent semantic from littering directories with cache files
 (setq semanticdb-default-save-directory "~/.emacs.d/semanticdb/")
-
-;; Conifgure Emacs Code Browser
-;; (load "ecb-config.el")
 
 ;; Load documentation system
 (require 'info)

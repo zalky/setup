@@ -76,7 +76,6 @@
 ;;;; Helm
 
 (when (require 'helm nil 'noerror)
-  (global-set-key (kbd "M-m") 'smex)
   (global-set-key (kbd "M-x") 'helm-M-x)
   (global-set-key (kbd "M-y") 'helm-show-kill-ring)
   (global-set-key (kbd "C-x C-b") 'helm-mini)
@@ -93,7 +92,7 @@
   (define-key helm-map (kbd "M-r") 'backward-word)
 
   ;; Without this, we cannot access helm-M-x in terminals.
-  (add-hook 'term-mode-nook
+  (add-hook 'term-mode-hook
             (lambda ()
               (define-key term-raw-map (kbd "M-x") 'helm-M-x)))
 
