@@ -73,6 +73,12 @@
 
 (global-set-key (kbd "C-;") 'toggle-comment-on-line)
 
+;; IELM Keybindings
+(eval-after-load 'ielm
+  '(progn
+     (define-key ielm-map (kbd "M-r") 'backward-word)
+     (define-key ielm-map (kbd "C-j") 'electric-newline-and-maybe-indent)))
+
 ;;;; Helm
 
 (when (require 'helm nil 'noerror)

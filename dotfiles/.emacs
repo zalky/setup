@@ -379,5 +379,7 @@
  '(swiper-match-face-2 ((t (:inherit isearch-lazy-highlight-face))))
  '(swiper-match-face-3 ((t (:inherit isearch-lazy-highlight-faec))))
  '(swiper-match-face-4 ((t (:inherit isearch-lazy-highlight-face))))
- '(vertical-border ((t (:foreground "#a9a9a9")))))
+ '(vertical-border ((t (:foreground "#a9a9a9"))))
+ '(wgrep-face ((t (:inherit diff-added-bg))))
+ '(wgrep-reject-face ((t (:inherit font-lock-warning-face)))))
 

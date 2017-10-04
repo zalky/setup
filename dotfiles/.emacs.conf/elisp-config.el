@@ -8,8 +8,3 @@
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
-
-;; IELM Keybindings
-(eval-after-load 'ielm
-  '(progn
-     (define-key ielm-map (kbd "M-r") 'backward-word)))

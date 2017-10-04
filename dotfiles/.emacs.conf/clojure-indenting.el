@@ -25,6 +25,7 @@
 
 (defvar third-party-let-tags
   '(p
+    bind
     profile
     if-conform
     symbol-macrolet))

@@ -6,6 +6,10 @@
 ;; Don't highlight space inside newly created s-exps.
 (setq sp-highlight-pair-overlay nil)
 
+;; Use smartparens in the minibuffer. Useful for `M-:`.
+(setq sp-ignore-modes-list
+      (delete 'minibuffer-inactive-mode sp-ignore-modes-list))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; keybinding management
 (define-key smartparens-mode-map (kbd "C-M-f") 'sp-forward-sexp)
