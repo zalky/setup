@@ -12,3 +12,5 @@
 
 (add-hook 'indium-repl-mode-hook 'disable-company-mode)
 
+(setq coffee-tab-width 2)
+

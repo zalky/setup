@@ -44,3 +44,7 @@
     `(lambda ()
        (interactive)
        (helm-select-nth-action ,(1- n)))))
+
+(setq helm-display-header-line nil)
+(setq helm-full-frame nil)
+(setq helm-prevent-escaping-from-minibuffer nil)

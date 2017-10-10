@@ -47,6 +47,9 @@
     ;; Node.js integration
     indium
 
+    ;; nlinum mode faster, more efficient than linum
+    nlinum
+
     ;; Vue integration
     vue-mode
 
@@ -65,9 +68,15 @@
     ;; git integration
     magit))
 
+;; (package-selected-packages
+;;  (quote
+;;   (helm helm-projectile cider-eval-sexp-fu tagedit smex smartparens projectile magit ido-ubiquitous highlight-numbers helm-swoop company clojure-mode-extra-font-locking)))
+
 (when (boundp 'package-pinned-packages)
   (setq package-pinned-packages
-        '((indium . "melpa"))))
+        '((indium . "melpa")
+          (clj-refactor . "melpa")
+          (vue-mode . "melpa"))))
 
 ;; Load and activate emacs packages. Do this first so that the
 ;; packages are loaded before you start trying to modify them.  This

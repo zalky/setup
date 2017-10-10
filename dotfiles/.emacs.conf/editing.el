@@ -83,3 +83,6 @@
     (end-of-line)
     (while (< (current-column) 70)
       (insert comment-start))))
+
+;; Ensure company mode is disabled globally.
+(global-company-mode nil)

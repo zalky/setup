@@ -8,8 +8,6 @@
 (setq my-fgcolor "#303030");; "#b9b9b9" ;; "#cccccc"
 (setq my-bgcolor "#c0c0c0") ;; "#303030") ;; "#303030
 
-(setq linum-format " %5d")
-
 ;; Set default frame attributes and initial position
 (setq my-frame-alist `((width . 90)
                        (height . 46)))
@@ -68,15 +66,26 @@
                     :weight 'bold
                     :foreground "gray30")
 
-(setq ansi-term-color-vector [default
-                               default
-                               font-lock-type-face
-                               font-lock-variable-name-face
-                               font-lock-comment-face
-                               font-lock-function-name-face
-                               font-lock-string-face
-                               font-lock-constant-face
-                               font-lock-builtin-face])
+(setq ansi-color-names-vector
+      ["#303030"
+       "#a55684"
+       "#197590"
+       "thistle1"
+       "#0a7bcc"
+       "orchid4"
+       "#607683"
+       "gray80"])
+
+(setq ansi-term-color-vector
+      [default
+        default
+        font-lock-type-face
+        font-lock-variable-name-face
+        font-lock-comment-face
+        font-lock-function-name-face
+        font-lock-string-face
+        font-lock-constant-face
+        font-lock-builtin-face])
 
 (defface diff-added-bg
   '((t :background "#aebbb1"))
