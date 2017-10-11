@@ -187,6 +187,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#303030" "#a55684" "#197590" "thistle1" "#0a7bcc" "orchid4" "#607683" "gray80"])
  '(cursor-type t)
  '(package-selected-packages
    (quote

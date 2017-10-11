@@ -66,16 +66,6 @@
                     :weight 'bold
                     :foreground "gray30")
 
-(setq ansi-color-names-vector
-      ["#303030"
-       "#a55684"
-       "#197590"
-       "thistle1"
-       "#0a7bcc"
-       "orchid4"
-       "#607683"
-       "gray80"])
-
 (setq ansi-term-color-vector
       [default
         default

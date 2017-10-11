@@ -7,10 +7,5 @@
 (setq js-indent-level 2)
 (setq js2-strict-missing-semi-warning nil)
 
-(defun disable-company-mode ()
-  (company-mode -1))
-
-(add-hook 'indium-repl-mode-hook 'disable-company-mode)
-
 (setq coffee-tab-width 2)
 

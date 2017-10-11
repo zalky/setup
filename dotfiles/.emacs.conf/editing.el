@@ -5,8 +5,10 @@
 ;; http://www.gnu.org/software/emacs/manual/html_node/elisp/Backup-Files.html
 (setq backup-directory-alist `(("." . ,(concat user-emacs-directory
                                                "backups"))))
-(setq auto-save-default nil)
 
+;; Don't do this, can leak sensitive data.
+(setq make-backup-files nil)
+(setq auto-save-default nil)
 (setq create-lockfiles nil)
 
 ;; Set language environment and input method
@@ -86,3 +88,4 @@
 
 ;; Ensure company mode is disabled globally.
 (global-company-mode nil)
+(setq company-idle-delay nil)
