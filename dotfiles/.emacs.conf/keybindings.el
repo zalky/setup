@@ -35,6 +35,9 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x g") 'ctl-x-5-prefix)
 
+;; Editing
+(global-set-key (kbd "C-M-q") 'unfill-paragraph)
+
 ;; General movement
 (global-set-key (kbd "S-C-M-j") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-M-l") 'enlarge-window-horizontally)

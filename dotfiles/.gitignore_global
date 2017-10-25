@@ -15,6 +15,7 @@ Thumbs.db
 !/.gitignore
 figwheel_server.log
 .projectile
-log/
+/log/
 db.bak*
 *flymd.*
+/node_modules

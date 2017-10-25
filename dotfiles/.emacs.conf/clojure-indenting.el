@@ -64,19 +64,34 @@
 
 (defvar my-fn-tags
   '(respond-to
+    request
+    assoc-in
+    update-in
     pod-safe-vars
     deflogic
     go-comm
     err!))
 
 (defvar third-party-fn-tags
-  '(or-join
+  '(add-watch
+    or-join
     not-join
     match
     fdef
     deftask
     transact!
-    update!))
+    update!
+    chsk-send!))
+
+(defvar REST-tags
+  '(GET
+    POST
+    PUT
+    DELETE
+    HEAD
+    OPTIONS
+    PATCH
+    ANY))
 
 ;; From om.dom/tags
 (defvar dom-tags
@@ -140,7 +155,7 @@
     li
     link
     main
-    map
+    ;; map
     mark
     menu
     menuitem
@@ -176,6 +191,7 @@
     table
     tbody
     td
+    textarea
     tfoot
     th
     thead
@@ -295,6 +311,7 @@
 (dolist (tag (append third-party-fn-tags
                      my-fn-tags
                      grid-tags
+                     REST-tags
                      dom-tags
                      svg-tags
                      bootstrap-tags))

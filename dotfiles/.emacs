@@ -365,6 +365,7 @@
  '(show-paren-match ((t (:background "#999999" :foreground "#c0c0c0"))))
  '(show-paren-mismatch ((t (:background "PaleVioletRed4" :foreground "#c0c0c0"))))
  '(smerge-base ((t (:inherit diff-changed))))
+ '(smerge-markers ((t (:inherit default))))
  '(smerge-mine ((t (:inherit diff-removed))))
  '(smerge-other ((t (:inherit diff-added))))
  '(smerge-refined-added ((t (:inherit diff-added))))
