@@ -62,26 +62,37 @@
 
 ;; Function forms: :defn
 
+(defvar builtin-fn-tags
+  '(assoc
+    update
+    assoc-in
+    update-in
+    swap!
+    reset!
+    add-watch
+    load))
+
 (defvar my-fn-tags
   '(respond-to
     request
-    assoc-in
-    update-in
     pod-safe-vars
     deflogic
     go-comm
-    err!))
+    err!
+    scoped-reaction))
 
 (defvar third-party-fn-tags
-  '(add-watch
-    or-join
+  '(or-join
     not-join
     match
     fdef
     deftask
     transact!
     update!
-    chsk-send!))
+    chsk-send!
+    reaction
+    make-reaction
+    run!))
 
 (defvar REST-tags
   '(GET
@@ -92,6 +103,15 @@
     OPTIONS
     PATCH
     ANY))
+
+(defvar re-frame-tags
+  '(reg-event-db
+    reg-event-fx
+    reg-sub
+    reg-sub-raw
+    reg-fx
+    reg-global-interceptor
+    reg-workflow))
 
 ;; From om.dom/tags
 (defvar dom-tags
@@ -155,7 +175,6 @@
     li
     link
     main
-    ;; map
     mark
     menu
     menuitem
@@ -172,7 +191,6 @@
     picture
     pre
     progress
-    q
     rp
     rt
     ruby
@@ -308,10 +326,12 @@
     tooltip
     uncontrolled-tooltip))
 
-(dolist (tag (append third-party-fn-tags
+(dolist (tag (append builtin-fn-tags
                      my-fn-tags
+                     third-party-fn-tags
                      grid-tags
                      REST-tags
+                     re-frame-tags
                      dom-tags
                      svg-tags
                      bootstrap-tags))

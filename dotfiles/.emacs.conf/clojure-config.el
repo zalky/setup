@@ -7,6 +7,12 @@
 ;; A little more syntax highlighting
 (require 'clojure-mode-extra-font-locking)
 
+;; But don't show unused reader conditionals. This is done based on
+;; repl connection, and you are often not connected with the same repl
+;; as the code you are working on. And for some reason it defaults to
+;; cljs.
+(setq cider-font-lock-reader-conditionals nil)
+
 ;; extra syntax hilighting for clojurec and clojurescript modes.
 (font-lock-add-keywords
  'clojurec-mode
@@ -36,18 +42,30 @@
              "\\>")
     0 font-lock-builtin-face)))
 
-;; syntax hilighting for midje
-(add-hook 'clojure-mode-hook
-          (lambda ()
-            (setq inferior-lisp-program "lein repl")
-            (font-lock-add-keywords
-             nil
-             '(("(\\(facts?\\)"
-                (1 font-lock-keyword-face))
-               ("(\\(background?\\)"
-                (1 font-lock-keyword-face))))
-            (define-clojure-indent (fact 1))
-            (define-clojure-indent (facts 1))))
+(defvar my-clojure-keywords
+  '("with-let"
+    "with-entity"))
+
+(font-lock-add-keywords
+ 'clojure-mode
+ `((,(concat "(\\(?:\.*/\\)?"
+             (regexp-opt my-clojure-keywords t)
+             "\\>")
+    1 font-lock-keyword-face)))
+
+(font-lock-add-keywords
+ 'clojurec-mode
+ `((,(concat "(\\(?:\.*/\\)?"
+             (regexp-opt my-clojure-keywords t)
+             "\\>")
+    1 font-lock-keyword-face)))
+
+(font-lock-add-keywords
+ 'clojurescript-mode
+ `((,(concat "(\\(?:\.*/\\)?"
+             (regexp-opt my-clojure-keywords t)
+             "\\>")
+    1 font-lock-keyword-face)))
 
 ;; No prefix notation for clojure refactor
 (setq cljr-favor-prefix-notation nil)
