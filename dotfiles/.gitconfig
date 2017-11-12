@@ -1,11 +1,11 @@
-[user]
-	name = zalky
-	email = zalan.k@gmail.com
+GITCONFIG="[user]
+	name = $USERNAME
+	email = $EMAIL
 [core]
 	editor = /Applications/Emacs.app/Contents/MacOS/Emacs-x86_64-10_9 --no-desktop -q --load ~/.emacs.conf/emacs-git.el
-	excludefile = /Users/zalan/.gitignore_global
+	excludefile = $HOME/.gitignore_global
 	autocrlf = false
-	excludesfile = /Users/zalan/.gitignore_global
+	excludesfile = $HOME/.gitignore_global
 [alias]
 	unstage = reset HEAD --
 	last = log -1 HEAD
@@ -16,4 +16,4 @@
 [push]
 	default = simple
 [magit]
-	hideCampaign = true
+	hideCampaign = true"

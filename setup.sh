@@ -6,6 +6,51 @@
 # This setup script symlinks user specific development environment
 # files.
 
+while getopts ":u:e:" opt ; do
+    case $opt in
+        u)
+            USERNAME=$OPTARG
+            ;;
+        e)
+            EMAIL=$OPTARG
+            ;;
+        \?)
+            echo "Invalid Option: -$OPTARG" 1>&2
+            exit 1
+            ;;
+        :)
+            echo "Invalid Option: -$OPTARG requires an argument" 1>&2
+            exit 1
+            ;;
+    esac
+done
+
+if [[ ! $USERNAME ]] ; then
+    echo "use -u to supply a username"
+    exit 1
+fi
+
+if [[ ! $EMAIL ]] ; then
+    echo "use -e to supply an email"
+    exit 1
+fi
+
+# Gitconfig dotfile contians user and email that we do not want in
+# source. People might accidentally start making commits under the
+# wrong identity. User must supply username and email.
+
+source dotfiles/.gitconfig
+
+if [[ -e $HOME/.gitconfig ]] ; then
+    echo "Warning, $HOME/.gitconfig already exists, \
+backing up as $TARGET.$(date +%Y%m%d-%H.%M.%S).setup.bak"
+    mv $HOME/.gitconfig $HOME/.gitconfig.$(date "+%Y%m%d-%H.%M.%S").setup.bak
+fi
+
+echo "$GITCONFIG" > $HOME/.gitconfig
+
+# All other dotfiles can be handled together.
+
 # TODO: This string could mangle for loop if filenames have spaces.
 # Consider implementing as an array.
 
@@ -15,7 +60,6 @@ DOTFILES="\
 .boot/profile.boot \
 .emacs \
 .emacs.conf \
-.gitconfig \
 .gitignore_global \
 .ipython/profile_default \
 .lein/profiles.clj
