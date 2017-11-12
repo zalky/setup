@@ -6,6 +6,12 @@
 # This setup script symlinks user specific development environment
 # files.
 
+# However, gitconfig dotfile contians user and email that we do not
+# want symlinked to source. People might accidentally start making
+# commits under the wrong identity. Therefore, get git username and
+# email from command line options and generate gitconfig rather than
+# symlink. This means gitconfig is not symlinked.
+
 while getopts ":u:e:" opt ; do
     case $opt in
         u)
@@ -35,10 +41,9 @@ if [[ ! $EMAIL ]] ; then
     exit 1
 fi
 
-# Gitconfig dotfile contians user and email that we do not want in
-# source. People might accidentally start making commits under the
-# wrong identity. User must supply username and email.
-
+# gitconfig stored in safe format in source. All user specific
+# parameters are referenced by $USERNAME and $EMAIL. See file for
+# details.
 source dotfiles/.gitconfig
 
 if [[ -e $HOME/.gitconfig ]] ; then
