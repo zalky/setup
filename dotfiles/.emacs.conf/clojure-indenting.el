@@ -23,6 +23,10 @@
 
 ;; Let forms: 1
 
+(defvar my-let-tags
+  '(gen-schema
+    gen-partition))
+
 (defvar third-party-let-tags
   '(p
     bind
@@ -43,7 +47,8 @@
     display-name
     will-unmount))
 
-(dolist (tag (append third-party-let-tags
+(dolist (tag (append my-let-tags
+                     third-party-let-tags
                      om-lifecycle-tags))
   (put-clojure-indent tag 1))
 
@@ -111,7 +116,10 @@
     reg-sub-raw
     reg-fx
     reg-global-interceptor
-    reg-workflow))
+    reg-workflow
+    reg-pull
+    reg-attr
+    reg-link))
 
 ;; From om.dom/tags
 (defvar dom-tags
