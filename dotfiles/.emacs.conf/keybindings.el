@@ -39,6 +39,8 @@
 (global-set-key (kbd "C-M-q") 'unfill-paragraph)
 
 ;; General movement
+(global-set-key (kbd "C-.") 'scroll-left)
+(global-set-key (kbd "C-,") 'scroll-right)
 (global-set-key (kbd "S-C-M-j") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-M-l") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-M-k") 'shrink-window)

@@ -84,7 +84,10 @@
     deflogic
     go-comm
     err!
-    scoped-reaction))
+    scoped-reaction
+    page
+    centered-box
+    user-form))
 
 (defvar third-party-fn-tags
   '(or-join
@@ -97,7 +100,9 @@
     chsk-send!
     reaction
     make-reaction
-    run!))
+    run!
+    listen
+    validate))
 
 (defvar REST-tags
   '(GET
