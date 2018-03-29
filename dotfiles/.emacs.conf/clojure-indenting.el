@@ -12,6 +12,13 @@
   (extend-instance '(1 :form :form [1]))
   (defprimitive '(2 :form :form [:defn])))
 
+;; Specter forms
+
+(put-clojure-indent 'if-path 1)
+(put-clojure-indent 'cond-path 0)
+(put-clojure-indent 'recursive-path :defn)
+(put-clojure-indent 'multi-path 0)
+
 ;; Body forms: 0
 
 (defvar third-party-body-tags
@@ -32,7 +39,9 @@
     bind
     profile
     if-conform
-    symbol-macrolet))
+    symbol-macrolet
+    if-path
+    for-all))
 
 (defvar om-lifecycle-tags
   '(init-state
@@ -95,8 +104,6 @@
     match
     fdef
     deftask
-    transact!
-    update!
     chsk-send!
     reaction
     make-reaction

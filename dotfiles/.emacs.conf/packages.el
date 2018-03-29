@@ -66,7 +66,10 @@
     highlight-numbers
 
     ;; git integration
-    magit))
+    magit
+
+    ;; Syntax highlighting for sparql files
+    sparql-mode))
 
 ;; (package-selected-packages
 ;;  (quote
@@ -137,3 +140,6 @@
 
   (setq flymd-browser-open-function 'my-flymd-browser-function))
 
+;; Auto-load sparql-mode for files ending in .sparql or .rq
+(add-to-list 'auto-mode-alist '("\\.sparql$" . sparql-mode))
+(add-to-list 'auto-mode-alist '("\\.rq$" . sparql-mode))

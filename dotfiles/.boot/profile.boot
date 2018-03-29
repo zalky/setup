@@ -7,9 +7,3 @@
 (swap! boot.repl/*default-middleware* conj
        'cider.nrepl/cider-middleware
        'refactor-nrepl.middleware/wrap-refactor)
-
-;; Ugh, disable printing of namespaced maps.
-(defmethod print-method clojure.lang.IPersistentMap
-  [m, ^java.io.Writer w]
-  (#'clojure.core/print-meta m w)
-  (#'clojure.core/print-map m #'clojure.core/pr-on w))

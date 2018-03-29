@@ -2,18 +2,18 @@
 
 c = get_config()
 
-c.InteractiveShell.autoindent = False
+c.InteractiveShell.autoindent = True
 c.InteractiveShell.confirm_exit = False
 c.InteractiveShell.deep_reload = False
 c.InteractiveShell.editor = 'emacs'
 c.InteractiveShell.xmode = 'Context'
 
 # Set the color scheme (NoColor, Linux, or LightBG).
-c.TerminalInteractiveShell.colors = 'LightBG'
+# c.TerminalInteractiveShell.colors = 'LightBG'
 
-c.PromptManager.in_template = "{color.DarkGray}In [{count}]: "
-c.PromptManager.out_template = "{color.DarkGray}Out[{count}]: "
-c.PromptManager.in2_template = '   {color.DarkGray}.\\D.: '
+# c.PromptManager.in_template = "{color.DarkGray}In [{count}]: "
+# c.PromptManager.out_template = "{color.DarkGray}Out[{count}]: "
+# c.PromptManager.in2_template = '   {color.DarkGray}.\\D.: '
 
 #------------------------------------------------------------------------------
 # InteractiveShellApp configuration
@@ -61,7 +61,7 @@ c.InteractiveShellApp.exec_lines = ['%autoreload 2']
 # c.InteractiveShellApp.pylab_import_all = True
 
 # A list of dotted module names of IPython extensions to load.
-c.InteractiveShellApp.extensions = ['autoreload', 'line_profiler']
+c.InteractiveShellApp.extensions = ['autoreload']
 
 # Run the module as a script.
 # c.InteractiveShellApp.module_to_run = ''

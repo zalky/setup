@@ -1,5 +1,5 @@
 # ~/.octaverc
-# setenv ("GNUTERM", "X11")
+# setenv("GNUTERM", "X11")
 
 PS1(">> ")
 
