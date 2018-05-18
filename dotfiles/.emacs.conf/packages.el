@@ -59,8 +59,11 @@
     ;; edit html tags like sexps
     tagedit
 
-    ;; fits frame to buffer window
-    fit-frame
+    ;; pythong editing environment
+    elpy
+
+    ;; python conda environments
+    ;; conda
 
     ;; highlight numbers
     highlight-numbers

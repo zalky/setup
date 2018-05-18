@@ -1,27 +1,31 @@
 ;;;; Python specific confuguration settings
 
-(require 'python)
+;; (require 'python)
 
 ;; Configure Python configuration to use ipython
-(setq python-shell-interpreter "ipython")
-(setq python-shell-interpreter-args "-i --simple-prompt")
+;; (setq python-shell-interpreter "ipython")
+;; (setq python-shell-interpreter-args "-i --simple-prompt")
 
-;; If desired, start ipython in pylab mode. But this auto-imports a
-;; bunch of names into global namespace, and convenience is not worth
-;; the tradeoff in namespace confusion.
-;; (setq python-shell-interpreter-args "--pylab")
+(setq python-shell-interpreter "jupyter"
+      python-shell-interpreter-args "console --simple-prompt"
+      python-shell-prompt-detect-failure-warning nil)
 
-;; Keybindings
-(define-key inferior-python-mode-map (kbd "M-r") 'backward-word)
-(define-key inferior-python-mode-map (kbd "M-h") 'comint-history-isearch-backward-regexp)
+(add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter")
 
-(require 'conda)
+(define-key elpy-mode-map (kbd "C-x C-e") 'elpy-shell-send-statement)
+(define-key elpy-mode-map (kbd "C-c C-r") 'elpy-shell-send-region-or-buffer)
+(define-key elpy-mode-map (kbd "C-c C-t") 'elpy-shell-send-top-statement)
+(define-key elpy-mode-map (kbd "C-c C-p") 'elpy-shell-switch-to-shell)
+
+;; (require 'conda)
 ;; if you want interactive shell support, include:
-(conda-env-initialize-interactive-shells)
+;; (conda-env-initialize-interactive-shells)
 ;; if you want eshell support, include:
-(conda-env-initialize-eshell)
+;; (conda-env-initialize-eshell)
 ;; if you want auto-activation (see below for details), include:
-(conda-env-autoactivate-mode t)
+;; (conda-env-autoactivate-mode t)
 
-(custom-set-variables
- '(conda-anaconda-home "~/anaconda3"))
+;; (custom-set-variables
+;;  '(conda-anaconda-home "~/anaconda3"))
+
+(elpy-enable)

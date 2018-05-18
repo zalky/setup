@@ -97,3 +97,6 @@
         ;; This would override `fill-column' if it's an integer.
         (emacs-lisp-docstring-fill-column t))
     (fill-paragraph nil region)))
+
+;; Tramp
+(setq tramp-default-method "ssh")

@@ -1,7 +1,7 @@
 ;;;; Configuration settings for: Navigating Buffers and Windows
 
 ;; "Shrink-wrap" frame to buffer size.
-(require 'fit-frame)
+;;(require 'fit-frame)
 
 ;; Turn on recent file mode so that you can more easily switch to
 ;; recently edited files when you first start emacs

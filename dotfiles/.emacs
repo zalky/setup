@@ -306,6 +306,7 @@
  '(js2-function-call ((t (:inherit default))))
  '(js2-function-param ((t (:inherit font-lock-variable-name-face))))
  '(js2-instance-member ((t (:inherit font-lock-variable-name-face))))
+ '(js2-jsdoc-value ((t (:inherit js2-jsdoc-tag))))
  '(js2-private-function-call ((t (:inherit default))))
  '(js2-private-member ((t (:inherit default))))
  '(js2-warning ((t (:inherit font-lock-warning-face))))
