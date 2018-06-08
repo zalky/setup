@@ -11,7 +11,8 @@
 ;; Set default frame attributes and initial position
 (setq my-frame-alist `((width . 90)
                        (height . 46)
-                       (ns-transparent-titlebar . t)))
+                       (ns-transparent-titlebar . t)
+                       (frame-title-format . "")))
 
 ;; You can specify geometry-related options for the initial frame,
 ;; however they won't take effect until Emacs reads `.emacs', which
@@ -23,24 +24,6 @@
 (set-frame-position (selected-frame) 400 30)
 
 ;; Set face attributes for existing faces (t: default for all frames)
-(set-face-attribute 'default t
-                    :background my-bgcolor
-                    :foreground my-fgcolor
-                    :height 130)
-
-(set-face-attribute 'cursor t
-                    :background "HotPink3"
-                    :foreground "#303030")
-
-(set-face-attribute 'fringe t
-                    :background my-bgcolor
-                    :foreground "#777777")
-
-(set-face-attribute 'region t
-                    :background "grey79")
-
-(set-face-attribute 'secondary-selection t
-                    :background "grey80")
 
 (set-face-attribute 'mode-line-highlight nil)
 
