@@ -198,8 +198,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#c0c0c0" :foreground "#303030" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Fira Mono"))))
- '(border ((t (:background "#b0b0b0" :foreground "#b0b0b0"))))
+ '(default ((t (:inherit nil :stipple nil :background "#d0d0d0" :foreground "#303030" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Fira Mono"))))
+ '(border ((t (:background "#c0c0c0" :foreground "#c0c0c0"))))
  '(cider-debug-code-overlay-face ((t (:inherit highlight))))
  '(cider-fringe-good-face ((t (:inherit highlight))))
  '(cider-reader-conditional-face ((t (:inherit font-lock-comment-face :slant normal))))
@@ -251,7 +251,7 @@
  '(font-lock-string-face ((t (:foreground "#817595"))))
  '(font-lock-type-face ((t (:foreground "#a55684"))))
  '(font-lock-variable-name-face ((t (:foreground "#038a7d"))))
- '(fringe ((t (:inherit default :background "#c0c0c0" :foreground "#777777"))))
+ '(fringe ((t (:inherit default :background "#d0d0d0" :foreground "#777777"))))
  '(git-commit-summary ((t (:inherit font-lock-string-face))))
  '(header-line ((t (:background "#b5b5b5" :foreground "#454545" :box nil))))
  '(helm-M-x-key ((t (:inherit link :underline t))))
@@ -343,8 +343,8 @@
  '(magit-tag ((t (:inherit font-lock-constant-face))))
  '(match ((t (:inherit (link highlight) :underline nil :weight bold))))
  '(mmm-default-submode-face ((t nil)))
- '(mode-line ((t (:background "#b0b0b0" :foreground "#595959" :box (:line-width 4 :color "#b0b0b0")))))
- '(mode-line-inactive ((t (:inherit mode-line :background "#b5b5b5" :foreground "#797979" :box (:line-width 4 :color "#b5b5b5") :weight light))))
+ '(mode-line ((t (:background "#c0c0c0" :foreground "#595959" :box (:line-width 4 :color "#c0c0c0")))))
+ '(mode-line-inactive ((t (:inherit mode-line :background "#c5c5c5" :foreground "#797979" :box (:line-width 4 :color "#c5c5c5") :weight light))))
  '(org-agenda-done ((t (:foreground "PaleGreen"))))
  '(org-column ((t (:background "grey63" :strike-through nil :underline nil :slant normal :weight normal))))
  '(org-column-title ((t (:background "grey63" :underline t :weight bold))))
