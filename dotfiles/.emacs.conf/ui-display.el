@@ -8,23 +8,20 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 
-(setq linum-format " %5d ")
-(setq nlinum-format " %5d ")
-
 (fringe-mode '(18 . 18))
+
+;; Hide frame title
+(setq frame-title-format "")
 
 ;; Show line numbers
 
-;; Do not turn on linum-mode globally
-;; (global-linum-mode 0)
+(defun display-line-numbers ()
+  (display-line-numbers-mode)
+  (setq display-line-numbers-width 3)
+  (setq display-line-numbers-width-start t)
+  (toggle-truncate-lines))
 
-;; Prefer per-mode usage instead.
-(add-hook 'clojure-mode-hook 'nlinum-mode)
-(add-hook 'lisp-mode-hook 'nlinum-mode)
-(add-hook 'emacs-lisp-mode-hook 'nlinum-mode)
-(add-hook 'python-mode-hook 'nlinum-mode)
-(add-hook 'c-mode-hook 'nlinum-mode)
-(add-hook 'sh-mode-hook 'nlinum-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers)
 
 ;; Additional space to put between lines when displaying a buffer.
 ;; The space is measured in pixels...

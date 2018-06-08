@@ -9,9 +9,6 @@
 (when (executable-find "curl")
   (setq helm-google-suggest-use-curl-p t))
 
-;; open helm buffer inside current window, not occupy whole other window
-(setq helm-split-window-in-side-p t)
-
 ;; move to end or beginning of source when reaching top or bottom of source.
 (setq helm-move-to-line-cycle-in-source t)
 
@@ -26,9 +23,6 @@
 
 (setq helm-ff-file-name-history-use-recentf t)
 (setq helm-buffer-max-length 30)
-
-;; If this value is t, split window inside the current window
-(setq helm-swoop-split-with-multiple-windows t)
 
 ;; Face name is `helm-swoop-line-number-face`
 (setq helm-swoop-use-line-number-face t)
@@ -46,5 +40,12 @@
        (helm-select-nth-action ,(1- n)))))
 
 (setq helm-display-header-line nil)
-(setq helm-full-frame nil)
+
 (setq helm-prevent-escaping-from-minibuffer nil)
+
+(setq helm-split-window-default-side 'same)
+;; (setq helm-swoop-split-window-function 'helm-default-display-buffer)
+
+;; Helm window splitting
+(setq helm-swoop-split-direction 'split-window-vertically)
+(setq helm-swoop-split-with-multiple-windows t)

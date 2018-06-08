@@ -3,14 +3,26 @@
 ;; (require 'python)
 
 ;; Configure Python configuration to use ipython
-;; (setq python-shell-interpreter "ipython")
-;; (setq python-shell-interpreter-args "-i --simple-prompt")
+(setq python-shell-interpreter "ipython")
+(setq python-shell-interpreter-args "-i --simple-prompt")
 
-(setq python-shell-interpreter "jupyter"
-      python-shell-interpreter-args "console --simple-prompt"
-      python-shell-prompt-detect-failure-warning nil)
+;; While good, can't easily do plotting in-line in emacs.
+;; (setq python-shell-interpreter "jupyter"
+;;       python-shell-interpreter-args "console --simple-prompt"
+;;       python-shell-prompt-detect-failure-warning nil)
 
-(add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter")
+;(add-to-list 'python-shell-completion-native-disabled-interpreters "jupyter")
+
+(setq elpy-modules
+      '(elpy-module-sane-defaults
+        elpy-module-eldoc
+        elpy-module-flymake
+        elpy-module-highlight-indentation
+        elpy-module-pyvenv
+        elpy-module-yasnippet
+        elpy-module-django))
+
+(elpy-enable)
 
 (define-key elpy-mode-map (kbd "C-x C-e") 'elpy-shell-send-statement)
 (define-key elpy-mode-map (kbd "C-c C-r") 'elpy-shell-send-region-or-buffer)
@@ -27,5 +39,3 @@
 
 ;; (custom-set-variables
 ;;  '(conda-anaconda-home "~/anaconda3"))
-
-(elpy-enable)
