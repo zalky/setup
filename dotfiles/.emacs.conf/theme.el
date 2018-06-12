@@ -25,6 +25,8 @@
 
 ;; Set face attributes for existing faces (t: default for all frames)
 
+;; type face: BF6FC7
+
 (set-face-attribute 'mode-line-highlight nil)
 
 (set-face-attribute 'minibuffer-prompt t

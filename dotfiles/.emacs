@@ -198,7 +198,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#e7e7e7" :foreground "#5a5a5a" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Fira Mono"))))
+ '(default ((t (:inherit nil :stipple nil :background "#e7e7e7" :foreground "#606060" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Fira Mono"))))
  '(border ((t (:foreground "#dddddd"))))
  '(cider-debug-code-overlay-face ((t (:inherit highlight))))
  '(cider-fringe-good-face ((t (:inherit highlight))))
@@ -326,7 +326,7 @@
  '(magit-branch-local ((t (:inherit font-lock-variable-name-face :weight bold))))
  '(magit-branch-remote ((t (:inherit font-lock-type-face :weight bold))))
  '(magit-cherry-equivalent ((t (:inherit font-lock-string-face))))
- '(magit-diff-added ((t (:inherit diff-added))))
+ '(magit-diff-added ((t (:inherit (diff-added-bg font-lock-variable-name-face)))))
  '(magit-diff-added-highlight ((t (:inherit magit-diff-added))))
  '(magit-diff-base ((t (:inherit diff-changed))))
  '(magit-diff-base-highlight ((t (:inherit diff-changed))))
@@ -337,8 +337,8 @@
  '(magit-diff-hunk-heading-highlight ((t nil)))
  '(magit-diff-our ((t (:inherit magit-diff-added))))
  '(magit-diff-our-highlight ((t (:inherit magit-diff-added-highlight))))
- '(magit-diff-removed ((t (:inherit diff-removed))))
- '(magit-diff-removed-highlight ((t (:inherit diff-removed))))
+ '(magit-diff-removed ((t (:inherit (diff-removed-bg font-lock-type-face)))))
+ '(magit-diff-removed-highlight ((t (:inherit magit-diff-removed))))
  '(magit-diff-their ((t (:inherit magit-diff-removed))))
  '(magit-diff-their-highlight ((t (:inherit magit-diff-removedt-highlight))))
  '(magit-header-line ((t (:inherit ##))))
