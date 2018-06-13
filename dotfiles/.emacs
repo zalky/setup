@@ -188,7 +188,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
-   ["#303030" "#AB7ED2" "#00B0A6" "orchid2" "#00ADD7" "#897FBD" "#698BC4" "gray80"])
+   ["#303030" "#C17BD2" "#00B0A6" "orchid2" "#00ADD7" "#897FBD" "#698BC4" "gray80"])
  '(cursor-type t)
  '(package-selected-packages
    (quote
@@ -254,7 +254,7 @@
  '(font-lock-function-name-face ((t (:foreground "#37B3D7"))))
  '(font-lock-keyword-face ((t (:foreground "grey45" :weight bold))))
  '(font-lock-string-face ((t (:foreground "#6DBCA9"))))
- '(font-lock-type-face ((t (:foreground "#AB7ED2"))))
+ '(font-lock-type-face ((t (:foreground "#C17BD2"))))
  '(font-lock-variable-name-face ((t (:foreground "#6BBA71"))))
  '(fringe ((t (:inherit (font-lock-comment-face default) :slant normal))))
  '(git-commit-summary ((t (:inherit font-lock-string-face))))
