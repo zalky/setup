@@ -27,12 +27,6 @@
 
 ;; type face: BF6FC7
 
-(set-face-attribute 'mode-line-highlight nil)
-
-(set-face-attribute 'minibuffer-prompt t
-                    :weight 'bold
-                    :foreground "gray30")
-
 (setq ansi-term-color-vector
       [default
         default

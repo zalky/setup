@@ -192,7 +192,7 @@
  '(cursor-type t)
  '(package-selected-packages
    (quote
-    (conda sparql-mode nlinum magit highlight-numbers fit-frame tagedit vue-mode indium helm-projectile helm-swoop helm clj-refactor cider clojure-mode-extra-font-locking clojure-mode smartparens))))
+    (cider conda sparql-mode nlinum magit highlight-numbers fit-frame tagedit vue-mode indium helm-projectile helm-swoop helm clj-refactor clojure-mode-extra-font-locking clojure-mode smartparens))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -365,7 +365,7 @@
  '(org-level-6 ((t (:inherit outline-6 :weight bold))))
  '(org-level-7 ((t (:inherit outline-7 :weight bold))))
  '(org-level-8 ((t (:inherit outline-8 :weight bold))))
- '(org-mode-line-clock ((t (:inherit mode-line :foreground "gray78"))))
+ '(org-mode-line-clock ((t (:inherit mode-line :foreground "gray60"))))
  '(org-mode-line-clock-overrun ((t (:inherit mode-line :foreground "gray78" :weight bold))))
  '(org-special-keyword ((t (:inherit font-lock-comment-face :foreground "gray50" :slant italic :weight normal))))
  '(org-table ((t (:inherit default))))
