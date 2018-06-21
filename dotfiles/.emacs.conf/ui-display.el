@@ -11,7 +11,7 @@
 (fringe-mode '(18 . 18))
 
 ;; Hide frame title
-(setq frame-title-format "")
+(setq frame-title-format '(""))
 
 ;; Show line numbers
 

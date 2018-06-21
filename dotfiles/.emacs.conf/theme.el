@@ -27,6 +27,8 @@
 
 ;; type face: BF6FC7
 
+(setq cider-stacktrace-frames-background-color "#49494e")
+
 (setq ansi-term-color-vector
       [default
         default

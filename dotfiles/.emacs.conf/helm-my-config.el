@@ -44,8 +44,10 @@
 (setq helm-prevent-escaping-from-minibuffer nil)
 
 (setq helm-split-window-default-side 'same)
+(setq helm-split-window-inside-p nil)
 ;; (setq helm-swoop-split-window-function 'helm-default-display-buffer)
 
 ;; Helm window splitting
 (setq helm-swoop-split-direction 'split-window-vertically)
 (setq helm-swoop-split-with-multiple-windows t)
+
