@@ -19,3 +19,4 @@ figwheel_server.log
 db.bak*
 *flymd.*
 /node_modules
+/resources

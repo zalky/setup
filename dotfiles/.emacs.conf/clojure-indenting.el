@@ -32,7 +32,8 @@
 
 (defvar my-let-tags
   '(gen-schema
-    gen-partition))
+    gen-partition
+    alter-var-root))
 
 (defvar third-party-let-tags
   '(p
@@ -96,7 +97,9 @@
     scoped-reaction
     page
     centered-box
-    user-form))
+    user-form
+    maybe-conformed
+    conform-to))
 
 (defvar third-party-fn-tags
   '(or-join
@@ -127,6 +130,7 @@
     reg-sub
     reg-sub-raw
     reg-fx
+    reg-cofx
     reg-global-interceptor
     reg-workflow
     reg-pull
