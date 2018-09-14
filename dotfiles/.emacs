@@ -117,7 +117,10 @@
 (load "python-config.el")
 
 ;; Configure smartparens
-(load "smartparens-init.el")
+;; (load "smartparens-init.el")
+
+;; Configure paredit
+(load "paredit-config.el")
 
 ;; Configure tools for editing lisp code
 (load "elisp-config.el")

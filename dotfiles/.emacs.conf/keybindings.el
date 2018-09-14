@@ -10,7 +10,11 @@
 (define-key super-keys-minor-mode-map (kbd "M-r") 'backward-word)
 (define-key super-keys-minor-mode-map (kbd "C-b") nil)
 (define-key super-keys-minor-mode-map (kbd "M-b") nil)
-(define-key super-keys-minor-mode-map (kbd "C-M-r") 'sp-backward-sexp)
+
+;; Override some minor modes
+(define-key super-keys-minor-mode-map (kbd "C-M-r") 'paredit-backward)
+;; (define-key super-keys-minor-mode-map (kbd "C-M-r") 'sp-backward-sexp)
+
 
 (define-minor-mode super-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."

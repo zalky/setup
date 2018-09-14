@@ -16,10 +16,12 @@
 ;; The packages you want installed. You can also install these
 ;; manually with M-x package-install Add in your own as you wish:
 (defvar my-packages
-  '(;; load smartparens mode instead of paredit: paredit is useless as
-    ;; there is no way to edit keybindings
+  '(;; Smartparens has some major editing bugs in the cider repl,
+    ;; making the repl very difficult to use. Therefore we prefer
+    ;; paraedit, taking only the `sp-unwrap-sexp` from smartparens
     smartparens
-    
+    paredit
+
     ;; key bindings and code colorization for Clojure
     ;; https://github.com/clojure-emacs/clojure-mode
     clojure-mode
@@ -73,10 +75,6 @@
 
     ;; Syntax highlighting for sparql files
     sparql-mode))
-
-;; (package-selected-packages
-;;  (quote
-;;   (helm helm-projectile cider-eval-sexp-fu tagedit smex smartparens projectile magit ido-ubiquitous highlight-numbers helm-swoop company clojure-mode-extra-font-locking)))
 
 (when (boundp 'package-pinned-packages)
   (setq package-pinned-packages
