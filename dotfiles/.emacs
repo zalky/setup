@@ -193,7 +193,7 @@
  '(cursor-type t)
  '(package-selected-packages
    (quote
-    (cider conda sparql-mode nlinum magit highlight-numbers fit-frame tagedit vue-mode indium helm-projectile helm-swoop helm clj-refactor clojure-mode-extra-font-locking clojure-mode smartparens))))
+    (smartparens cider conda sparql-mode nlinum magit highlight-numbers fit-frame tagedit vue-mode indium helm-projectile helm-swoop helm clj-refactor clojure-mode-extra-font-locking clojure-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -202,6 +202,7 @@
  '(default ((t (:inherit nil :stipple nil :background "#3B3B3D" :foreground "#959595" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Fira Mono"))))
  '(border ((t (:foreground "#363638"))))
  '(cider-debug-code-overlay-face ((t (:inherit highlight))))
+ '(cider-error-highlight-face ((t (:inherit nil :underline (:color "DeepPink2" :style wave)))))
  '(cider-fringe-good-face ((t (:inherit highlight))))
  '(cider-reader-conditional-face ((t (:inherit font-lock-comment-face :slant normal))))
  '(cider-repl-prompt-face ((t (:inherit font-lock-comment-face))))
@@ -224,8 +225,8 @@
  '(diff-added-bg ((t (:background "#4d5452"))))
  '(diff-added-fine-bg ((t (:background "#5a6763"))))
  '(diff-changed ((t (:inherit (font-lock-string-face diff-changed-bg)))))
- '(diff-changed-bg ((t (:background "#E5E9F1"))))
- '(diff-changed-fine-bg ((t (:background "#CBDBF9"))))
+ '(diff-changed-bg ((t (:background "#474555"))))
+ '(diff-changed-fine-bg ((t (:background "#545266"))))
  '(diff-context ((t (:foreground "grey50"))))
  '(diff-refine-added ((t (:inherit (diff-added-fine-bg font-lock-constant-face)))))
  '(diff-refine-changed ((t (:inherit (diff-changed-fine-bg font-lock-string-face)))))
@@ -260,7 +261,7 @@
  '(font-lock-keyword-face ((t (:foreground "#858585" :weight bold))))
  '(font-lock-string-face ((t (:foreground "#839667"))))
  '(font-lock-type-face ((t (:foreground "#AB82C1"))))
- '(font-lock-variable-name-face ((t (:foreground "#549094"))))
+ '(font-lock-variable-name-face ((t (:foreground "#62a583"))))
  '(fringe ((t (:inherit (font-lock-comment-face default) :slant normal))))
  '(git-commit-summary ((t (:inherit font-lock-string-face))))
  '(header-line ((t (:background "#38383a" :box nil))))
@@ -322,7 +323,7 @@
  '(js2-private-member ((t (:inherit default))))
  '(js2-warning ((t (:inherit font-lock-warning-face))))
  '(lazy-highlight ((t (:inherit highlight))))
- '(line-number ((t (:inherit default :foreground "gray28"))))
+ '(line-number ((t (:inherit default :foreground "gray29"))))
  '(line-number-current-line ((t (:inherit line-number))))
  '(link ((t (:foreground "#d688d3" :underline t))))
  '(link-visited ((t (:inherit link :foreground "MediumPurple4"))))
@@ -354,6 +355,8 @@
  '(magit-log-date ((t nil)))
  '(magit-section-heading ((t (:underline t :weight bold))))
  '(magit-section-highlight ((t nil)))
+ '(magit-sequence-head ((t (:inherit font-lock-type-face))))
+ '(magit-sequence-part ((t (:inherit font-lock-variable-name-face))))
  '(magit-tag ((t (:inherit font-lock-variable-name-face))))
  '(match ((t (:inherit (link highlight) :underline nil :weight bold))))
  '(minibuffer-prompt ((t (:inherit font-lock-keyword-face :weight bold))))
@@ -389,11 +392,13 @@
  '(show-paren-match ((t (:background "grey40"))))
  '(show-paren-mismatch ((t (:background "PaleVioletRed4" :foreground "#c0c0c0"))))
  '(smerge-base ((t (:inherit diff-changed))))
+ '(smerge-lower ((t (:inherit diff-added-bg))))
  '(smerge-markers ((t (:inherit default))))
  '(smerge-mine ((t (:inherit diff-removed))) t)
  '(smerge-other ((t (:inherit diff-added))) t)
  '(smerge-refined-added ((t (:inherit diff-added))))
  '(smerge-refined-removed ((t (:inherit diff-removed))))
+ '(smerge-upper ((t (:inherit diff-removed-bg))))
  '(speedbar-tag-face ((t (:inherit link :underline nil))))
  '(swiper-line-face ((t (:inherit highlight))))
  '(swiper-match-face-2 ((t (:inherit isearch-lazy-highlight-face))))
@@ -403,7 +408,8 @@
  '(vertical-border ((t (:inherit border))))
  '(wgrep-face ((t (:inherit diff-added-bg))))
  '(wgrep-reject-face ((t (:inherit font-lock-warning-face))))
- '(widget-field ((t (:background "grey30")))))
+ '(widget-field ((t (:background "grey30"))))
+ '(word-count-marker-face ((t nil)) t))
 
 
 
