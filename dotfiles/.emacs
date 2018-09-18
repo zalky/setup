@@ -116,17 +116,17 @@
 ;; Pythong tools
 (load "python-config.el")
 
-;; Configure smartparens
-;; (load "smartparens-init.el")
-
-;; Configure paredit
-(load "paredit-config.el")
-
 ;; Configure tools for editing lisp code
 (load "elisp-config.el")
 
 ;; Configure tools for editing clojure
 (load "clojure-config.el")
+
+;; Configure smartparens
+;; (load "smartparens-init.el")
+
+;; Configure paredit
+(load "paredit-config.el")
 
 ;; Configure tools for editing javascript
 (load "js-config.el")

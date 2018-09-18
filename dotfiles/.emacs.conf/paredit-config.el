@@ -1,7 +1,7 @@
 
 ;; Require smartparens just for `sp-unwrap-sexp`
 (require 'smartparens)
-
+(require 'cider)
 (require 'paredit)
 
 (add-hook 'lisp-mode-hook #'paredit-mode)
@@ -15,7 +15,8 @@
 (define-key paredit-mode-map (kbd "C-M-(") 'paredit-backward-slurp-sexp)
 (define-key paredit-mode-map (kbd "C-M-)") 'paredit-backward-barf-sexp)
 (define-key paredit-mode-map (kbd "C-M-<backspace>") 'sp-unwrap-sexp)
-(define-key paredit-mode-map (kbd "C-M-S-<backspace>") 'paredit-splice-sexp)
+(define-key paredit-mode-map (kbd "C-M-S-<backspace>") 'sp-unwrap-sexp)
+(define-key cider-mode-map (kbd "C-M-i") 'paredit-forward-down)
 (define-key paredit-mode-map (kbd "C-M-i") 'paredit-forward-down)
 (define-key paredit-mode-map (kbd "C-M-u") 'paredit-backward-up)
 (define-key paredit-mode-map (kbd "C-M-o") 'paredit-backward-down)
