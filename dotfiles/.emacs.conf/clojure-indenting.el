@@ -135,7 +135,8 @@
     reg-workflow
     reg-pull
     reg-attr
-    reg-link))
+    reg-link
+    reg-summary))
 
 ;; From om.dom/tags
 (defvar dom-tags
