@@ -50,4 +50,3 @@
 ;; Helm window splitting
 (setq helm-swoop-split-direction 'split-window-vertically)
 (setq helm-swoop-split-with-multiple-windows t)
-

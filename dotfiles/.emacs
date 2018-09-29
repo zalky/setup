@@ -132,7 +132,7 @@
 (load "js-config.el")
 
 ;;;; Global Key-Bindings
-(load "keybindings.el")
+(load "global-keybindings.el")
 
 
 ;;;; Workarounds

@@ -144,3 +144,14 @@
 ;; Auto-load sparql-mode for files ending in .sparql or .rq
 (add-to-list 'auto-mode-alist '("\\.sparql$" . sparql-mode))
 (add-to-list 'auto-mode-alist '("\\.rq$" . sparql-mode))
+
+;; Shows all options when running apropos. For more info,
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Apropos.html
+(setq apropos-do-all t)
+
+;; Ensure company mode is disabled globally.
+(global-company-mode nil)
+(setq company-idle-delay nil)
+
+;; Tramp
+(setq tramp-default-method "ssh")

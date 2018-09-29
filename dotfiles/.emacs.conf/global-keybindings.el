@@ -35,12 +35,12 @@
 (global-set-key (kbd "C-M-:") 'uncomment-region)
 (global-set-key (kbd "C-x C-r") 'rename-buffer)
 
-;; Shows a list of buffers
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-x g") 'ctl-x-5-prefix)
-
 ;; Editing
 (global-set-key (kbd "C-M-q") 'unfill-paragraph)
+(global-set-key (kbd "C-;") 'toggle-comment-on-line)
+
+;; Shows a list of buffers
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; General movement
 (global-set-key (kbd "C-.") 'scroll-left)
@@ -60,15 +60,8 @@
 
 (global-set-key (kbd "M-t") 'tab-to-tab-stop)
 
+;; Magit keybindings
 (global-set-key (kbd "C-c g") 'magit-status)
-
-;; Org-mode shortcuts
-(when (require 'org nil 'noerror)
- (define-key org-mode-map (kbd "C-M-n") 'outline-next-visible-heading)
- (define-key org-mode-map (kbd "C-M-p") 'outline-previous-visible-heading)
-
- (define-key org-mode-map (kbd "C-c l") 'org-store-link)
- (define-key org-mode-map (kbd "C-c a") 'org-agenda))
 
 ;; Change mac command keys
 (setq mac-option-key-is-meta t)
@@ -78,15 +71,7 @@
 
 ;; Key binding to use "hippie expand" for text autocompletion
 ;; http://www.emacswiki.org/emacs/HippieExpand
-(global-set-key (kbd "M-/") 'hippie-expand)
-
-(global-set-key (kbd "C-;") 'toggle-comment-on-line)
-
-;; IELM Keybindings
-(eval-after-load 'ielm
-  '(progn
-     (define-key ielm-map (kbd "M-r") 'backward-word)
-     (define-key ielm-map (kbd "C-j") 'electric-newline-and-maybe-indent)))
+(global-set-key (kbd "M-j") 'hippie-expand)
 
 ;;;; Helm
 

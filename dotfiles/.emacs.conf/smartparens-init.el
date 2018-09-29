@@ -1,7 +1,7 @@
 ;;;;;;;;;
 ;; global
 (require 'smartparens-config)
-(smartparens-global-mode 1)
+(smartparens-global-mode 0)
 
 ;; Don't highlight space inside newly created s-exps.
 (setq sp-highlight-pair-overlay nil)

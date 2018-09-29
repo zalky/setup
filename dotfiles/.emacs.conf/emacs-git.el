@@ -19,7 +19,7 @@
 
 ;; Configure smartparens
 (load "smartparens-init.el")
-(load "keybindings.el")
+(load "global-keybindings.el")
 (load "ui-display.el") 
 (load "theme.el")
  
