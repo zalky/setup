@@ -43,6 +43,20 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 ;; General movement
+
+(defun next-line-3 ()
+  (interactive)
+  (setq this-command 'next-line)
+  (next-line 3))
+
+(defun previous-line-3 ()
+  (interactive)
+  (setq this-command 'previous-line)
+  (previous-line 3))
+
+(global-set-key (kbd "M-n") 'next-line-3)
+(global-set-key (kbd "M-p") 'previous-line-3)
+
 (global-set-key (kbd "C-.") 'scroll-left)
 (global-set-key (kbd "C-,") 'scroll-right)
 (global-set-key (kbd "S-C-M-j") 'shrink-window-horizontally)
@@ -62,6 +76,7 @@
 
 ;; Magit keybindings
 (global-set-key (kbd "C-c g") 'magit-status)
+(global-set-key (kbd "C-c b") 'magit-blame)
 
 ;; Change mac command keys
 (setq mac-option-key-is-meta t)

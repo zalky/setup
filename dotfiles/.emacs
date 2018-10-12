@@ -331,7 +331,7 @@
  '(link ((t (:foreground "#d688d3" :underline t))))
  '(link-visited ((t (:inherit link :foreground "MediumPurple4"))))
  '(linum ((t (:inherit default :foreground "#a0a0a0"))))
- '(magit-blame-heading ((t (:inherit header-line))))
+ '(magit-blame-heading ((t (:inherit (font-lock-comment-face header-line)))))
  '(magit-branch-current ((t (:inherit magit-branch-local))))
  '(magit-branch-local ((t (:inherit font-lock-string-face :weight bold))))
  '(magit-branch-remote ((t (:inherit font-lock-function-name-face :weight bold))))

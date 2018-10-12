@@ -20,7 +20,7 @@
 (define-key smartparens-mode-map (kbd "C-M-S-d") 'sp-backward-down-sexp)
 (define-key smartparens-mode-map (kbd "C-M-u") 'sp-up-sexp)
 (define-key smartparens-mode-map (kbd "C-M-S-u") 'sp-backward-up-sexp)
-(define-key smartparens-mode-map (kbd "C-M-k") 'sp-kill-sexp)
+(define-key smartparens-mode-map (kbd "C-M-k") 'kill-sexp)
 (define-key smartparens-mode-map (kbd "C-M-w") 'sp-copy-sexp)
 (define-key smartparens-mode-map (kbd "C-)") 'sp-forward-slurp-sexp)
 (define-key smartparens-mode-map (kbd "C-(") 'sp-forward-barf-sexp)
