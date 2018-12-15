@@ -42,7 +42,8 @@
     if-conform
     symbol-macrolet
     if-path
-    for-all))
+    for-all
+    simple-benchmark))
 
 (defvar om-lifecycle-tags
   '(init-state
@@ -99,7 +100,10 @@
     centered-box
     user-form
     maybe-conformed
-    conform-to))
+    conform-to
+    assocn
+    assoc-inn
+    update-inn))
 
 (defvar third-party-fn-tags
   '(or-join
@@ -198,7 +202,7 @@
     label
     legend
     li
-    link
+    ;; link
     main
     mark
     menu

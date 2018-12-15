@@ -34,4 +34,5 @@
           #'progn-paredit-space-for-delimiter-p)
 
 (add-hook 'prog-mode-hook #'paredit-mode)
+(add-hook 'cider-repl-mode-hook #'paredit-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'paredit-mode)

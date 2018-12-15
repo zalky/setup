@@ -11,7 +11,8 @@ while getopts ":a:t:u:b:y:" opt ; do
         b)
             album=$OPTARG
             ;;
-        y)  year=$OPTARG
+        y)
+            year=$OPTARG
             ;;
         u)
             url=$OPTARG
@@ -46,3 +47,20 @@ fi
 if [[ $year ]] ; then
     id3v2 -y "$year" "$file"
 fi
+
+# To list available formats
+# youtube-dl -F <url>
+
+# 249          webm       audio only DASH audio   68k , opus @ 50k, 120.86MiB
+# 251          webm       audio only DASH audio  174k , opus @160k, 318.68MiB
+# 17           3gp        176x144    small , mp4v.20.3, mp4a.40.2@ 24k, 160.49MiB
+# 36           3gp        320x180    small , mp4v.20.3, mp4a.40.2, 477.47MiB
+# 18           mp4        640x360    medium , avc1.42001E, mp4a.40.2@ 96k, 875.13MiB (best)
+# ...
+
+# To get a particular format:
+
+# youtube-dl -f 251 <url>
+
+# To convert an input file into an mp3:
+# ffmpeg -i in.webm -ss 01:42:44.00 -t 00:03:39.00 -q:a 0 -map a out.mp3
