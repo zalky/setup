@@ -45,6 +45,7 @@
 (defvar my-clojure-keywords
   '("with-let"
     "with-entity"
+    "with-ref"
     "with-uuids"))
 
 (font-lock-add-keywords
