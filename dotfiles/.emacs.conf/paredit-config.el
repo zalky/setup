@@ -16,6 +16,11 @@
 (define-key paredit-mode-map (kbd "C-M-o") 'paredit-backward-down)
 (define-key paredit-mode-map (kbd "C-M-p") 'paredit-forward-up)
 
+;; This is a workaround for force curly brace matching in all contexts
+;; where paredit mode is active
+(define-key paredit-mode-map (kbd "{") 'paredit-open-curly)
+(define-key paredit-mode-map (kbd "}") 'paredit-close-curly)
+
 (defvar lisp-modes
   '(lisp-mode
     emacs-lisp-mode
