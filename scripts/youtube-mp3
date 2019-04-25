@@ -64,3 +64,4 @@ fi
 
 # To convert an input file into an mp3:
 # ffmpeg -i in.webm -ss 01:42:44.00 -t 00:03:39.00 -q:a 0 -map a out.mp3
+# time can be mm:ss format too

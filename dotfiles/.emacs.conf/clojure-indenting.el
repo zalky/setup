@@ -32,8 +32,7 @@
 
 (defvar my-let-tags
   '(gen-schema
-    gen-partition
-    alter-var-root))
+    gen-partition))
 
 (defvar third-party-let-tags
   '(p
@@ -79,13 +78,7 @@
 ;; Function forms: :defn
 
 (defvar builtin-fn-tags
-  '(assoc
-    update
-    assoc-in
-    update-in
-    swap!
-    reset!
-    add-watch
+  '(add-watch
     load))
 
 (defvar my-fn-tags

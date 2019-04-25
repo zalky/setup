@@ -103,3 +103,7 @@
 ;; Do not use Mac OS X native fullscreen, too buggy for mouse capture,
 ;; and workspace keeps changing position.
 ;; (setq ns-use-native-fullscreen nil)
+
+;; When quiting magit window, do not restore all windows, just restore
+;; the replaced window
+(setq-default magit-bury-buffer-function 'magit-mode-quit-window)

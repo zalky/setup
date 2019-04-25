@@ -196,7 +196,7 @@
  '(cursor-type t)
  '(package-selected-packages
    (quote
-    (smartparens cider conda sparql-mode nlinum magit highlight-numbers fit-frame tagedit vue-mode indium helm-projectile helm-swoop helm clj-refactor clojure-mode-extra-font-locking clojure-mode))))
+    (cider-decompile ac-cider smartparens conda sparql-mode nlinum magit highlight-numbers fit-frame tagedit vue-mode indium helm-projectile helm-swoop helm clj-refactor clojure-mode-extra-font-locking clojure-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -231,6 +231,8 @@
  '(diff-changed-bg ((t (:background "#474555"))))
  '(diff-changed-fine-bg ((t (:background "#545266"))))
  '(diff-context ((t (:foreground "grey50"))))
+ '(diff-file-header ((t (:inherit magit-diff-file-heading))))
+ '(diff-header ((t (:inherit magit-diff-file-heading))))
  '(diff-refine-added ((t (:inherit (diff-added-fine-bg font-lock-constant-face)))))
  '(diff-refine-changed ((t (:inherit (diff-changed-fine-bg font-lock-string-face)))))
  '(diff-refine-removed ((t (:inherit (font-lock-function-name-face diff-removed-fine-bg)))))

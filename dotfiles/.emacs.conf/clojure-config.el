@@ -79,6 +79,9 @@
 
 ;;;; Cider
 
+;; cider repl prompt
+(setq-default cider-repl-prompt-function 'cider-repl-prompt-lastname)
+
 ;; use pprint by default to print to repl
 (setq cider-repl-use-pretty-printing t)
 
