@@ -11,3 +11,7 @@ SCRIPTS="$HOME/src/scripts"
 export PATH="$DATOMIC_HOME/bin:$BIN:$SCRIPTS:/usr/local/sbin:$PATH"
 
 export PATH="$HOME/anaconda3/bin:$PATH"
+
+# Aliases
+
+alias rsync-backup="rsync -avvz --partial --progress --delete"

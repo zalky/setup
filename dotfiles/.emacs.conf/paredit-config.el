@@ -41,3 +41,4 @@
 (add-hook 'prog-mode-hook #'paredit-mode)
 (add-hook 'cider-repl-mode-hook #'paredit-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'paredit-mode)
+(add-hook 'inferior-python-mode-hook #'paredit-mode)
