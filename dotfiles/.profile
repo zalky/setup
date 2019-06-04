@@ -15,3 +15,7 @@ export PATH="$HOME/anaconda/bin:$PATH"
 
 # added by Anaconda3 5.1.0 installer
 export PATH="/Users/zalan/anaconda3/bin:$PATH"
+
+# Aliases
+
+alias rsync-backup="rsync -avvz --partial --progress --delete"

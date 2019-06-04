@@ -10,7 +10,11 @@ SCRIPTS="$HOME/src/scripts"
 
 export PATH="$DATOMIC_HOME/bin:$BIN:$SCRIPTS:/usr/local/sbin:$PATH"
 
-export PATH="$HOME/anaconda3/bin:$PATH"
+# added by Anaconda2 4.3.1 installer
+export PATH="$HOME/anaconda/bin:$PATH"
+
+# added by Anaconda3 5.1.0 installer
+export PATH="/Users/zalan/anaconda3/bin:$PATH"
 
 # Aliases
 
