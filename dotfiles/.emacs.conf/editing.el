@@ -75,3 +75,40 @@
   (interactive)
   (comment-or-uncomment-region (line-beginning-position)
                                (line-end-position)))
+
+;; (defun dired-get-size ()
+;;   "Asynchronously calculates the size of marked files and
+;; displays them plus total to buffer."
+;;   (interactive)
+;;   (let* ((help-buffer "*Dired Size*")
+;;          (files (dired-get-marked-files))
+;;          (du-command (concat "/usr/bin/du -sch "
+;;                              (string-join files " "))))
+;;     (with-output-to-temp-buffer help-buffer
+;;       (message "Calculating size asynchronously...")
+;;       (async-shell-command du-command help-buffer "*Messages*")
+;;       (pop-to-buffer help-buffer))))
+
+;; (defun dired-get-size ()
+;;   "Prints the cummulative size of marked files to the
+;; minibuffer."
+;;   (interactive)
+;;   (let ((files (dired-get-marked-files)))
+;;     (with-temp-buffer
+;;       (apply 'call-process "/usr/bin/du" nil t nil "-sch" files)
+;;       (message "Size of all marked files: %s"
+;;                (progn 
+;;                  (re-search-backward "\\(^[0-9.,]+[A-Za-z]+\\).*total$")
+;;                  (match-string 1))))))
+
+(defun dired-get-size ()
+  "Asynchronously calculates the size of marked files and
+displays them plus total to buffer."
+  (interactive)
+  (let* ((files (dired-get-marked-files))
+         (du-command (concat "/usr/bin/du -sch "
+                             (string-join files " "))))
+    (message "Calculating size asynchronously...")
+    (async-shell-command du-command)))
+
+(define-key dired-mode-map (kbd "?") 'dired-get-size)

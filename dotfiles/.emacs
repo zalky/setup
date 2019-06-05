@@ -134,6 +134,8 @@
 ;;;; Global Key-Bindings
 (load "global-keybindings.el")
 
+;;;; Backup functionality
+(load "backup.el")
 
 ;;;; Workarounds
 (load "workarounds.el")

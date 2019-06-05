@@ -69,6 +69,7 @@ DOTFILES="\
 .ipython/profile_default \
 .lein/profiles.clj
 .octaverc \
+.tmux.conf \
 .profile \
 .screenrc"
 
