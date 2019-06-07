@@ -24,8 +24,13 @@
   "Given a filename, adds home ~/."
   (mapcar (lambda (s) (concat "~/" s)) files))
 
-(defvar rsync-command
+(defvar rsync-base-command
   "rsync -avvz --partial --progress --delete ")
+
+(defun set-rsync-backup-options ()
+  (set (make-local-variable 'comint-output-filter-functions) 'comint-truncate-buffer)
+  (set (make-local-variable 'comint-buffer-maximum-size) 50000)
+  (set (make-local-variable 'comint-scroll-show-maximum-output) t))
 
 (defun rsync-backup (&optional files)
   "Backs up marked directories."
@@ -35,10 +40,11 @@
                     (dired-get-marked-files)
                     system-backup-directories))
          (target (read-file-name "Enter backup folder: "))
-         (cmd (concat rsync-command (string-join files " ") " " target)))
+         (rsync-command (concat rsync-base-command
+                                (string-join files " ")
+                                " "
+                                target)))
     (with-current-buffer-window rsync-buffer 'display-buffer-pop-up-window nil
       (message "Starting async backup process...")
-      (async-shell-command cmd rsync-buffer "*Messages*")
-      (set (make-local-variable 'comint-output-filter-functions) 'comint-truncate-buffer)
-      (set (make-local-variable 'comint-buffer-maximum-size) 50000)
-      (set (make-local-variable 'comint-scroll-show-maximum-output) t))))
+      (async-shell-command rsync-command rsync-buffer "*Messages*")
+      (set-rsync-backup-options))))
