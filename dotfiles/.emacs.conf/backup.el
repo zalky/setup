@@ -24,7 +24,7 @@
   "Given a filename, adds home ~/."
   (mapcar (lambda (s) (concat "~/" s)) files))
 
-(defvar rsync-base-command
+(defvar rsync-base-cmd
   "rsync -avvz --partial --progress --delete ")
 
 (defun set-rsync-backup-options ()
@@ -39,12 +39,9 @@
          (files (or files
                     (dired-get-marked-files)
                     system-backup-directories))
-         (target (read-file-name "Enter backup folder: "))
-         (rsync-command (concat rsync-base-command
-                                (string-join files " ")
-                                " "
-                                target)))
+         (target (read-directory-name "Enter backup folder: "))
+         (rsync-cmd (concat rsync-base-cmd (string-join files " ") " " target)))
     (with-current-buffer-window rsync-buffer 'display-buffer-pop-up-window nil
-      (message "Starting async backup process...")
-      (async-shell-command rsync-command rsync-buffer "*Messages*")
+      (message "Starting async backup process to %s..." target)
+      (async-shell-command rsync-cmd rsync-buffer "*Messages*")
       (set-rsync-backup-options))))
