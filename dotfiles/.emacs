@@ -198,7 +198,7 @@
  '(cursor-type t)
  '(package-selected-packages
    (quote
-    (cider-decompile ac-cider smartparens conda sparql-mode nlinum magit highlight-numbers fit-frame tagedit vue-mode indium helm-projectile helm-swoop helm clj-refactor clojure-mode-extra-font-locking clojure-mode))))
+    (cider cider-decompile ac-cider smartparens conda sparql-mode nlinum magit highlight-numbers fit-frame tagedit vue-mode indium helm-projectile helm-swoop helm clj-refactor clojure-mode-extra-font-locking clojure-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

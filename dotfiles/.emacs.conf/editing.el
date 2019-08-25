@@ -111,4 +111,6 @@ displays them plus total to buffer."
     (message "Calculating size asynchronously...")
     (async-shell-command du-command)))
 
+(require 'dired)
+
 (define-key dired-mode-map (kbd "?") 'dired-get-size)

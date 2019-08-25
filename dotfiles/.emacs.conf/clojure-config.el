@@ -13,6 +13,9 @@
 ;; cljs.
 (setq cider-font-lock-reader-conditionals nil)
 
+;; Supress useless middleware warnings
+(setq cljr-suppress-middleware-warnings t)
+
 ;; extra syntax hilighting for clojurec and clojurescript modes.
 (font-lock-add-keywords
  'clojurec-mode
