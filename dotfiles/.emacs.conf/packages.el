@@ -20,7 +20,7 @@
     ;; making the repl very difficult to use. Therefore we prefer
     ;; paraedit, taking only the `sp-unwrap-sexp` from smartparens
     smartparens
-    paredit
+    ;; paredit
 
     ;; key bindings and code colorization for Clojure
     ;; https://github.com/clojure-emacs/clojure-mode

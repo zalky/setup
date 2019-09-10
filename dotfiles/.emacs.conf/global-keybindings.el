@@ -12,8 +12,8 @@
 (define-key super-keys-minor-mode-map (kbd "M-b") nil)
 
 ;; Override some minor modes
-(define-key super-keys-minor-mode-map (kbd "C-M-r") 'paredit-backward)
-;; (define-key super-keys-minor-mode-map (kbd "C-M-r") 'sp-backward-sexp)
+;; (define-key super-keys-minor-mode-map (kbd "C-M-r") 'paredit-backward)
+(define-key super-keys-minor-mode-map (kbd "C-M-r") 'sp-backward-sexp)
 
 
 (define-minor-mode super-keys-minor-mode

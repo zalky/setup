@@ -1,10 +1,10 @@
 ;;;;;;;;;
 ;; global
 (require 'smartparens-config)
-(smartparens-global-mode 0)
+(smartparens-global-mode t)
 
 ;; Don't highlight space inside newly created s-exps.
-(setq sp-highlight-pair-overlay nil)
+(setq sp-highlight-pair-overlay nil) 
 
 ;; Use smartparens in the minibuffer. Useful for `M-:`.
 (setq sp-ignore-modes-list
@@ -17,9 +17,11 @@
 (define-key smartparens-mode-map (kbd "C-M-r") 'sp-backward-sexp)
 (define-key smartparens-mode-map (kbd "C-S-a") 'sp-beginning-of-sexp)
 (define-key smartparens-mode-map (kbd "C-S-e") 'sp-end-of-sexp)
-(define-key smartparens-mode-map (kbd "C-M-S-d") 'sp-backward-down-sexp)
-(define-key smartparens-mode-map (kbd "C-M-u") 'sp-up-sexp)
-(define-key smartparens-mode-map (kbd "C-M-S-u") 'sp-backward-up-sexp)
+(define-key smartparens-mode-map (kbd "C-M-p") 'sp-forward-down-sexp)
+(define-key smartparens-mode-map (kbd "C-M-i") 'sp-down-sexp)
+(define-key smartparens-mode-map (kbd "C-M-p") 'sp-up-sexp)
+(define-key smartparens-mode-map (kbd "C-M-u") 'sp-backward-up-sexp)
+(define-key smartparens-mode-map (kbd "C-M-o") 'sp-backward-down-sexp)
 (define-key smartparens-mode-map (kbd "C-M-k") 'kill-sexp)
 (define-key smartparens-mode-map (kbd "C-M-w") 'sp-copy-sexp)
 (define-key smartparens-mode-map (kbd "C-)") 'sp-forward-slurp-sexp)
@@ -125,6 +127,9 @@
 
 (sp-pair "'" nil :actions :rem)
 (sp-pair "`" nil :actions :rem)
+
+(sp-with-modes '(python-mode inferior-python-mode)
+  (sp-local-pair "'" "'"))
 
 ;;; Other modes
 
