@@ -2,7 +2,7 @@
          'clojure.java.io)
 
 (swap! boot.repl/*default-dependencies*
-       concat '[[cider/cider-nrepl "0.18.0"]
+       concat '[[cider/cider-nrepl "0.22.1"]
                 [refactor-nrepl "2.4.0"]])
 
 (swap! boot.repl/*default-middleware* conj

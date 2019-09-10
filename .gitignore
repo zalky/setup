@@ -1,3 +1,5 @@
 # no emacs recovery files
 \#*\#
 .\#*
+dotfiles/.ipython/profile_default/history.sqlite
+dotfiles/.ipython/profile_default/startup/
