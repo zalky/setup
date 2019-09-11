@@ -6,6 +6,7 @@
 
 (helm-mode t)
 
+
 (when (executable-find "curl")
   (setq helm-google-suggest-use-curl-p t))
 

@@ -196,9 +196,11 @@
    ["#303030" "#C17BD2" "#00B0A6" "orchid2" "#00ADD7" "#897FBD" "#698BC4" "gray80"])
  '(css-fontify-colors nil)
  '(cursor-type t)
+ '(ns-alternate-modifier (quote alt))
+ '(ns-right-command-modifier (quote control))
  '(package-selected-packages
    (quote
-    (cider cider-decompile ac-cider smartparens conda sparql-mode nlinum magit highlight-numbers fit-frame tagedit vue-mode indium helm-projectile helm-swoop helm clj-refactor clojure-mode-extra-font-locking clojure-mode))))
+    (boon cider cider-decompile ac-cider smartparens conda sparql-mode nlinum magit highlight-numbers fit-frame tagedit vue-mode indium helm-projectile helm-swoop helm clj-refactor clojure-mode-extra-font-locking clojure-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -258,6 +260,12 @@
  '(ediff-odd-diff-B ((t (:inherit highlight))))
  '(ediff-odd-diff-C ((t (:inherit highlight))))
  '(error ((t (:inherit font-lock-function-name-face :weight bold))))
+ '(eshell-ls-backup ((t (:inherit font-lock-builtin-face))))
+ '(eshell-ls-directory ((t (:inherit font-lock-keyword-face :weight bold))))
+ '(eshell-ls-executable ((t (:inherit font-lock-type-face))))
+ '(eshell-ls-readonly ((t (:inherit font-lock-builtin-face))))
+ '(eshell-ls-symlink ((t (:inherit font-lock-constant-face :weight bold))))
+ '(eshell-prompt ((t (:inherit font-lock-comment-face))))
  '(flyspell-duplicate ((t (:underline (:color "orchid4" :style wave)))))
  '(flyspell-incorrect ((t (:underline (:color "orchid2" :style wave)))))
  '(font-lock-builtin-face ((t (:foreground "#808080"))))
@@ -300,6 +308,7 @@
  '(helm-match ((t (:inherit font-lock-type-face))))
  '(helm-match-item ((t (:inherit lazy-highlight))))
  '(helm-moccur-buffer ((t (:inherit font-lock-builtin-face))))
+ '(helm-mode-prefix ((t (:inherit region))))
  '(helm-prefarg ((t (:inherit font-lock-builtin-face))))
  '(helm-selection ((t (:inherit nil :background "#343436"))))
  '(helm-selection-line ((t nil)))
