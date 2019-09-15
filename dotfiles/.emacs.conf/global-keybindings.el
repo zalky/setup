@@ -6,29 +6,6 @@
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier 'meta)
 
-(defvar super-keys-minor-mode-map
-  (make-sparse-keymap)
-  "Super keys: these keys should always work anywhere in emacs.")
-
-;; These basic keybindings should always work.
-(define-key super-keys-minor-mode-map (kbd "C-r") 'backward-char)
-(define-key super-keys-minor-mode-map (kbd "M-r") 'backward-word)
-(define-key super-keys-minor-mode-map (kbd "C-b") nil)
-(define-key super-keys-minor-mode-map (kbd "M-b") nil)
-(define-key super-keys-minor-mode-map (kbd "\\") 'boon-mode)
-;; (define-key super-keys-minor-mode-map (kbd "C-M-r") 'paredit-backward)
-(define-key super-keys-minor-mode-map (kbd "C-M-r") 'sp-backward-sexp)
-
-(define-minor-mode super-keys-minor-mode
-  "A minor mode so that my key settings override annoying major modes."
-  :init-value t
-  :lighter "SK"
-  :keymap super-keys-minor-mode-map)
-
-;; (add-hook 'term-mode-hook (lambda () (super-keys-minor-mode -1)))
-
-(super-keys-minor-mode t)
-
 (defun uber-save ()
   (interactive)
   (call-interactively
@@ -76,7 +53,6 @@
 
 ;; TODO:
 ;; Commenting
-;; Echo area
 
 (defvar boon-h-map nil
   "Makes h prefix keys available in command mode.")
@@ -84,16 +60,39 @@
 (define-prefix-command 'boon-h-map)
 (set-keymap-parent boon-h-map help-map)
 
+;; Override boon-mode minor mode to enable in minibuffer
+(define-globalized-minor-mode boon-mode boon-local-mode
+  (lambda () (boon-local-mode 1))
+  :group 'boon)
+
+;; Supress messages when switching modes in minibuffer, start in insert mode
+(defun boon-minibuf-hook ()
+  (setq-local inhibit-message t)
+  (turn-off-boon-mode))
+
+;; Turn on boon-mode globally on startup to prevent weirdness from
+;; previously saved desktop state.
+(boon-mode 1)
+
+(defun boon-toggle-state ()
+  (interactive)
+  (if boon-command-state
+      (boon-set-insert-like-state)
+    (boon-set-command-state)))
+
 (global-set-key (kbd "\\") 'boon-mode)
+(global-set-key (kbd "M-\\") 'boon-local-mode)
+(define-key minibuffer-local-map (kbd "\\") 'boon-local-mode)
+
 (define-key boon-command-map (kbd "x") 'boon-x-map)
 (define-key boon-command-map (kbd "c") 'boon-c-god)
 (define-key boon-command-map (kbd "h") 'boon-h-map)
 (define-key boon-command-map (kbd "p") 'projectile-command-map)
 
-(define-key boon-moves-map (kbd "M-l") 'forward-char)
-(define-key boon-moves-map (kbd "M-j") 'backward-char)
-(define-key boon-moves-map (kbd "M-i") 'previous-line)
-(define-key boon-moves-map (kbd "M-k") 'next-line)
+(global-set-key (kbd "M-l") 'forward-char)
+(global-set-key (kbd "M-j") 'backward-char)
+(global-set-key (kbd "M-i") 'previous-line)
+(global-set-key (kbd "M-k") 'next-line)
 (define-key boon-moves-map (kbd "i") 'previous-line-3)
 (define-key boon-moves-map (kbd "k") 'next-line-3)
 (define-key boon-moves-map (kbd "l") 'forward-word)
@@ -174,8 +173,10 @@
 (global-set-key (kbd "C-c C-b") 'magit-blame)
 (global-set-key (kbd "C-c l") 'org-store-link)
 
-;; Secial command map
-;; Avoid single character commands in special mode, they mess with
+
+;;;; Secial command mapcat
+
+;; avoid single character commands in special mode, they mess with
 ;; special major modes like dired and magit
 (define-key boon-special-map (kbd "x") 'boon-x-map)
 (define-key boon-special-map (kbd "M-l") 'forward-char)
@@ -184,13 +185,24 @@
 (define-key boon-special-map (kbd "M-k") 'next-line)
 (define-key boon-special-map (kbd ";") 'recenter-top-bottom)
 
-;; Switch between line and char mode when in term-mode.
-(add-hook 'boon-mode-hook
+
+;;;; Term
+
+;; Start term mode in command mode, and make boon toggle key available.
+(add-hook 'term-load-hook
           (lambda ()
-            (if (eq major-mode 'term-mode)
-                (if (bound-and-true-p boon-mode)
-                    (term-line-mode)
-                  (term-char-mode)))))
+            (term-line-mode)
+            (define-key term-raw-map (kbd "\\") 'boon-mode)))
+
+(defun boon-term-sync-input-mode ()
+  "Sync char and line term input modes with boon on off state."
+  (if (derived-mode-p 'term-mode)
+      (if (bound-and-true-p boon-local-mode)
+          (term-line-mode)
+        (term-char-mode))))
+
+(add-hook 'boon-local-mode-hook 'boon-term-sync-input-mode)
+
 
 ;;;; Helm
 
@@ -200,6 +212,7 @@
   (global-set-key (kbd "C-x C-b") 'helm-mini)
   (global-set-key (kbd "B") 'helm-mini)
   (global-set-key (kbd "C-x f") 'helm-projectile-find-file)
+  (global-set-key (kbd "C-x p") 'helm-projectile-switch-project)
   (global-set-key (kbd "C-x C-f") 'helm-find-files)
   (global-set-key (kbd "C-x F") 'helm-find-files)
 
