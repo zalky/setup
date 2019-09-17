@@ -19,10 +19,9 @@
 ;; and 'command as arguments.
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-M-;") 'comment-or-uncomment-region)
-(global-set-key (kbd "R") 'rename-buffer)
+(global-set-key (kbd "C-x r") 'rename-buffer)
 (global-set-key (kbd "C-M-q") 'unfill-paragraph)
 (global-set-key (kbd "C-;") 'toggle-comment-on-line)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x s") 'uber-save)
 (global-set-key (kbd "C-x DEL") 'kill-this-buffer)
 (global-set-key (kbd "C-x e") 'eval-last-sexp)
@@ -74,14 +73,15 @@
 ;; previously saved desktop state.
 (boon-mode 1)
 
-(defun boon-toggle-state ()
-  (interactive)
-  (if boon-command-state
-      (boon-set-insert-like-state)
-    (boon-set-command-state)))
+(defun boon-set-cursor ()
+  (set-face-attribute 'cursor nil :background (if boon-local-mode
+                                                  cursor-command-mode-color
+                                                cursor-insert-mode-color)))
 
-(global-set-key (kbd "\\") 'boon-mode)
-(global-set-key (kbd "M-\\") 'boon-local-mode)
+;; Careful, post-command-hook is run after every command run by emacs.
+(add-hook 'post-command-hook 'boon-set-cursor)
+
+(global-set-key (kbd "\\") 'boon-local-mode)
 (define-key minibuffer-local-map (kbd "\\") 'boon-local-mode)
 
 (define-key boon-command-map (kbd "x") 'boon-x-map)
@@ -97,8 +97,8 @@
 (define-key boon-moves-map (kbd "k") 'next-line-3)
 (define-key boon-moves-map (kbd "l") 'forward-word)
 (define-key boon-moves-map (kbd "j") 'backward-word)
-(define-key boon-moves-map (kbd "[") 'backward-paragraph)
-(define-key boon-moves-map (kbd "]") 'forward-paragraph)
+(define-key boon-moves-map (kbd "M-[") 'backward-paragraph)
+(define-key boon-moves-map (kbd "M-]") 'forward-paragraph)
 (define-key boon-moves-map (kbd ">") 'end-of-buffer)
 (define-key boon-moves-map (kbd "<") 'beginning-of-buffer)
 (define-key boon-moves-map (kbd ";") 'recenter-top-bottom)
@@ -114,8 +114,7 @@
 (define-key boon-command-map (kbd "9") 'sp-forward-barf-sexp)
 (define-key boon-command-map (kbd "M-0") 'sp-backward-barf-sexp)
 (define-key boon-command-map (kbd "M-9") 'sp-backward-slurp-sexp)
-(define-key boon-command-map (kbd "f") 'kill-sexp)
-(define-key boon-command-map (kbd "r") 'backward-kill-sexp)
+(define-key boon-command-map (kbd "r") 'kill-sexp)
 (define-key boon-command-map (kbd "-") 'sp-unwrap-sexp)
 (define-key boon-command-map (kbd "M--") 'sp-backward-unwrap-sexp)
 
@@ -128,24 +127,26 @@
 (define-key boon-command-map (kbd "M-w") 'kill-ring-save)
 (define-key boon-command-map (kbd "w") 'kill-region)
 (define-key boon-command-map (kbd "y") 'yank)
-(define-key boon-command-map (kbd "SPC") 'set-mark-command)
+(define-key boon-command-map (kbd "m") 'set-mark-command)
 (define-key boon-command-map (kbd "M-SPC") 'mark-sexp)
 (define-key boon-command-map (kbd "t") 'tab-to-tab-stop)
 (define-key boon-command-map (kbd "M-\\") 'delete-horizontal-space)
 (define-key boon-command-map (kbd "'") 'indent-region)
+(define-key boon-command-map (kbd "C-c C-SPC") 'clojure-align)
 
-;; (defun my-self-insert-command ()
-;;   "Workaround since you can't bind self-insert-command directly."
-;;   (interactive)
-;;   (self-insert-command 1))
+(defun my-self-insert-command ()
+  "Workaround since you can't bind self-insert-command directly."
+  (interactive)
+  (self-insert-command 1))
 
-;; (define-key boon-command-map (kbd "(") 'my-self-insert-command)
-;; (define-key boon-command-map (kbd ")") 'my-self-insert-command)
-;; (define-key boon-command-map (kbd "[") 'my-self-insert-command)
-;; (define-key boon-command-map (kbd "]") 'my-self-insert-command)
-;; (define-key boon-command-map (kbd "{") 'my-self-insert-command)
-;; (define-key boon-command-map (kbd "}") 'my-self-insert-command)
-;; (define-key boon-command-map (kbd "\"") 'my-self-insert-command)
+(define-key boon-command-map (kbd "SPC") 'my-self-insert-command)
+(define-key boon-command-map (kbd "(") 'my-self-insert-command)
+(define-key boon-command-map (kbd ")") 'my-self-insert-command)
+(define-key boon-command-map (kbd "[") 'my-self-insert-command)
+(define-key boon-command-map (kbd "]") 'my-self-insert-command)
+(define-key boon-command-map (kbd "{") 'my-self-insert-command)
+(define-key boon-command-map (kbd "}") 'my-self-insert-command)
+(define-key boon-command-map (kbd "\"") 'my-self-insert-command)
 
 (define-key boon-command-map (kbd "e") 'move-end-of-line)
 (define-key boon-command-map (kbd "a") 'move-beginning-of-line)
@@ -158,20 +159,14 @@
 (global-set-key (kbd "C-x k") 'windmove-down)
 (global-set-key (kbd "C-x =") 'balance-windows)
 (global-set-key (kbd "C-x 9") 'transpose-buffers)
-(global-set-key (kbd "S-C-M-j") 'shrink-window-horizontally)
-(global-set-key (kbd "S-C-M-l") 'enlarge-window-horizontally)
-(global-set-key (kbd "S-C-M-k") 'shrink-window)
-(global-set-key (kbd "S-C-M-i") 'enlarge-window)
+(global-set-key (kbd "C-M-j") 'shrink-window-horizontally)
+(global-set-key (kbd "C-M-l") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-M-k") 'shrink-window)
+(global-set-key (kbd "C-M-i") 'enlarge-window)
+(define-key emacs-lisp-mode-map (kbd "C-M-i") nil)
+(define-key help-mode-map (kbd "C-M-i") nil)
 (global-set-key (kbd "C-.") 'scroll-left)
 (global-set-key (kbd "C-,") 'scroll-right)
-
-;; Major Modes
-(define-key boon-command-map (kbd "b") 'projectile-switch-to-buffer)
-(define-key boon-command-map (kbd "!") 'shell-command)
-(define-key boon-command-map (kbd "E") 'eval-expression)
-(global-set-key (kbd "C-c C-g") 'magit-status)
-(global-set-key (kbd "C-c C-b") 'magit-blame)
-(global-set-key (kbd "C-c l") 'org-store-link)
 
 
 ;;;; Secial command mapcat
@@ -186,13 +181,74 @@
 (define-key boon-special-map (kbd ";") 'recenter-top-bottom)
 
 
+;;;; Helm, navigation and search
+
+(require 'helm)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x B") 'helm-mini)
+(define-key boon-command-map (kbd "B") 'helm-mini)
+
+(define-key boon-command-map (kbd "f") 'helm-projectile-find-file)
+(define-key boon-command-map (kbd "F") 'helm-find-files)
+(global-set-key (kbd "C-x f") 'helm-projectile-find-file)
+(global-set-key (kbd "C-x F") 'helm-find-files)
+(global-set-key (kbd "C-c C-f") 'find-name-dired)
+(define-key boon-command-map (kbd "b") 'helm-projectile-switch-to-buffer)
+(define-key boon-command-map (kbd "B") 'helm-mini)
+(global-set-key (kbd "C-x b") 'helm-projectile-switch-to-buffer)
+(global-set-key (kbd "C-x B") 'helm-mini)
+(define-key dired-mode-map (kbd "b") 'helm-projectile-switch-to-buffer)
+(define-key dired-mode-map (kbd "B") 'helm-mini)
+(global-set-key (kbd "C-x p") 'helm-projectile-switch-project)
+
+(define-key helm-map (kbd "M-j") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "C-M-n") 'helm-next-source)
+(define-key helm-map (kbd "C-M-p") 'helm-previous-source)
+
+(define-key helm-map (kbd "M-k") 'helm-next-line)
+(define-key helm-map (kbd "M-i") 'helm-previous-line)
+(define-key helm-find-files-map (kbd "M-i") 'helm-previous-line)
+
+;; Without this, we cannot access helm-M-x in terminals.
+(add-hook 'term-mode-hook
+          (lambda ()
+            (define-key term-raw-map (kbd "M-x") 'helm-M-x)))
+
+;; The default helm prefix "C-x c" is quite close to "C-x C-c",
+;; which quits Emacs. Change helm command prefix to "M-h".
+(global-unset-key (kbd "C-x c"))
+(if (boundp 'no-helm-rebind-prefix)
+    ;; For some reason this does not work with `git-config.el`, so
+    ;; use a regular prefix "C-c h". Note: We must set "C-c h"
+    ;; globally, because we cannot change `helm-command-prefix-key'
+    ;; once `helm-config' is loaded.
+    (global-set-key (kbd "C-c h") 'helm-command-prefix)
+  (global-set-key (kbd "M-h") 'helm-command-prefix)
+  (global-set-key (kbd "M-h M-i") 'helm-semantic-or-imenu)
+  (global-set-key (kbd "M-h i") 'helm-semantic-or-imenu))
+
+
+;; Helm Swoop
+
+(when (require 'helm-swoop nil 'noerror)
+  (global-set-key (kbd "C-M-s") 'helm-swoop-back-to-last-point)
+  (define-key helm-swoop-map (kbd "M-k") 'helm-swoop-next-line)
+  (define-key helm-swoop-map (kbd "M-i") 'helm-swoop-previous-line)
+  (define-key boon-command-map (kbd "s") 'helm-swoop))
+
+
 ;;;; Term
+
+(define-key boon-command-map (kbd "!") 'shell-command)
+(define-key boon-command-map (kbd "E") 'eval-expression)
 
 ;; Start term mode in command mode, and make boon toggle key available.
 (add-hook 'term-load-hook
           (lambda ()
             (term-line-mode)
-            (define-key term-raw-map (kbd "\\") 'boon-mode)))
+            (define-key term-raw-map (kbd "\\") 'boon-local-mode)))
 
 (defun boon-term-sync-input-mode ()
   "Sync char and line term input modes with boon on off state."
@@ -204,54 +260,6 @@
 (add-hook 'boon-local-mode-hook 'boon-term-sync-input-mode)
 
 
-;;;; Helm
-
-(when (require 'helm nil 'noerror)
-  (global-set-key (kbd "M-x") 'helm-M-x)
-  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-  (global-set-key (kbd "C-x C-b") 'helm-mini)
-  (global-set-key (kbd "B") 'helm-mini)
-  (global-set-key (kbd "C-x f") 'helm-projectile-find-file)
-  (global-set-key (kbd "C-x p") 'helm-projectile-switch-project)
-  (global-set-key (kbd "C-x C-f") 'helm-find-files)
-  (global-set-key (kbd "C-x F") 'helm-find-files)
-
-  (define-key helm-map (kbd "M-j") 'helm-execute-persistent-action)
-  (define-key helm-map (kbd "C-M-n") 'helm-next-source)
-  (define-key helm-map (kbd "C-M-p") 'helm-previous-source)
-  (define-key helm-map (kbd "C-r") 'backward-char)
-  (define-key helm-map (kbd "M-r") 'backward-word)
-  
-  (define-key helm-map (kbd "M-k") 'helm-next-line)
-  (define-key helm-map (kbd "M-i") 'helm-previous-line)
-
-  ;; Without this, we cannot access helm-M-x in terminals.
-  (add-hook 'term-mode-hook
-            (lambda ()
-              (define-key term-raw-map (kbd "M-x") 'helm-M-x)))
-
-  ;; The default helm prefix "C-x c" is quite close to "C-x C-c",
-  ;; which quits Emacs. Change helm command prefix to "M-h".
-  (global-unset-key (kbd "C-x c"))
-  (if (boundp 'no-helm-rebind-prefix)
-      ;; For some reason this does not work with `git-config.el`, so
-      ;; use a regular prefix "C-c h". Note: We must set "C-c h"
-      ;; globally, because we cannot change `helm-command-prefix-key'
-      ;; once `helm-config' is loaded.
-      (global-set-key (kbd "C-c h") 'helm-command-prefix)
-    (global-set-key (kbd "M-h") 'helm-command-prefix)
-    (global-set-key (kbd "M-h M-i") 'helm-semantic-or-imenu)
-    (global-set-key (kbd "M-h i") 'helm-semantic-or-imenu)))
-
-
-;; Helm Swoop
-
-(when (require 'helm-swoop nil 'noerror)
-  (global-set-key (kbd "C-M-s") 'helm-swoop-back-to-last-point)
-  (define-key helm-swoop-map (kbd "M-k") 'helm-swoop-next-line)
-  (define-key helm-swoop-map (kbd "M-i") 'helm-swoop-previous-line)
-  (define-key boon-command-map (kbd "s") 'helm-swoop))
-
 ;;;; ISpell
 
 (global-set-key (kbd "M-s s") 'ispell)
@@ -259,3 +267,17 @@
 
 ;; Disable Emacs Web Browser keybinding
 (global-unset-key (kbd "M-s M-w"))
+
+
+;; Other Major Modes
+
+(global-set-key (kbd "C-c C-g") 'magit-status)
+(global-set-key (kbd "C-c C-b") 'magit-blame)
+(define-key cider-mode-map (kbd "C-c C-b") nil)
+
+(global-set-key (kbd "C-c l") 'org-store-link)
+
+(define-key dired-mode-map (kbd "X") 'dired-do-flagged-delete)
+(define-key dired-mode-map (kbd "6") 'dired-up-directory)
+(define-key dired-mode-map (kbd "i") nil)
+

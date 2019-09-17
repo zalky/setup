@@ -222,6 +222,7 @@
  '(company-tooltip-common ((t (:inherit font-lock-function-name-face))))
  '(company-tooltip-search ((t (:inherit company-tooltip-selection))))
  '(company-tooltip-selection ((t (:inherit highlight))))
+ '(compilation-info ((t (:inherit font-lock-comment-face))))
  '(css-property ((t (:inherit font-lock-variable-name-face))))
  '(cursor ((t (:inherit default :background "#F97BE3"))))
  '(custom-button ((t (:inherit mode-line :box (:line-width 2 :style released-button)))))

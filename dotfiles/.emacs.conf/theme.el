@@ -70,3 +70,12 @@
   "Face for fine changed comparative regions."
   :group 'diff-mode)
 
+(defvar cursor-insert-mode-color
+  "#BAEA84" ; "#D7BF2A" ; "OliveDrab3"
+  "Face for modal character input.")
+
+(defvar cursor-command-mode-color
+  "#F97BE3"
+  "Face for modal character input.")
+
+;; #62a583
