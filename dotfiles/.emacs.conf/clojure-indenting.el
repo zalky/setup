@@ -65,7 +65,8 @@
 ;; Build forms: 2
 
 (defvar my-build-tags
-  '(label-row))
+  '(label-row
+    iff))
 
 (defvar third-party-build-tags
   '(build

@@ -23,9 +23,11 @@
 (global-set-key (kbd "C-M-q") 'unfill-paragraph)
 (global-set-key (kbd "C-;") 'toggle-comment-on-line)
 (global-set-key (kbd "C-x s") 'uber-save)
+(global-set-key (kbd "C-x w") 'write-file)
 (global-set-key (kbd "C-x DEL") 'kill-this-buffer)
-(global-set-key (kbd "C-x e") 'eval-last-sexp)
+(global-set-key (kbd "C-x C-e") 'eval-last-sexp)
 (global-set-key (kbd "C-x q") 'query-replace)
+(global-set-key (kbd "M-u") 'nil)
 
 ;; Key binding to use "hippie expand" for text autocompletion
 ;; http://www.emacswiki.org/emacs/HippieExpand
@@ -104,6 +106,8 @@
 (define-key boon-moves-map (kbd ";") 'recenter-top-bottom)
 (define-key boon-moves-map (kbd "v") 'scroll-up-command)
 (define-key boon-moves-map (kbd "C-v") 'scroll-down-command)
+(define-key boon-moves-map (kbd "g") 'goto-line)
+(global-set-key (kbd "C-x SPC") 'pop-global-mark)
 
 (define-key boon-command-map (kbd "u") 'sp-backward-sexp)
 (define-key boon-command-map (kbd "o") 'sp-forward-sexp)
@@ -114,11 +118,12 @@
 (define-key boon-command-map (kbd "9") 'sp-forward-barf-sexp)
 (define-key boon-command-map (kbd "M-0") 'sp-backward-barf-sexp)
 (define-key boon-command-map (kbd "M-9") 'sp-backward-slurp-sexp)
-(define-key boon-command-map (kbd "r") 'kill-sexp)
+(define-key boon-command-map (kbd "f") 'kill-sexp)
+(define-key boon-command-map (kbd "r") 'backward-kill-sexp)
 (define-key boon-command-map (kbd "-") 'sp-unwrap-sexp)
 (define-key boon-command-map (kbd "M--") 'sp-backward-unwrap-sexp)
 
-(define-key boon-command-map (kbd "C-c C-q") 'quoted-insert)
+(define-key boon-command-map (kbd "Q") 'quoted-insert)
 (define-key boon-command-map (kbd "RET") 'newline)
 (define-key boon-command-map (kbd "DEL") 'sp-backward-delete-char)
 (define-key boon-command-map (kbd "d") 'delete-forward-char)
@@ -131,8 +136,7 @@
 (define-key boon-command-map (kbd "M-SPC") 'mark-sexp)
 (define-key boon-command-map (kbd "t") 'tab-to-tab-stop)
 (define-key boon-command-map (kbd "M-\\") 'delete-horizontal-space)
-(define-key boon-command-map (kbd "'") 'indent-region)
-(define-key boon-command-map (kbd "C-c C-SPC") 'clojure-align)
+(define-key boon-command-map (kbd "'") 'sp-indent-defun)
 
 (defun my-self-insert-command ()
   "Workaround since you can't bind self-insert-command directly."
@@ -190,8 +194,6 @@
 (global-set-key (kbd "C-x B") 'helm-mini)
 (define-key boon-command-map (kbd "B") 'helm-mini)
 
-(define-key boon-command-map (kbd "f") 'helm-projectile-find-file)
-(define-key boon-command-map (kbd "F") 'helm-find-files)
 (global-set-key (kbd "C-x f") 'helm-projectile-find-file)
 (global-set-key (kbd "C-x F") 'helm-find-files)
 (global-set-key (kbd "C-c C-f") 'find-name-dired)
@@ -204,8 +206,8 @@
 (global-set-key (kbd "C-x p") 'helm-projectile-switch-project)
 
 (define-key helm-map (kbd "M-j") 'helm-execute-persistent-action)
-(define-key helm-map (kbd "C-M-n") 'helm-next-source)
-(define-key helm-map (kbd "C-M-p") 'helm-previous-source)
+(define-key helm-map (kbd "C-k") 'helm-next-source)
+(define-key helm-map (kbd "C-i") 'helm-previous-source)
 
 (define-key helm-map (kbd "M-k") 'helm-next-line)
 (define-key helm-map (kbd "M-i") 'helm-previous-line)
@@ -228,6 +230,23 @@
   (global-set-key (kbd "M-h") 'helm-command-prefix)
   (global-set-key (kbd "M-h M-i") 'helm-semantic-or-imenu)
   (global-set-key (kbd "M-h i") 'helm-semantic-or-imenu))
+
+
+;;;; Clojure
+
+(define-key boon-command-map (kbd "C-c C-SPC") 'clojure-align)
+(define-key clojure-mode-map (kbd "C-c C-r C-a") 'clojure-unwind-all)
+
+;;;; Cider
+
+(defvar cider-mode-alist
+  '((cider-mode . cider-mode-map)
+    (cider-repl-mode . cider-repl-mode-map)))
+
+(define-key cider-mode-map (kbd "C-c C-b") nil)
+(define-key cider-mode-map (kbd "C-c C-f") 'find-name-dired)
+(define-key cider-repl-mode-map (kbd "RET") 'cider-repl-return)
+(add-to-list 'emulation-mode-map-alists 'cider-mode-alist)
 
 
 ;; Helm Swoop
@@ -273,7 +292,6 @@
 
 (global-set-key (kbd "C-c C-g") 'magit-status)
 (global-set-key (kbd "C-c C-b") 'magit-blame)
-(define-key cider-mode-map (kbd "C-c C-b") nil)
 
 (global-set-key (kbd "C-c l") 'org-store-link)
 
@@ -281,3 +299,30 @@
 (define-key dired-mode-map (kbd "6") 'dired-up-directory)
 (define-key dired-mode-map (kbd "i") nil)
 
+
+;;;; Utility Functions
+
+(defun display-minor-mode-key-priority  ()
+  "Print out minor mode's key priority.
+URL `http://ergoemacs.org/emacs/minor_mode_key_priority.html'
+Version 2017-01-27"
+  (interactive)
+  (mapc
+   (lambda (x) (prin1 (car x)) (terpri))
+   minor-mode-map-alist))
+
+(defun display-emulation-mode-key-priority  ()
+  "Print out minor mode's key priority.
+URL `http://ergoemacs.org/emacs/minor_mode_key_priority.html'
+Version 2017-01-27"
+  (interactive)
+  (mapc
+   (lambda (x)
+     (mapc
+      (lambda (x)
+        (prin1 (car x))
+        (terpri))
+      (if (symbolp x)
+          (eval x)
+        x)))
+   emulation-mode-map-alists))
