@@ -21,11 +21,12 @@
 
 ;; Body forms: 0
 
-(defvar third-party-body-tags
+(defvar my-body-tags
   '(if-cljs
-    cond-class))
+    cond-class
+    iff))
 
-(dolist (tag third-party-body-tags)
+(dolist (tag my-body-tags)
   (put-clojure-indent tag 0))
 
 ;; Let forms: 1
@@ -65,8 +66,7 @@
 ;; Build forms: 2
 
 (defvar my-build-tags
-  '(label-row
-    iff))
+  '(label-row))
 
 (defvar third-party-build-tags
   '(build
@@ -97,7 +97,9 @@
     conform-to
     assocn
     assoc-inn
-    update-inn))
+    update-inn
+    exists
+    forall))
 
 (defvar third-party-fn-tags
   '(or-join

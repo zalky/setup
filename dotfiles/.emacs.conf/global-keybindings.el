@@ -125,6 +125,7 @@
 
 (define-key boon-command-map (kbd "Q") 'quoted-insert)
 (define-key boon-command-map (kbd "RET") 'newline)
+(define-key boon-command-map (kbd "M-RET") 'electric-newline-and-maybe-indent)
 (define-key boon-command-map (kbd "DEL") 'sp-backward-delete-char)
 (define-key boon-command-map (kbd "d") 'delete-forward-char)
 (define-key boon-command-map (kbd "M-DEL") 'backward-kill-word)
@@ -151,6 +152,7 @@
 (define-key boon-command-map (kbd "{") 'my-self-insert-command)
 (define-key boon-command-map (kbd "}") 'my-self-insert-command)
 (define-key boon-command-map (kbd "\"") 'my-self-insert-command)
+(define-key boon-command-map (kbd "#") 'my-self-insert-command)
 
 (define-key boon-command-map (kbd "e") 'move-end-of-line)
 (define-key boon-command-map (kbd "a") 'move-beginning-of-line)
@@ -245,6 +247,7 @@
 
 (define-key cider-mode-map (kbd "C-c C-b") nil)
 (define-key cider-mode-map (kbd "C-c C-f") 'find-name-dired)
+(define-key cider-repl-mode-map (kbd "M-RET") 'cider-repl-newline-and-indent)
 (define-key cider-repl-mode-map (kbd "RET") 'cider-repl-return)
 (add-to-list 'emulation-mode-map-alists 'cider-mode-alist)
 

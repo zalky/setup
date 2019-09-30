@@ -7,6 +7,10 @@
 
 (setq projectile-completion-system 'helm)
 
+;; Workaround for projectile-find-file bug, see:
+;; https://github.com/bbatsov/projectile/issues/1302
+(setq projectile-git-submodule-command nil)
+
 (helm-projectile-on)
 
 ;; When switching projects, show buffers not files.
