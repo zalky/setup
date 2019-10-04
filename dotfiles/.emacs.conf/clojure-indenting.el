@@ -80,7 +80,8 @@
 
 (defvar builtin-fn-tags
   '(add-watch
-    load))
+    load
+    if))
 
 (defvar my-fn-tags
   '(respond-to

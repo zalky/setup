@@ -107,7 +107,18 @@
 (define-key boon-moves-map (kbd "v") 'scroll-up-command)
 (define-key boon-moves-map (kbd "C-v") 'scroll-down-command)
 (define-key boon-moves-map (kbd "g") 'goto-line)
-(global-set-key (kbd "C-x SPC") 'pop-global-mark)
+
+(defun goto-previous-local-mark ()
+  (interactive)
+  (set-mark-command t))
+
+(defun push-mark-no-activate ()
+  (interactive)
+  (push-mark nil nil nil))
+
+(global-set-key (kbd "C-x SPC") 'goto-previous-mark)
+(define-key boon-command-map (kbd "m") 'set-mark-command)
+(define-key boon-command-map (kbd "n") 'push-mark-no-activate)
 
 (define-key boon-command-map (kbd "u") 'sp-backward-sexp)
 (define-key boon-command-map (kbd "o") 'sp-forward-sexp)
@@ -133,7 +144,6 @@
 (define-key boon-command-map (kbd "M-w") 'kill-ring-save)
 (define-key boon-command-map (kbd "w") 'kill-region)
 (define-key boon-command-map (kbd "y") 'yank)
-(define-key boon-command-map (kbd "m") 'set-mark-command)
 (define-key boon-command-map (kbd "M-SPC") 'mark-sexp)
 (define-key boon-command-map (kbd "t") 'tab-to-tab-stop)
 (define-key boon-command-map (kbd "M-\\") 'delete-horizontal-space)
@@ -153,9 +163,8 @@
 (define-key boon-command-map (kbd "}") 'my-self-insert-command)
 (define-key boon-command-map (kbd "\"") 'my-self-insert-command)
 (define-key boon-command-map (kbd "#") 'my-self-insert-command)
-
-(define-key boon-command-map (kbd "e") 'move-end-of-line)
 (define-key boon-command-map (kbd "a") 'move-beginning-of-line)
+(define-key boon-command-map (kbd "e") 'move-end-of-line)
 (define-key boon-command-map (kbd "z") 'undo)
 
 ;; Window
@@ -198,7 +207,7 @@
 
 (global-set-key (kbd "C-x f") 'helm-projectile-find-file)
 (global-set-key (kbd "C-x F") 'helm-find-files)
-(global-set-key (kbd "C-c C-f") 'find-name-dired)
+(define-key boon-command-map (kbd "F") 'find-name-dired)
 (define-key boon-command-map (kbd "b") 'helm-projectile-switch-to-buffer)
 (define-key boon-command-map (kbd "B") 'helm-mini)
 (global-set-key (kbd "C-x b") 'helm-projectile-switch-to-buffer)
