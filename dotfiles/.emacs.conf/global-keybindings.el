@@ -116,7 +116,7 @@
   (interactive)
   (push-mark nil nil nil))
 
-(global-set-key (kbd "C-x SPC") 'goto-previous-mark)
+(global-set-key (kbd "C-x SPC") 'goto-previous-local-mark)
 (define-key boon-command-map (kbd "m") 'set-mark-command)
 (define-key boon-command-map (kbd "n") 'push-mark-no-activate)
 
