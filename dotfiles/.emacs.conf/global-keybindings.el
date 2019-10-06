@@ -223,6 +223,7 @@
 (define-key helm-map (kbd "M-k") 'helm-next-line)
 (define-key helm-map (kbd "M-i") 'helm-previous-line)
 (define-key helm-find-files-map (kbd "M-i") 'helm-previous-line)
+(define-key helm-projectile-find-file-map (kbd "M-i") 'helm-previous-line)
 
 ;; Without this, we cannot access helm-M-x in terminals.
 (add-hook 'term-mode-hook
