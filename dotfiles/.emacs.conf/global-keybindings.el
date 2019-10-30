@@ -26,6 +26,7 @@
 (global-set-key (kbd "C-x w") 'write-file)
 (global-set-key (kbd "C-x DEL") 'kill-this-buffer)
 (global-set-key (kbd "C-x C-e") 'eval-last-sexp)
+(global-set-key (kbd "C-x e") 'eval-last-sexp)
 (global-set-key (kbd "C-x q") 'query-replace)
 (global-set-key (kbd "M-u") 'nil)
 
@@ -83,8 +84,8 @@
 ;; Careful, post-command-hook is run after every command run by emacs.
 (add-hook 'post-command-hook 'boon-set-cursor)
 
-(global-set-key (kbd "\\") 'boon-local-mode)
-(define-key minibuffer-local-map (kbd "\\") 'boon-local-mode)
+(global-set-key (kbd "C-SPC") 'boon-local-mode)
+(define-key minibuffer-local-map (kbd "C-SPC") 'boon-local-mode)
 
 (define-key boon-command-map (kbd "x") 'boon-x-map)
 (define-key boon-command-map (kbd "c") 'boon-c-god)
@@ -178,11 +179,33 @@
 (global-set-key (kbd "C-M-l") 'enlarge-window-horizontally)
 (global-set-key (kbd "C-M-k") 'shrink-window)
 (global-set-key (kbd "C-M-i") 'enlarge-window)
+
+(define-key boon-command-map (kbd "C-x j") 'windmove-left)
+(define-key boon-command-map (kbd "C-x l") 'windmove-right)
+(define-key boon-command-map (kbd "C-x i") 'windmove-up)
+(define-key boon-command-map (kbd "C-x k") 'windmove-down)
+(define-key boon-command-map (kbd "C-x =") 'balance-windows)
+(define-key boon-command-map (kbd "C-x 9") 'transpose-buffers)
+(define-key boon-command-map (kbd "C-M-j") 'shrink-window-horizontally)
+(define-key boon-command-map (kbd "C-M-l") 'enlarge-window-horizontally)
+(define-key boon-command-map (kbd "C-M-k") 'shrink-window)
+(define-key boon-command-map (kbd "C-M-i") 'enlarge-window)
+
+(define-key boon-special-map (kbd "C-x j") 'windmove-left)
+(define-key boon-special-map (kbd "C-x l") 'windmove-right)
+(define-key boon-special-map (kbd "C-x i") 'windmove-up)
+(define-key boon-special-map (kbd "C-x k") 'windmove-down)
+(define-key boon-special-map (kbd "C-x =") 'balance-windows)
+(define-key boon-special-map (kbd "C-x 9") 'transpose-buffers)
+(define-key boon-special-map (kbd "C-M-j") 'shrink-window-horizontally)
+(define-key boon-special-map (kbd "C-M-l") 'enlarge-window-horizontally)
+(define-key boon-special-map (kbd "C-M-k") 'shrink-window)
+(define-key boon-special-map (kbd "C-M-i") 'enlarge-window)
+
 (define-key emacs-lisp-mode-map (kbd "C-M-i") nil)
 (define-key help-mode-map (kbd "C-M-i") nil)
-(global-set-key (kbd "C-.") 'scroll-left)
-(global-set-key (kbd "C-,") 'scroll-right)
-
+(global-set-key (kbd "C-x >") 'scroll-left)
+(global-set-key (kbd "C-x <") 'scroll-right)
 
 ;;;; Secial command mapcat
 
@@ -257,8 +280,10 @@
 
 (define-key cider-mode-map (kbd "C-c C-b") nil)
 (define-key cider-mode-map (kbd "C-c C-f") 'find-name-dired)
+(define-key cider-mode-map (kbd "C-M-i") 'enlarge-window)
 (define-key cider-repl-mode-map (kbd "M-RET") 'cider-repl-newline-and-indent)
 (define-key cider-repl-mode-map (kbd "RET") 'cider-repl-return)
+(define-key cider-repl-mode-map (kbd "C-c C-b") 'cider-repl-clear-buffer)
 (add-to-list 'emulation-mode-map-alists 'cider-mode-alist)
 
 
@@ -280,7 +305,7 @@
 (add-hook 'term-load-hook
           (lambda ()
             (term-line-mode)
-            (define-key term-raw-map (kbd "\\") 'boon-local-mode)))
+            (define-key term-raw-map (kbd "C-SPC") 'boon-local-mode)))
 
 (defun boon-term-sync-input-mode ()
   "Sync char and line term input modes with boon on off state."
