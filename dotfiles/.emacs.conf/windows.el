@@ -10,6 +10,22 @@
 (recentf-mode t)
 (setq recentf-max-menu-items 40)
 
+(defun enlarge-window-horizontally-5 ()
+  (interactive)
+  (enlarge-window-horizontally 5))
+
+(defun shrink-window-horizontally-5 ()
+  (interactive)
+  (shrink-window-horizontally 5))
+
+(defun enlarge-window-3 ()
+  (interactive)
+  (enlarge-window 3))
+
+(defun shrink-window-3 ()
+  (interactive)
+  (shrink-window 3))
+
 ;; Function to swap a buffer with the one in a window bellow it. This function
 ;; is later bound globally to the key `C-x 9'
 (defun transpose-buffers (arg)
