@@ -89,7 +89,7 @@
 
 (define-key boon-command-map (kbd "x") 'boon-x-map)
 (define-key boon-command-map (kbd "c") 'boon-c-god)
-(define-key boon-command-map (kbd "h") 'boon-h-map)
+;; (define-key boon-command-map (kbd "h") 'boon-h-map)
 (define-key boon-command-map (kbd "p") 'projectile-command-map)
 
 (global-set-key (kbd "M-l") 'forward-char)
@@ -100,16 +100,19 @@
 (define-key boon-moves-map (kbd "k") 'next-line-3)
 (define-key boon-moves-map (kbd "l") 'forward-word)
 (define-key boon-moves-map (kbd "j") 'backward-word)
-(define-key boon-moves-map (kbd "M-[") 'backward-paragraph)
-(define-key boon-moves-map (kbd ",") 'backward-paragraph)
-(define-key boon-moves-map (kbd "M-]") 'forward-paragraph)
-(define-key boon-moves-map (kbd ".") 'forward-paragraph)
+;; (define-key boon-moves-map (kbd "M-[") 'backward-paragraph)
+;; (define-key boon-moves-map (kbd ",") 'backward-paragraph)
+(define-key boon-moves-map (kbd "h") 'backward-paragraph)
+;; (define-key boon-moves-map (kbd "M-]") 'forward-paragraph)
+;; (define-key boon-moves-map (kbd ".") 'forward-paragraph)
+(define-key boon-moves-map (kbd "n") 'forward-paragraph)
 (define-key boon-moves-map (kbd ">") 'end-of-buffer)
 (define-key boon-moves-map (kbd "<") 'beginning-of-buffer)
 (define-key boon-moves-map (kbd ";") 'recenter-top-bottom)
 (define-key boon-moves-map (kbd "v") 'scroll-up-command)
 (define-key boon-moves-map (kbd "C-v") 'scroll-down-command)
-(define-key boon-moves-map (kbd "g") 'goto-line)
+(global-set-key (kbd "M-C-g") 'goto-line)
+;; (define-key boon-moves-map (kbd "g") 'goto-line) 
 
 (defun goto-previous-local-mark ()
   (interactive)
@@ -121,7 +124,7 @@
 
 (global-set-key (kbd "C-x SPC") 'goto-previous-local-mark)
 (define-key boon-command-map (kbd "m") 'set-mark-command)
-(define-key boon-command-map (kbd "n") 'push-mark-no-activate)
+(define-key boon-command-map (kbd ",") 'push-mark-no-activate)
 
 (define-key boon-command-map (kbd "u") 'sp-backward-sexp)
 (define-key boon-command-map (kbd "o") 'sp-forward-sexp)

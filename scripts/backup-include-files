@@ -1,0 +1,16 @@
+Desktop
+.emacs.d
+.gitconfig
+Documents
+Downloads
+Movies
+Music
+Pictures
+local
+opt
+src
+Library/Application Support/Transmission
+Library/Preferences/org.m0k.transmission.plist
+Library/Caches/org.m0k.transmission
+Library/Application Support/Google/Chrome/Default/Bookmarks
+Library/Application Support/Google/Chrome/Default/Bookmarks.bak

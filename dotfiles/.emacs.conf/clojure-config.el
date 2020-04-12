@@ -49,6 +49,7 @@
 
 (defvar my-clojure-keywords
   '("with-let"
+    "with-fsm"
     "with-entity"
     "with-ref"
     "with-uuids"))

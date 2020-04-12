@@ -1,18 +1,23 @@
 #! /bin/bash
 
-system_backup_dirs="\
-~/.emacs.d \
-~/.gitconfig \
-~/Desktop \
-~/Documents \
-~/Downloads \
-~/Library \
-~/Movies \
-~/Music \
-~/Pictures \
-~/local \
-~/opt \
-~/src"
+# ~/Desktop \
+# ~/.emacs.d \
+# ~/.gitconfig \
+# ~/Documents \
+# ~/Downloads \
+# ~/Library \
+# ~/Movies \
+# ~/Music \
+# ~/Pictures \
+# ~/local \
+# ~/opt \
+# ~/src \
+
+scripts_dir=~/src/scripts
+exclude_file="${scripts_dir}/backup-exclude-files"
+include_file="${scripts_dir}/backup-include-files"
+
+echo $include_file
 
 if [[ $# -gt 0 ]]; then
     target=$1
@@ -21,4 +26,5 @@ else
     exit 1
 fi
 
-eval rsync -avvz --partial --progress --delete $system_backup_dirs $target
+echo "Backing up files to $target"
+eval rsync -avvz --partial --progress --delete --delete-excluded --recursive --exclude-from $exclude_file --files-from $include_file ~/ $target

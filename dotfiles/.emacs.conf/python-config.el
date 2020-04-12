@@ -37,5 +37,5 @@
 ;; if you want auto-activation (see below for details), include:
 ;; (conda-env-autoactivate-mode t)
 
-;; (custom-set-variables
-;;  '(conda-anaconda-home "~/anaconda3"))
+(custom-set-variables
+ '(conda-anaconda-home "~/anaconda3"))
