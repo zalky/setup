@@ -48,6 +48,10 @@
 
 ;; FILL PARAGRAPH: `M-q' (`fill-paragraph')
 
+;; Helm Buffer: Help: `M-h m' (mode help) when activated. Select
+;; buffers of similar type `C-M-SPC', Kill selected buffer `M-D', next
+;; group/source `C-o', previous group/source `M-o'.
+
 ;; PREFIX & INDENDATION: Type `C-x .' to set the `fill-prefix', and
 ;; then `C-M-\' (`indent-region') will indent the region to that
 ;; pattern. To reset the `fill-prefix', simply type `C-x .' at the
@@ -194,13 +198,17 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#303030" "#C17BD2" "#00B0A6" "orchid2" "#00ADD7" "#897FBD" "#698BC4" "gray80"])
+ '(boon-special-mode-list
+   (quote
+    (Buffer-menu-mode debugger-mode ediff-mode git-rebase-mode mu4e-headers-mode mu4e-view-mode org-agenda-mode cfw:calendar-mode magit-blame-mode)))
+ '(conda-anaconda-home "~/anaconda3")
  '(css-fontify-colors nil)
  '(cursor-type t)
  '(ns-alternate-modifier (quote alt))
  '(ns-right-command-modifier (quote control))
  '(package-selected-packages
    (quote
-    (boon cider cider-decompile ac-cider smartparens conda sparql-mode nlinum magit highlight-numbers fit-frame tagedit vue-mode indium helm-projectile helm-swoop helm clj-refactor clojure-mode-extra-font-locking clojure-mode))))
+    (yaml-mode boon cider cider-decompile ac-cider smartparens conda sparql-mode nlinum magit highlight-numbers fit-frame tagedit vue-mode indium helm-projectile helm-swoop helm clj-refactor clojure-mode-extra-font-locking clojure-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

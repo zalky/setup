@@ -14,4 +14,4 @@ else
     exit 1
 fi
 
-eval tar -cvzf - $credential_backup_dirs | gpg --cipher-algo AES256 -z 0 --output $target/cred.tar.gz.gpg --symmetric
+eval tar -cvzf - $credential_backup_dirs | gpg --cipher-algo AES256 -z 0 --output $target/cred.$(date "+%Y.%m.%d-%H.%M.%S").tar.gz.gpg --symmetric

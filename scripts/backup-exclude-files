@@ -1,1 +1,3 @@
 opt/datomic/data/db
+src/semion/aristotle/data
+src/semion/aristotle.bak/data

@@ -81,6 +81,12 @@
                                                   cursor-command-mode-color
                                                 cursor-insert-mode-color)))
 
+;; Workaround for entering boon special mode in magit blame minor mode.
+(add-hook 'magit-blame-mode-hook (lambda ()
+                                   (if (bound-and-true-p magit-blame-mode)
+                                       (boon-set-special-state)
+                                     (boon-set-command-state))))
+
 ;; Careful, post-command-hook is run after every command run by emacs.
 (add-hook 'post-command-hook 'boon-set-cursor)
 
@@ -185,6 +191,7 @@
 (global-set-key (kbd "C-M-k") 'shrink-window)
 (global-set-key (kbd "C-M-i") 'enlarge-window)
 
+(define-key boon-command-map (kbd "C-x DEL") 'kill-this-buffer)
 (define-key boon-command-map (kbd "C-x j") 'windmove-left)
 (define-key boon-command-map (kbd "C-x l") 'windmove-right)
 (define-key boon-command-map (kbd "C-x i") 'windmove-up)
@@ -286,6 +293,8 @@
 (define-key cider-mode-map (kbd "C-c C-b") nil)
 (define-key cider-mode-map (kbd "C-c C-f") 'find-name-dired)
 (define-key cider-mode-map (kbd "C-M-i") 'enlarge-window)
+(define-key cider-mode-map (kbd "C-x e") 'cider-eval-last-sexp)
+(define-key cider-repl-mode-map (kbd "C-x e") 'cider-eval-last-sexp)
 (define-key cider-repl-mode-map (kbd "M-RET") 'cider-repl-newline-and-indent)
 (define-key cider-repl-mode-map (kbd "RET") 'cider-repl-return)
 (define-key cider-repl-mode-map (kbd "C-c C-b") 'cider-repl-clear-buffer)
@@ -350,9 +359,9 @@
 URL `http://ergoemacs.org/emacs/minor_mode_key_priority.html'
 Version 2017-01-27"
   (interactive)
-  (mapc
-   (lambda (x) (prin1 (car x)) (terpri))
-   minor-mode-map-alist))
+  (mapc (lambda (x)
+          (prin1 (car x)) (terpri))
+        minor-mode-map-alist))
 
 (defun display-emulation-mode-key-priority  ()
   "Print out minor mode's key priority.
@@ -361,11 +370,10 @@ Version 2017-01-27"
   (interactive)
   (mapc
    (lambda (x)
-     (mapc
-      (lambda (x)
-        (prin1 (car x))
-        (terpri))
-      (if (symbolp x)
-          (eval x)
-        x)))
+     (mapc (lambda (x)
+             (prin1 (car x))
+             (terpri))
+           (if (symbolp x)
+               (eval x)
+             x)))
    emulation-mode-map-alists))

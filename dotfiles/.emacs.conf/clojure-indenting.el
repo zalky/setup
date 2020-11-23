@@ -100,7 +100,10 @@
     assoc-inn
     update-inn
     exists
-    forall))
+    forall
+    with
+    read-tx
+    write-tx))
 
 (defvar third-party-fn-tags
   '(or-join
@@ -111,7 +114,7 @@
     chsk-send!
     reaction
     make-reaction
-    run!
+    ;; run!
     listen
     validate))
 

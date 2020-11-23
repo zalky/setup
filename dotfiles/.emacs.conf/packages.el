@@ -145,6 +145,20 @@
 (add-to-list 'auto-mode-alist '("\\.sparql$" . sparql-mode))
 (add-to-list 'auto-mode-alist '("\\.rq$" . sparql-mode))
 
+(setq sparql-indent-offset 4)
+
+
+;; Add turtle mode
+(add-to-list 'load-path "~/src/elisp/ttl-mode")
+(autoload 'ttl-mode "ttl-mode" "Major mode for OWL or Turtle files" t)
+(add-hook 'ttl-mode-hook 'turn-on-font-lock)
+(setq ttl-indent-on-idle-timer nil)
+(setq auto-mode-alist (append (list
+                               '("\\.n3" . ttl-mode)
+                               '("\\.ttl" . ttl-mode)
+                               '("\\.owl" . ttl-mode))
+                              auto-mode-alist))
+
 ;; Shows all options when running apropos. For more info,
 ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Apropos.html
 (setq apropos-do-all t)

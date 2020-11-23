@@ -52,7 +52,8 @@
     "with-fsm"
     "with-entity"
     "with-ref"
-    "with-uuids"))
+    "with"
+    "doq"))
 
 (font-lock-add-keywords
  'clojure-mode
@@ -70,6 +71,13 @@
 
 (font-lock-add-keywords
  'clojurescript-mode
+ `((,(concat "(\\(?:\.*/\\)?"
+             (regexp-opt my-clojure-keywords t)
+             "\\>")
+    1 font-lock-keyword-face)))
+
+(font-lock-add-keywords
+ 'cider-repl-mode
  `((,(concat "(\\(?:\.*/\\)?"
              (regexp-opt my-clojure-keywords t)
              "\\>")
