@@ -1,3 +1,4 @@
-{:repl {:plugins [[cider/cider-nrepl "0.22.1"]
-                  [refactor-nrepl "2.4.0"]]}}
+{:repl {:plugins      [[cider/cider-nrepl "0.25.9"]
+                       [refactor-nrepl "2.5.1"]]
+        :dependencies [[cider/piggieback "0.5.2" :scope "test"]]}}
 

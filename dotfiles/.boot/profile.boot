@@ -2,8 +2,9 @@
          'clojure.java.io)
 
 (swap! boot.repl/*default-dependencies*
-       concat '[[cider/cider-nrepl "0.22.1"]
-                [refactor-nrepl "2.4.0"]])
+       concat '[[cider/cider-nrepl "0.25.9"]
+                [refactor-nrepl "2.5.1"]
+                [cider/piggieback "0.5.2" :scope "test"]])
 
 (swap! boot.repl/*default-middleware* conj
        'cider.nrepl/cider-middleware
