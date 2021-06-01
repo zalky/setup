@@ -13,13 +13,16 @@
 
 (helm-projectile-on)
 
+;; Uses git version control to get index files (by default)
+(setq projectile-indexing-method 'alien)
+
 ;; When switching projects, show buffers not files.
 (setq projectile-switch-project-action 'helm-projectile-switch-to-buffer)
 
 (setq projectile-globally-ignored-directories
       (append '(".git"
                 ".svn"
-                "out"
+                ".cpcache"
                 "repl"
                 "target"
                 "out")
