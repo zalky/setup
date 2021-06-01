@@ -22,3 +22,15 @@ export PATH="/Users/zalan/anaconda3/bin:$PATH"
 # Aliases
 
 alias rsync-backup="rsync -avvz --partial --progress --delete"
+
+__conda_setup="$('/Users/zalan/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/zalan/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/zalan/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/zalan/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup

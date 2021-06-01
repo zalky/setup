@@ -1,10 +1,15 @@
 # Configuration file for ipython.
 
+# Auto reload make s
+import builtins
+from IPython.lib import deepreload
+builtins.reload = deepreload.reload
+
 c = get_config()
 
 c.InteractiveShell.autoindent = True
 c.InteractiveShell.confirm_exit = False
-c.InteractiveShell.deep_reload = False
+# c.InteractiveShell.deep_reload = False  deprecated
 c.InteractiveShell.editor = 'emacs'
 c.InteractiveShell.xmode = 'Context'
 

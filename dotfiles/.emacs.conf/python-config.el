@@ -16,11 +16,12 @@
 (setq elpy-modules
       '(elpy-module-sane-defaults
         elpy-module-eldoc
-        elpy-module-flymake
         elpy-module-highlight-indentation
-        elpy-module-pyvenv
         elpy-module-yasnippet
-        elpy-module-django))
+        elpy-module-django
+        ;; elpy-module-pyvenv
+        ;; elpy-module-flymake
+        ))
 
 (elpy-enable)
 
@@ -29,13 +30,20 @@
 (define-key elpy-mode-map (kbd "C-c C-t") 'elpy-shell-send-top-statement)
 (define-key elpy-mode-map (kbd "C-c C-p") 'elpy-shell-switch-to-shell)
 
-;; (require 'conda)
+;; conda.el configuration begins
+(require 'conda)
 ;; if you want interactive shell support, include:
-;; (conda-env-initialize-interactive-shells)
+(conda-env-initialize-interactive-shells)
 ;; if you want eshell support, include:
-;; (conda-env-initialize-eshell)
+(conda-env-initialize-eshell)
 ;; if you want auto-activation (see below for details), include:
-;; (conda-env-autoactivate-mode t)
+(conda-env-autoactivate-mode t)
+;; from https://stackoverflow.com/a/56722815
+(setq conda-anaconda-home (expand-file-name "~/opt/anaconda3"))
+(setq conda-env-home-directory (expand-file-name "~/opt/anaconda3"))
 
-(custom-set-variables
- '(conda-anaconda-home "~/anaconda3"))
+(add-to-list 'exec-path (expand-file-name "~/opt/anaconda3/bin"))
+(setenv "PATH" "~/opt/anaconda3/bin:$PATH" '("PATH"))
+
+;; (custom-set-variables
+;;  '(conda-anaconda-home "~/anaconda3"))

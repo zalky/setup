@@ -201,7 +201,6 @@
  '(boon-special-mode-list
    (quote
     (Buffer-menu-mode debugger-mode ediff-mode git-rebase-mode mu4e-headers-mode mu4e-view-mode org-agenda-mode cfw:calendar-mode magit-blame-mode)))
- '(conda-anaconda-home "~/anaconda3")
  '(css-fontify-colors nil)
  '(cursor-type t)
  '(ns-alternate-modifier (quote alt))
@@ -275,6 +274,7 @@
  '(eshell-ls-readonly ((t (:inherit font-lock-builtin-face))))
  '(eshell-ls-symlink ((t (:inherit font-lock-constant-face :weight bold))))
  '(eshell-prompt ((t (:inherit font-lock-comment-face))))
+ '(flymake-error ((t (:underline (:color "#9e69bf" :style wave)))))
  '(flyspell-duplicate ((t (:underline (:color "orchid4" :style wave)))))
  '(flyspell-incorrect ((t (:underline (:color "orchid2" :style wave)))))
  '(font-lock-builtin-face ((t (:foreground "#808080"))))
@@ -303,6 +303,7 @@
  '(helm-ff-dotted-symlink-directory ((t (:inherit (font-lock-variable-name-face highlight)))))
  '(helm-ff-executable ((t (:inherit font-lock-type-face))))
  '(helm-ff-file ((t (:inherit default))))
+ '(helm-ff-file-extension ((t (:inherit helm-find-files))))
  '(helm-ff-invalid-symlink ((t (:inherit (font-lock-function-name-face highlight)))))
  '(helm-ff-prefix ((t (:inherit font-lock-keyword-face))))
  '(helm-ff-symlink ((t (:inherit font-lock-variable-name-face))))
@@ -387,6 +388,7 @@
  '(magit-signature-good ((t (:inherit font-lock-string-face))))
  '(magit-signature-untrusted ((t (:inherit font-lock-constant-face))))
  '(magit-tag ((t (:inherit font-lock-variable-name-face))))
+ '(makefile-space ((t (:inherit diff-changed-bg))))
  '(match ((t (:inherit (link highlight) :underline nil :weight bold))))
  '(minibuffer-prompt ((t (:inherit font-lock-keyword-face :weight bold))))
  '(mmm-default-submode-face ((t nil)))

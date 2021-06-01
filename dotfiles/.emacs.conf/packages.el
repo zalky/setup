@@ -68,7 +68,7 @@
     elpy
 
     ;; python conda environments
-    ;; conda
+    conda
 
     ;; highlight numbers
     highlight-numbers
