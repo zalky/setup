@@ -33,6 +33,9 @@
     ;; https://github.com/clojure-emacs/cider
     cider
 
+    ;; Provides modal editing for Emacs
+    boon
+
     ;; Provides refactoring support for clojure.
     clj-refactor
 

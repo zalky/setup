@@ -33,7 +33,8 @@
 
 (defvar my-let-tags
   '(gen-schema
-    gen-partition))
+    gen-partition
+    let-dataset))
 
 (defvar third-party-let-tags
   '(p
@@ -140,7 +141,8 @@
     reg-pull
     reg-attr
     reg-link
-    reg-summary))
+    reg-summary
+    reg-comp))
 
 ;; From om.dom/tags
 (defvar dom-tags
