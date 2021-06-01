@@ -1,6 +1,8 @@
 ;;;;;;;;;
 ;; global
 (require 'smartparens-config)
+(require 'smartparens-javascript)
+
 (smartparens-global-mode t)
 
 ;; Don't highlight space inside newly created s-exps.
