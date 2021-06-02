@@ -1,8 +1,15 @@
 ;;;; Python specific confuguration settings
 
-;; (require 'python)
+;; Elpy configuration
 
-;; Configure Python configuration to use ipython
+;; The latest elpy package has a bug where it sends ^G control signals
+;; to a running IPython process, making python REPL workflow
+;; unusable. We manually revert to a previous version of elpy that is
+;; known to work.
+(add-to-list 'load-path "~/local/share/elisp/elpy-1.25.0")
+
+(require 'elpy)
+
 (setq python-shell-interpreter "ipython"
       python-shell-interpreter-args "-i --simple-prompt")
 
@@ -30,6 +37,9 @@
 (define-key elpy-mode-map (kbd "C-c C-t") 'elpy-shell-send-top-statement)
 (define-key elpy-mode-map (kbd "C-c C-p") 'elpy-shell-switch-to-shell)
 
+
+;; Conda configuration
+
 ;; conda.el configuration begins
 (require 'conda)
 ;; if you want interactive shell support, include:
@@ -45,5 +55,5 @@
 (add-to-list 'exec-path (expand-file-name "~/opt/anaconda3/bin"))
 (setenv "PATH" "~/opt/anaconda3/bin:$PATH" '("PATH"))
 
-;; (custom-set-variables
-;;  '(conda-anaconda-home "~/anaconda3"))
+;; We must also ensure that the shell PATH in .bashrc and .profile are
+;; properly set.

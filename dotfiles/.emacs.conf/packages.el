@@ -64,8 +64,13 @@
     ;; edit html tags like sexps
     tagedit
 
-    ;; pythong editing environment
-    elpy
+    ;; Python editing environment
+
+    ;; We have to manually revert to a working version of Elpy, loaded
+    ;; via local/share/elisp, and explicitly enumerate outstanding
+    ;; Elpy dependencies here. See python-config.el for more details.
+    find-file-in-project
+    ;; elpy
 
     ;; python conda environments
     conda
